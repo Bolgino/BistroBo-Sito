@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BistroBò | Il Gestionale per Ristorazione</title>
+    <!-- Favicon -->
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome per le icone -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
@@ -17,7 +21,7 @@
         }
         /* Navbar personalizzata */
         .navbar { background-color: rgba(15, 23, 42, 0.9) !important; backdrop-filter: blur(10px); }
-        .navbar-brand { font-weight: 800; font-size: 1.5rem; color: #4ade80 !important; }
+        .navbar-brand { font-weight: 800; font-size: 1.5rem; color: #4ade80 !important; display: flex; align-items: center;}
         
         /* Hero Section */
         .hero-section {
@@ -53,10 +57,16 @@
         .accordion-button:not(.collapsed) { background-color: #334155; color: #4ade80; }
         .accordion-item { background-color: #1e293b; border: 1px solid #334155; color: #94a3b8; }
         .accordion-body code { background: #0f172a; padding: 5px 10px; border-radius: 5px; color: #4ade80; }
+        
+        /* Dropdown scuro */
+        .dropdown-menu-dark { background-color: #1e293b; border-color: #334155; }
+        .dropdown-menu-dark .dropdown-item { color: #cbd5e1; }
+        .dropdown-menu-dark .dropdown-item:hover { background-color: #334155; color: #4ade80; }
     </style>
 </head>
 <body>
 
+    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -66,7 +76,17 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="webLinksDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-globe"></i> Link Web
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="webLinksDropdown">
+                            <li><a class="dropdown-item" href="https://bolgino.github.io/BistroBo-App/" target="_blank">App Principale</a></li>
+                            <li><a class="dropdown-item" href="https://bolgino.github.io/BistroBo-App/preordini.html" target="_blank">Preordini</a></li>
+                            <li><a class="dropdown-item" href="https://bolgino.github.io/BistroBo-App/cliente" target="_blank">Schermo Cliente</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="#features">Caratteristiche</a></li>
                     <li class="nav-item"><a class="nav-link" href="#guida">Guida LAN</a></li>
                     <li class="nav-item"><a class="nav-link btn btn-outline-success ms-lg-3" href="#download">Ottieni BistroBò</a></li>
@@ -75,13 +95,14 @@
         </div>
     </nav>
 
+    <!-- HERO SECTION -->
     <section class="hero-section text-center text-lg-start mt-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <h1 class="hero-title">Gestisci il tuo locale.<br><span>Senza interruzioni.</span></h1>
                     <p class="hero-subtitle mt-4">
-                        Il primo sistema di comande ibrido. Usa la versione Cloud per la massima flessibilità, oppure scarica la versione LAN per un sistema ultra-rapido, indipendente da Internet e a prova di blackout.
+                        Il primo sistema di comande ibrido. Usa la versione Cloud per la massima flessibilità, oppure scarica la versione LAN per un sistema ultra-rapido sulla tua rete locale.
                     </p>
                     <div class="d-flex flex-column flex-sm-row gap-3 mt-4" id="download">
                         <a href="https://bolgino.github.io/BistroBo-App/index.html" class="btn btn-custom-cloud" target="_blank">
@@ -92,22 +113,24 @@
                         </a>
                     </div>
                     <p class="mt-3" style="font-size: 0.85rem; color: #64748b;">
-                        *La versione Windows richiede Windows 10/11 a 64-bit.
+                        *La versione Windows richiede Windows 10/11 a 64-bit ed è utilizzabile da una persona alla volta.
                     </p>
                 </div>
                 <div class="col-lg-6 mt-5 mt-lg-0 text-center">
-                    <img src="img/panino.jpeg" alt="BistroBo Preview" class="img-fluid rounded shadow-lg" style="border: 2px solid #334155;">
+                    <img src="img/panino.jpeg" alt="BistroBo Panino" class="img-fluid rounded shadow-lg" style="object-fit: cover; height: 100%; min-height: 350px;">
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- FEATURES SECTION -->
     <section id="features" class="container py-5 mt-4">
         <div class="text-center mb-5">
             <h2 class="fw-bold">Quale versione scegliere?</h2>
             <p style="color: #94a3b8;">Due architetture diverse, la stessa incredibile facilità d'uso.</p>
         </div>
         <div class="row g-4">
+            <!-- Versione Cloud -->
             <div class="col-md-6">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-wifi"></i></div>
@@ -121,46 +144,49 @@
                     </ul>
                 </div>
             </div>
+            <!-- Versione LAN -->
             <div class="col-md-6">
-                <div class="feature-card" style="border-color: #4ade80;">
+                <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-network-wired"></i></div>
                     <h3 class="fw-bold">BistroBò LAN (.exe)</h3>
-                    <p>La soluzione professionale per i servizi ad alta intensità. Usa un router o l'hotspot di un cellulare per creare una rete locale chiusa e velocissima.</p>
+                    <p>La soluzione per la massima reattività interna. Usa un router per creare una rete locale chiusa tra i tuoi dispositivi operativi.</p>
                     <ul class="list-unstyled mt-3" style="color: #cbd5e1;">
-                        <li><i class="fa-solid fa-check text-success me-2"></i> <b>Nessuna connessione internet necessaria</b></li>
-                        <li><i class="fa-solid fa-check text-success me-2"></i> Comande istantanee (Zero lag)</li>
-                        <li><i class="fa-solid fa-check text-success me-2"></i> Generazione QRCode per i tablet dei camerieri</li>
-                        <li><i class="fa-solid fa-check text-success me-2"></i> Backup automatico in locale sul PC</li>
+                        <li><i class="fa-solid fa-globe text-warning me-2"></i> <b>Richiede internet sul PC Server</b> per funzionare e scaricare i preordini.</li>
+                        <li><i class="fa-solid fa-user text-warning me-2"></i> Progettato per essere usato da <b>una persona alla volta</b>.</li>
+                        <li><i class="fa-solid fa-check text-success me-2"></i> Comande interne istantanee (Zero lag).</li>
+                        <li><i class="fa-solid fa-check text-success me-2"></i> Generazione QRCode per collegare rapidamente i tablet.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- GUIDA / ISTRUZIONI -->
     <section id="guida" class="guide-section">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="fw-bold text-white">Guida rapida: Come usare la versione LAN</h2>
-                <p style="color: #94a3b8;">Configura il tuo ristorante in 3 semplici passaggi, senza bisogno di un tecnico.</p>
+                <p style="color: #94a3b8;">Configura il tuo ristorante in 3 semplici passaggi.</p>
             </div>
             
             <div class="accordion" id="accordionGuida">
+                <!-- Step 1 -->
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#step1">
-                            1. Crea la rete (Hotspot o Router)
+                            1. Crea la rete (Hotspot o Router connesso)
                         </button>
                     </h2>
                     <div id="step1" class="accordion-collapse collapse show" data-bs-parent="#accordionGuida">
                         <div class="accordion-body">
-                            Non serve una vera connessione a internet! Puoi usare un router wifi scollegato dalla presa telefonica, oppure <b>l'Hotspot del tuo cellulare</b> (anche con i dati mobili disattivati). 
-                            <br><br>
-                            1. Accendi l'hotspot o il router.<br>
+                            Per far comunicare i tablet con il PC, devi creare una rete locale. <b>Attenzione:</b> il PC deve comunque avere un accesso a internet per consentire al gestionale di funzionare e ricevere i preordini web.<br><br>
+                            1. Accendi un router o l'hotspot del cellulare.<br>
                             2. Collega il PC (su cui hai scaricato l'app) a questa rete.<br>
-                            3. Collega anche i tablet o gli smartphone dei camerieri alla stessa rete.
+                            3. Collega anche i tablet o gli smartphone dei reparti (cucina, bar, cassa) alla stessa rete.
                         </div>
                     </div>
                 </div>
+                <!-- Step 2 -->
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step2">
@@ -169,11 +195,12 @@
                     </h2>
                     <div id="step2" class="accordion-collapse collapse" data-bs-parent="#accordionGuida">
                         <div class="accordion-body">
-                            Apri il file <code>BistroBo_Setup.exe</code> scaricato da questo sito. Apparirà una finestra (Dashboard) che ti chiederà di selezionare la rete corretta dal menu a tendina.<br><br>
-                            Seleziona la rete del tuo Hotspot/Router. Immediatamente comparirà un <b>QR Code</b> sullo schermo del PC.
+                            Apri il file <code>BistroBo_Setup.exe</code> scaricato da questo sito. Apparirà una finestra che ti chiederà di selezionare la rete corretta dal menu a tendina.<br><br>
+                            Seleziona la rete a cui sei collegato. Immediatamente comparirà un <b>QR Code</b> sullo schermo del PC.
                         </div>
                     </div>
                 </div>
+                <!-- Step 3 -->
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3">
@@ -183,8 +210,8 @@
                     <div id="step3" class="accordion-collapse collapse" data-bs-parent="#accordionGuida">
                         <div class="accordion-body">
                             Prendi i tablet o i telefoni che faranno da "Cassa", "Cucina" o "Snack". <br>
-                            Apri la fotocamera, inquadra il QR Code mostrato sul PC e... boom! Sei dentro il gestionale. <br><br>
-                            Da questo momento, ogni comanda inviata dalla cassa apparirà in cucina in tempo reale, senza consumare giga e senza blocchi.
+                            Apri la fotocamera, inquadra il QR Code mostrato sul PC e sarai immediatamente reindirizzato all'interfaccia operativa senza dover inserire password. <br><br>
+                            Da questo momento, il traffico delle comande viaggerà in tempo reale sulla tua rete Wi-Fi.
                         </div>
                     </div>
                 </div>
@@ -196,13 +223,15 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="py-4 text-center" style="background-color: #0f172a; border-top: 1px solid #1e293b;">
         <div class="container" style="color: #64748b;">
-            <p class="mb-1">&copy; 2026 BistroBò. Sviluppato con passione.</p>
+            <p class="mb-1">&copy; 2024-2026 BistroBò. Sviluppato con passione per la ristorazione.</p>
             <p class="mb-0" style="font-size: 0.8rem;">Basato su Node.js, Electron e Firebase.</p>
         </div>
     </footer>
 
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
