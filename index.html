@@ -4,16 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BistroBò | Il Gestionale per Ristorazione</title>
-    <!-- Favicon -->
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome per le icone -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px; /* Evita che la barra fissa copra i titoli quando clicchi i link */
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #0f172a; /* Sfondo scuro elegante */
@@ -65,7 +66,6 @@
 </head>
 <body>
 
-    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
@@ -88,14 +88,14 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="#features">Caratteristiche</a></li>
                     <li class="nav-item"><a class="nav-link" href="#guida">Guida LAN</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-outline-success ms-lg-3" href="#download">Ottieni BistroBò</a></li>
+                    <li class="nav-item"><a class="nav-link text-info" href="manuale.html"><i class="fa-solid fa-book-open"></i> Manuale Operativo</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-outline-success ms-lg-3 px-3" style="border-radius: 8px;" href="#download">Ottieni BistroBò</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="hero-section text-center text-lg-start mt-5">
+    <section id="download" class="hero-section text-center text-lg-start mt-5">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6">
@@ -103,7 +103,7 @@
                     <p class="hero-subtitle mt-4">
                         Il primo sistema di comande ibrido. Usa la versione Cloud per la massima flessibilità, oppure scarica la versione LAN per un sistema ultra-rapido sulla tua rete locale.
                     </p>
-                    <div class="d-flex flex-column flex-sm-row gap-3 mt-4" id="download">
+                    <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
                         <a href="https://bolgino.github.io/BistroBo-App/" class="btn btn-custom-cloud" target="_blank">
                             <i class="fa-solid fa-cloud"></i> Apri Versione Cloud
                         </a>
@@ -122,14 +122,12 @@
         </div>
     </section>
 
-    <!-- FEATURES SECTION -->
     <section id="features" class="container py-5 mt-4">
         <div class="text-center mb-5">
             <h2 class="fw-bold">Quale versione scegliere?</h2>
             <p style="color: #94a3b8;">Due architetture diverse, la stessa incredibile facilità d'uso.</p>
         </div>
         <div class="row g-4">
-            <!-- Versione Cloud -->
             <div class="col-md-6">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-cloud"></i></div>
@@ -142,7 +140,6 @@
                     </ul>
                 </div>
             </div>
-            <!-- Versione LAN -->
             <div class="col-md-6">
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-network-wired"></i></div>
@@ -158,7 +155,6 @@
         </div>
     </section>
 
-    <!-- GUIDA / ISTRUZIONI -->
     <section id="guida" class="guide-section">
         <div class="container">
             <div class="text-center mb-5">
@@ -167,7 +163,6 @@
             </div>
             
             <div class="accordion" id="accordionGuida">
-                <!-- Step 1 -->
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#step1">
@@ -182,7 +177,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Step 2 -->
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step2">
@@ -196,7 +190,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Step 3 -->
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3">
@@ -219,14 +212,12 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="py-4 text-center" style="background-color: #0f172a; border-top: 1px solid #1e293b;">
         <div class="container" style="color: #64748b;">
             <p class="mb-1">&copy; 2024-2026 BistroBò. Sviluppato con passione per la ristorazione.</p>
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
