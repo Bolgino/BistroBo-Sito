@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuale Operativo | BistroBò (Cloud & LAN)</title>
+    <title>Manuale Operativo | BistroBò</title>
     
     <!-- Favicon -->
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
@@ -74,8 +74,8 @@
             margin: 20px 0;
         }
         .info-box-lan {
-            background: rgba(74, 222, 128, 0.1);
-            border-left: 4px solid #4ade80;
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid #f59e0b;
             padding: 15px 20px;
             border-radius: 0 10px 10px 0;
             margin: 20px 0;
@@ -120,8 +120,7 @@
             <div class="col-lg-9">
                 <h1 class="mb-2">BISTROBÒ</h1>
                 <p class="lead" style="color: #4ade80;">Manuale Operativo e Guida completa all'utilizzo del sistema.</p>
-                <p style="font-size: 0.9rem; color: #64748b;">Copre le architetture Cloud (Online) e LAN (Offline).</p>
-
+                
                 <!-- LINK PUBBLICI -->
                 <div class="mt-4 p-4 rounded shadow-sm" style="background-color: #1e293b; border: 1px solid #334155;">
                     <h5 class="text-white mb-3"><i class="fa-solid fa-link me-2 text-primary"></i> Link Ufficiali (Versione Web)</h5>
@@ -140,7 +139,7 @@
                     
                     <p>Quando una comanda viene inserita dalla cassa, il sistema la suddivide automaticamente nelle sezioni di competenza e la invia istantaneamente ai reparti coinvolti. Cucina, Snack e Banco Bevande visualizzano immediatamente i prodotti che devono preparare, senza dover aggiornare la pagina o attendere comunicazioni manuali. Lo stato delle comande viene aggiornato in tempo reale, permettendo alla cassa di informare i clienti con precisione e di mantenere un flusso di lavoro ordinato e trasparente.</p>
                     
-                    <p>Il sistema si è evoluto nel tempo fino a integrare numerose funzionalità avanzate. Una delle più importanti è il modulo <strong>Preordini</strong>, che consente ai clienti di inviare il proprio ordine direttamente da una pagina dedicata (accessibile via web o rete locale). I preordini vengono immediatamente trasmessi alla cassa e ai reparti interessati.</p>
+                    <p>Il sistema si è evoluto nel tempo fino a integrare numerose funzionalità avanzate. Una delle più importanti è il modulo <strong>Preordini</strong>, che consente ai clienti di inviare il proprio ordine direttamente da una pagina dedicata. I preordini vengono immediatamente trasmessi alla cassa e ai reparti interessati.</p>
                     
                     <p>Anche la comunicazione interna è stata potenziata attraverso l'introduzione di una <strong>chat integrata</strong>. Questo strumento permette agli operatori di scambiarsi messaggi in tempo reale, migliorando il coordinamento in ambienti rumorosi o dispersivi.</p>
 
@@ -153,13 +152,15 @@
                     
                     <div class="info-box-cloud">
                         <h4><i class="fa-solid fa-cloud"></i> Versione Cloud (Online)</h4>
-                        <p>Basata su tecnologia <strong>Firebase</strong>. Richiede una connessione a Internet attiva e stabile per tutti i dispositivi. È ideale per locali fisici o eventi con ottima copertura di rete. Permette ai clienti di effettuare preordini comodamente da casa tramite i link pubblici ufficiali riportati in cima a questo manuale.</p>
+                        <p>Basata su tecnologia Firebase. Richiede una connessione a Internet per tutti i dispositivi. È ideale per locali fisici o eventi con ottima copertura di rete. Permette ai clienti di effettuare preordini comodamente da casa tramite i link pubblici ufficiali riportati in cima a questo manuale. È utilizzabile da più persone in contemporanea.</p>
                     </div>
 
                     <div class="info-box-lan">
-                        <h4><i class="fa-solid fa-network-wired"></i> Versione LAN (Rete Locale)</h4>
-                        <p>Basata su un eseguibile per Windows (.exe) che funge da Server Locale. I dispositivi operativi (tablet/smartphone della cucina e della cassa) si collegano ad esso tramite una rete Wi-Fi generata da un router. <br><br>
-                        <strong>Attenzione:</strong> Il computer Server <b>deve essere connesso a Internet</b> per scaricare ed eseguire il sito e per permettere la sincronizzazione dei preordini in entrata con il database Cloud. Tuttavia, l'invio delle comande interne viaggia sulla rete locale ad altissima velocità. Inoltre, il software Server è progettato per essere gestito da <b>una singola persona alla volta</b> direttamente dal PC, mentre i vari ruoli operativi possono essere distribuiti sui tablet scannerizzando il QR Code.</p>
+                        <h4><i class="fa-solid fa-network-wired"></i> Versione LAN (.exe Windows)</h4>
+                        <p>Basata su un eseguibile per Windows (.exe) che funge da Server Locale. <br><br>
+                        <strong>Importante: Il computer Server DEVE essere connesso a Internet.</strong> La connessione è indispensabile per avviare il gestionale, caricare i dati del database, gestire l'autenticazione degli operatori e, soprattutto, ricevere in tempo reale i preordini inoltrati dai clienti via web.<br><br>
+                        <strong>Il vantaggio della LAN:</strong> Nonostante il PC necessiti di internet, i tablet o gli smartphone usati come "Cassa" o "Cucina" comunicano con il PC tramite la tua rete Wi-Fi locale. Questo garantisce che l'invio delle comande interne sia istantaneo e privo di lag.</p>
+                        <p><i class="fa-solid fa-triangle-exclamation text-warning"></i> <b>Nota bene:</b> Il software per Windows è progettato per essere utilizzato da <strong>una persona alla volta</strong> direttamente dal PC Server.</p>
                     </div>
                 </div>
 
@@ -176,10 +177,10 @@
                     </ul>
 
                     <h3>Accesso nella Versione LAN</h3>
-                    <p>L'accesso alla rete locale è progettato per essere <strong>istantaneo</strong>, superando i sistemi basati su email. Ogni operatore connette il tablet al Wi-Fi locale e inquadra il <strong>QR Code</strong> mostrato sullo schermo del PC Server Principale. Si aprirà immediatamente la schermata iniziale dove basterà premere il pulsante corrispondente al proprio reparto (es. Cassa, Cucina).</p>
+                    <p>Ogni operatore connette il tablet al Wi-Fi locale (quello a cui è connesso il PC) e inquadra il <strong>QR Code</strong> mostrato sullo schermo del PC Server. Si aprirà immediatamente la schermata iniziale dove basterà premere il pulsante corrispondente al proprio reparto (es. Cassa, Cucina) senza dover fare login con email e password.</p>
 
                     <h3>Sicurezza e Disconnessione Forzata</h3>
-                    <p>Questo meccanismo garantisce un elevato livello di sicurezza. L'Amministratore, dal suo pannello, monitora tutti gli accessi. Nel caso si renda necessario revocare l'accesso a un operatore (o a un tablet non autorizzato nella LAN), il sistema invierà un comando remoto che <strong>scollegherà all'istante</strong> l'utente o il dispositivo, mostrando una schermata rossa ("Sei stato disconnesso dall'amministratore!").</p>
+                    <p>Questo meccanismo garantisce un elevato livello di sicurezza. L'Amministratore, dal suo pannello, monitora tutti gli accessi in tempo reale. Nel caso si renda necessario revocare l'accesso a un operatore (o a un tablet non autorizzato nella LAN), il sistema invierà un comando remoto che <strong>scollegherà all'istante</strong> l'utente o il dispositivo, mostrando una schermata rossa ("Sei stato disconnesso dall'amministratore!").</p>
                 </div>
 
                 <div id="cassa" class="mt-5">
@@ -197,8 +198,8 @@
                     <p>La parte inferiore è dedicata al pagamento. È presente un'interfaccia rapida a icone (banconote/monete). Il sistema <strong>calcola automaticamente il resto</strong> e suggerisce intelligentemente i tagli di denaro da restituire. È possibile anche segnare il pagamento come "POS".</p>
 
                     <h3>Invio, Transazioni e Suddivisione</h3>
-                    <p>Quando si invia la comanda, il sistema esegue transazioni sicure (fondamentale per evitare conflitti). Controlla la disponibilità degli ingredienti, li scala e suddivide l'ordine: i cibi alla cucina, le bibite al bar. La cassa monitora l'avanzamento dello stato in tempo reale ("da fare", "completato") dalla <em>Lista Comande</em>.</p>
-                    <p>In alto a destra viene mostrato il <strong>tempo medio di attesa</strong> calcolato sulle ultime 10 comande cucina/snack, utilissimo per informare il cliente.</p>
+                    <p>Quando si invia la comanda, il sistema esegue transazioni sicure nel database per evitare conflitti. Controlla la disponibilità degli ingredienti, li scala e suddivide l'ordine: i cibi alla cucina, le bibite al bar. La cassa monitora l'avanzamento dello stato in tempo reale ("da fare", "completato") dalla <em>Lista Comande</em>.</p>
+                    <p>In alto a destra viene mostrato il <strong>tempo medio di attesa</strong> calcolato sulle ultime 10 comande cucina/snack, utilissimo per informare il cliente in attesa.</p>
                 </div>
 
                 <div id="cucina" class="mt-5">
@@ -216,7 +217,7 @@
 
                 <div id="admin" class="mt-5">
                     <h2>Capitolo 3 - L'Amministratore</h2>
-                    <p>L'Amministratore ha il controllo supremo su tutti i reparti. Dispone di un pannello avanzato per modellare il funzionamento dell'intero sistema, i cui effetti sono in tempo reale.</p>
+                    <p>L'Amministratore ha il controllo supremo su tutti i reparti. Dispone di un pannello avanzato per modellare il funzionamento dell'intero sistema, i cui effetti sono propagati in tempo reale su tutti i dispositivi.</p>
 
                     <ul>
                         <li><strong>Simulatore di Ruoli:</strong> L'admin può passare in tempo reale alle interfacce di Cassa, Cucina, Bere o Snack con un clic. Ideale per testare il menu o fornire supporto operativo urgente senza effettuare logout.</li>
@@ -239,8 +240,8 @@
 
                 <div id="preordini" class="mt-5">
                     <h2>Capitolo 4 - Preordini</h2>
-                    <p>I Preordini permettono ai clienti di inviare i propri ordini in anticipo da una Web App dedicata, offrendo al personale una gestione più ordinata. <em>(Nota: Nella versione Cloud i clienti ordinano comodamente via web da qualsiasi postazione internet; nella versione LAN, i preordini arrivano alla cassa fungendo da ponte tramite il Server PC connesso a Internet)</em>.</p>
-                    <p>Ogni preordine viene mostrato in tempo reale in Cassa, arricchito con dati (facoltativi o obbligatori) come: Numero di Telefono, Posizione/Tavolo, Orario di consegna desiderato e Resto richiesto. I preordini sono etichettati con un colore distintivo e una lettera dedicata (es. "D").</p>
+                    <p>I Preordini permettono ai clienti di inviare i propri ordini in anticipo dalla Web App pubblica, offrendo al personale una gestione più ordinata. Da ovunque si trovi, il cliente consulta il menu e prenota.</p>
+                    <p>Affinché i preordini arrivino in Cassa, il PC Server (anche se si sta usando la versione LAN) deve essere connesso a Internet. Ogni preordine viene mostrato in tempo reale in Cassa, arricchito con dati (facoltativi o obbligatori) come: Numero di Telefono, Posizione/Tavolo, Orario di consegna desiderato e Resto richiesto. I preordini sono etichettati con un colore distintivo e una lettera dedicata (es. "D").</p>
                     <p>L'operatore in Cassa, al momento concordato, seleziona il preordine e preme "Aggiungi": il sistema lo trasforma in una comanda reale, scala gli ingredienti, lo stampa e lo smista alla Cucina, aiutando a dilazionare i carichi di lavoro durante i picchi di affluenza.</p>
                 </div>
 
@@ -249,7 +250,7 @@
                     <ul>
                         <li><strong>Chat Interna:</strong> Un canale diretto tra i reparti, fondamentale per comunicare imprevisti in ambienti rumorosi senza muoversi dalla postazione. Supporta notifiche sonore e può essere azzerata dall'Admin.</li>
                         <li><strong>Indicatori Dinamici:</strong> Colori di evidenziazione, badge numerici e lampeggi permettono agli operatori di capire istantaneamente cosa richiede intervento (es. comande in rosso/lampeggianti, ingredienti critici).</li>
-                        <li><strong>Stato di Connettività:</strong> Se il dispositivo perde il Wi-Fi o la connessione Cloud, una schermata dedicata blocca l'interfaccia. Appena la rete torna, BistroBò si riallinea automaticamente garantendo un ritorno immediato alla piena operatività.</li>
+                        <li><strong>Stato di Connettività:</strong> Se il dispositivo perde il Wi-Fi, una schermata dedicata blocca l'interfaccia. Appena la rete torna, BistroBò si riallinea automaticamente garantendo un ritorno immediato alla piena operatività.</li>
                         <li><strong>Segnalazioni Sonore:</strong> Avvisi poli-fonici per l'arrivo di comande (in cucina), preordini, messaggi chat e allarmi critici sugli ingredienti.</li>
                     </ul>
                 </div>
@@ -257,7 +258,7 @@
                 <div id="schermo-cliente" class="mt-5">
                     <h2>Capitolo 6 - Schermo Cliente Live</h2>
                     <p>Per la massima trasparenza, BistroBò integra una schermata indipendente pensata per essere riprodotta su un monitor rivolto verso il pubblico in fila.</p>
-                    <p>Dopo aver abilitato l'opzione nelle impostazioni globali, è possibile accedere alla schermata (link `cliente.html` o tasto rapido in LAN), selezionare il ruolo "Schermo Cliente" e scegliere a quale Cassa attiva agganciarsi. Il monitor aggiornerà istantaneamente la propria lista mostrando i nomi dei piatti inseriti dal cassiere, calcolando in diretta il <strong>Totale Ordine</strong>, l'importo <strong>Pagato</strong> e il <strong>Resto</strong> dovuto, azzerandosi in automatico ad ogni invio.</p>
+                    <p>Dopo aver abilitato l'opzione nelle impostazioni globali, è possibile accedere alla schermata (link `cliente.html`), selezionare il ruolo "Schermo Cliente" e scegliere a quale Cassa attiva agganciarsi. Il monitor aggiornerà istantaneamente la propria lista mostrando i nomi dei piatti inseriti dal cassiere, calcolando in diretta il <strong>Totale Ordine</strong>, l'importo <strong>Pagato</strong> e il <strong>Resto</strong> dovuto, azzerandosi in automatico ad ogni invio.</p>
                 </div>
 
                 <hr style="border-color: #334155; margin: 40px 0;">
@@ -265,7 +266,7 @@
                 <div id="conclusione">
                     <h2>Conclusione</h2>
                     <p>BistroBò ottimizza la gestione quotidiana di un locale, eliminando i ritardi e le incomprensioni dei sistemi cartacei tradizionali. Grazie all'unificazione di tutti i reparti, agli aggiornamenti automatici e al controllo rigoroso del magazzino, riduce drasticamente sprechi, attese e margini di errore.</p>
-                    <p>Che sia utilizzato in Cloud per la massima libertà o in Rete Locale (LAN) per aggirare i problemi di congestione dei Wi-Fi pubblici, l'aggiunta di strumenti come i Preordini e lo Schermo Cliente dimostra come BistroBò curi non solo la produzione interna, ma anche l'esperienza diretta e la trasparenza verso il cliente finale, elevando l'organizzazione dell'attività a standard professionali superiori.</p>
+                    <p>L'aggiunta di strumenti periferici come i Preordini web e lo Schermo Cliente dimostra come BistroBò curi non solo la produzione interna, ma anche l'esperienza diretta e la trasparenza verso il cliente finale, elevando l'organizzazione della tua attività a standard professionali superiori.</p>
                 </div>
 
             </div>
