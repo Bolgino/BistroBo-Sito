@@ -46,9 +46,8 @@
 
         /* Card Caratteristiche */
         .feature-card {
-            background: #1e293b; padding: 30px; border-radius: 15px; border: 1px solid #334155; height: 100%; transition: 0.3s;
+            background: #1e293b; padding: 30px; border-radius: 15px; border: 1px solid #334155; height: 100%;
         }
-        .feature-card:hover { border-color: #4ade80; transform: translateY(-5px); }
         .feature-icon { font-size: 2.5rem; color: #4ade80; margin-bottom: 20px; }
         
         /* Guida rapida */
@@ -105,16 +104,13 @@
                         Il primo sistema di comande ibrido. Usa la versione Cloud per la massima flessibilità, oppure scarica la versione LAN per un sistema ultra-rapido sulla tua rete locale.
                     </p>
                     <div class="d-flex flex-column flex-sm-row gap-3 mt-4" id="download">
-                        <a href="https://bolgino.github.io/BistroBo-App/index.html" class="btn btn-custom-cloud" target="_blank">
+                        <a href="https://bolgino.github.io/BistroBo-App/" class="btn btn-custom-cloud" target="_blank">
                             <i class="fa-solid fa-cloud"></i> Apri Versione Cloud
                         </a>
                         <a href="#guida" class="btn btn-custom-lan">
                             <i class="fa-solid fa-download"></i> Scarica per Windows (LAN)
                         </a>
                     </div>
-                    <p class="mt-3" style="font-size: 0.85rem; color: #64748b;">
-                        *La versione Windows richiede Windows 10/11 a 64-bit ed è utilizzabile da una persona alla volta.
-                    </p>
                 </div>
                 <div class="col-lg-6 mt-5 mt-lg-0 text-center">
                     <img src="img/panino.jpeg" alt="BistroBo Panino" class="img-fluid rounded shadow-lg" style="object-fit: cover; height: 100%; min-height: 350px;">
@@ -133,14 +129,14 @@
             <!-- Versione Cloud -->
             <div class="col-md-6">
                 <div class="feature-card">
-                    <div class="feature-icon"><i class="fa-solid fa-wifi"></i></div>
+                    <div class="feature-icon"><i class="fa-solid fa-cloud"></i></div>
                     <h3 class="fw-bold">BistroBò Cloud</h3>
                     <p>Ideale per chi vuole tutto subito, senza installare nulla. Perfetto per sagre con copertura internet stabile o per gestire il menu da casa.</p>
                     <ul class="list-unstyled mt-3" style="color: #cbd5e1;">
                         <li><i class="fa-solid fa-check text-success me-2"></i> Zero installazione</li>
                         <li><i class="fa-solid fa-check text-success me-2"></i> Accessibile da qualsiasi dispositivo</li>
-                        <li><i class="fa-solid fa-check text-success me-2"></i> Sincronizzazione tramite Firebase</li>
-                        <li><i class="fa-solid fa-xmark text-danger me-2"></i> Richiede una connessione internet costante</li>
+                        <li><i class="fa-solid fa-check text-success me-2"></i> Sincronizzazione web tramite Firebase</li>
+                        <li><i class="fa-solid fa-users text-success me-2"></i> Utilizzabile da più persone contemporaneamente</li>
                     </ul>
                 </div>
             </div>
@@ -149,12 +145,12 @@
                 <div class="feature-card">
                     <div class="feature-icon"><i class="fa-solid fa-network-wired"></i></div>
                     <h3 class="fw-bold">BistroBò LAN (.exe)</h3>
-                    <p>La soluzione per la massima reattività interna. Usa un router per creare una rete locale chiusa tra i tuoi dispositivi operativi.</p>
+                    <p>La soluzione per la massima reattività interna. Usa un router per creare una rete locale chiusa tra i tablet operativi, appoggiandoti al PC come Server.</p>
                     <ul class="list-unstyled mt-3" style="color: #cbd5e1;">
-                        <li><i class="fa-solid fa-globe text-warning me-2"></i> <b>Richiede internet sul PC Server</b> per funzionare e scaricare i preordini.</li>
-                        <li><i class="fa-solid fa-user text-warning me-2"></i> Progettato per essere usato da <b>una persona alla volta</b>.</li>
-                        <li><i class="fa-solid fa-check text-success me-2"></i> Comande interne istantanee (Zero lag).</li>
-                        <li><i class="fa-solid fa-check text-success me-2"></i> Generazione QRCode per collegare rapidamente i tablet.</li>
+                        <li><i class="fa-solid fa-wifi text-warning me-2"></i> <b>Richiede internet sul PC Server</b> per funzionare e ricevere i preordini.</li>
+                        <li><i class="fa-solid fa-user text-warning me-2"></i> Il Server PC è utilizzabile da <b>una persona alla volta</b>.</li>
+                        <li><i class="fa-solid fa-bolt text-success me-2"></i> Comande interne istantanee (Zero lag) via rete locale.</li>
+                        <li><i class="fa-solid fa-qrcode text-success me-2"></i> Generazione QRCode per collegare i tablet alla cassa.</li>
                     </ul>
                 </div>
             </div>
@@ -174,15 +170,15 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#step1">
-                            1. Crea la rete (Hotspot o Router connesso)
+                            1. Crea la rete e connettiti a Internet
                         </button>
                     </h2>
                     <div id="step1" class="accordion-collapse collapse show" data-bs-parent="#accordionGuida">
                         <div class="accordion-body">
-                            Per far comunicare i tablet con il PC, devi creare una rete locale. <b>Attenzione:</b> il PC deve comunque avere un accesso a internet per consentire al gestionale di funzionare e ricevere i preordini web.<br><br>
-                            1. Accendi un router o l'hotspot del cellulare.<br>
-                            2. Collega il PC (su cui hai scaricato l'app) a questa rete.<br>
-                            3. Collega anche i tablet o gli smartphone dei reparti (cucina, bar, cassa) alla stessa rete.
+                            Per far funzionare il gestionale, il PC deve essere connesso a Internet. Questo permette di caricare i dati e ricevere i preordini online.<br><br>
+                            1. Accendi un router Wi-Fi o l'hotspot del cellulare.<br>
+                            2. Collega il PC Windows (su cui hai scaricato l'app) a questa rete internet.<br>
+                            3. Collega anche i tablet o gli smartphone dei reparti (cucina, bar, cassa) alla stessa rete Wi-Fi.
                         </div>
                     </div>
                 </div>
@@ -195,8 +191,8 @@
                     </h2>
                     <div id="step2" class="accordion-collapse collapse" data-bs-parent="#accordionGuida">
                         <div class="accordion-body">
-                            Apri il file <code>BistroBo_Setup.exe</code> scaricato da questo sito. Apparirà una finestra che ti chiederà di selezionare la rete corretta dal menu a tendina.<br><br>
-                            Seleziona la rete a cui sei collegato. Immediatamente comparirà un <b>QR Code</b> sullo schermo del PC.
+                            Apri il file <code>BistroBo_Setup.exe</code> scaricato da questo sito (richiede Windows 10/11 a 64-bit).<br><br>
+                            Apparirà una finestra: seleziona la rete Wi-Fi a cui sei collegato. Immediatamente comparirà un <b>QR Code</b> sullo schermo del PC.
                         </div>
                     </div>
                 </div>
@@ -210,8 +206,8 @@
                     <div id="step3" class="accordion-collapse collapse" data-bs-parent="#accordionGuida">
                         <div class="accordion-body">
                             Prendi i tablet o i telefoni che faranno da "Cassa", "Cucina" o "Snack". <br>
-                            Apri la fotocamera, inquadra il QR Code mostrato sul PC e sarai immediatamente reindirizzato all'interfaccia operativa senza dover inserire password. <br><br>
-                            Da questo momento, il traffico delle comande viaggerà in tempo reale sulla tua rete Wi-Fi.
+                            Apri la fotocamera, inquadra il QR Code mostrato sul PC e sarai immediatamente reindirizzato all'interfaccia operativa. <br><br>
+                            Da questo momento, il traffico delle comande interne viaggerà in tempo reale sulla tua rete Wi-Fi ad altissima velocità.
                         </div>
                     </div>
                 </div>
@@ -227,7 +223,6 @@
     <footer class="py-4 text-center" style="background-color: #0f172a; border-top: 1px solid #1e293b;">
         <div class="container" style="color: #64748b;">
             <p class="mb-1">&copy; 2024-2026 BistroBò. Sviluppato con passione per la ristorazione.</p>
-            <p class="mb-0" style="font-size: 0.8rem;">Basato su Node.js, Electron e Firebase.</p>
         </div>
     </footer>
 
