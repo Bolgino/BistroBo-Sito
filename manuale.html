@@ -4,22 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manuale Operativo | BistroBò LAN</title>
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome per le icone -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0f172a;
+            background-color: #0f172a; /* Sfondo scuro elegante */
             color: #cbd5e1;
             position: relative;
         }
+        /* Navbar personalizzata */
         .navbar { background-color: rgba(15, 23, 42, 0.95) !important; backdrop-filter: blur(10px); border-bottom: 1px solid #1e293b; }
         .navbar-brand { font-weight: 800; font-size: 1.5rem; color: #4ade80 !important; }
         
-        h1, h2, h3 { color: #f8fafc; font-weight: 600; margin-top: 40px; margin-bottom: 20px; }
+        /* Tipografia */
+        h1, h2, h3, h4 { color: #f8fafc; font-weight: 600; margin-top: 40px; margin-bottom: 20px; }
         h1 { font-weight: 800; color: #4ade80; border-bottom: 2px solid #1e293b; padding-bottom: 10px; }
+        h3 { color: #38bdf8; font-size: 1.5rem; margin-top: 30px;}
         
         /* Menu laterale (Indice) */
         .sidebar {
@@ -29,6 +35,7 @@
             padding: 20px;
             border-radius: 15px;
             border: 1px solid #334155;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
         }
         .sidebar a {
             color: #94a3b8;
@@ -37,21 +44,38 @@
             margin-bottom: 10px;
             transition: 0.2s;
             font-weight: 400;
+            border-left: 2px solid transparent;
+            padding-left: 10px;
         }
-        .sidebar a:hover, .sidebar a.active { color: #4ade80; padding-left: 5px; }
+        .sidebar a:hover, .sidebar a.active { 
+            color: #4ade80; 
+            border-left: 2px solid #4ade80;
+            background: rgba(74, 222, 128, 0.1);
+            border-radius: 0 5px 5px 0;
+        }
 
         /* Contenuto Testo */
-        .content-section { padding-top: 80px; padding-bottom: 50px; }
+        .content-section { padding-top: 100px; padding-bottom: 50px; }
         p { line-height: 1.8; font-size: 1.05rem; }
         strong { color: #f8fafc; }
+        ul li { line-height: 1.8; margin-bottom: 10px; font-size: 1.05rem;}
+        
+        /* Box evidenziati */
+        .info-box {
+            background: rgba(56, 189, 248, 0.1);
+            border-left: 4px solid #38bdf8;
+            padding: 15px 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
     </style>
 </head>
-<body data-bs-spy="scroll" data-bs-target="#indiceManuale" data-bs-offset="100" tabindex="0">
+<body data-bs-spy="scroll" data-bs-target="#indiceManuale" data-bs-offset="120" tabindex="0">
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><i class="fa-solid fa-arrow-left"></i> Torna al sito</a>
+            <a class="navbar-brand" href="index.html"><i class="fa-solid fa-arrow-left"></i> Torna alla Vetrina</a>
         </div>
     </nav>
 
@@ -62,56 +86,137 @@
             <!-- SIDEBAR INDICE -->
             <div class="col-lg-3 d-none d-lg-block">
                 <nav id="indiceManuale" class="sidebar flex-column">
-                    <h5 class="text-white mb-3"><i class="fa-solid fa-book"></i> Indice</h5>
+                    <h5 class="text-white mb-4"><i class="fa-solid fa-book"></i> Indice Manuale</h5>
                     <a class="nav-link" href="#introduzione">Introduzione</a>
-                    <a class="nav-link" href="#accesso">Accesso e Sicurezza</a>
-                    <a class="nav-link" href="#cassa">Capitolo 1 - La Cassa</a>
-                    <a class="nav-link" href="#cucina">Capitolo 2 - Cucina, Snack e Bar</a>
-                    <a class="nav-link" href="#admin">Capitolo 3 - L'Amministratore</a>
+                    <a class="nav-link" href="#accesso">0. Accesso al sistema</a>
+                    <a class="nav-link" href="#cassa">1. La Cassa</a>
+                    <a class="nav-link" href="#cucina">2. Cucina, Snack e Bar</a>
+                    <a class="nav-link" href="#admin">3. L'Amministratore</a>
+                    <a class="nav-link" href="#preordini">4. Preordini</a>
+                    <a class="nav-link" href="#funzioni-varie">5. Funzioni Varie</a>
+                    <a class="nav-link" href="#schermo-cliente">6. Schermo Cliente</a>
+                    <a class="nav-link" href="#conclusione">Conclusione</a>
                 </nav>
             </div>
 
             <!-- TESTO MANUALE -->
             <div class="col-lg-9">
-                <h1 class="mb-4">BISTROBÒ LAN - MANUALE OPERATIVO</h1>
-                <p class="lead">Guida completa all'utilizzo del sistema di gestione comande per reti locali offline.</p>
+                <h1 class="mb-4">BISTROBÒ LAN</h1>
+                <p class="lead" style="color: #4ade80;">Manuale Operativo e Guida completa all'utilizzo del sistema di gestione comande in rete locale.</p>
+
+                <hr style="border-color: #334155; margin: 40px 0;">
 
                 <div id="introduzione">
                     <h2>Introduzione</h2>
-                    <p>BistroBò LAN è un sistema gestionale avanzato progettato per la gestione completa delle comande all'interno di sagre, locali o eventi, appositamente studiato per funzionare <strong>completamente offline</strong>. Il sistema nasce con l'obiettivo di coordinare in modo fluido e immediato il lavoro della Cassa, della Cucina, del Banco Bevande e dell'area Snack.</p>
-                    <p>A differenza dei sistemi tradizionali, l'architettura LAN non richiede alcuna connessione a Internet. Un computer (Windows) funge da Server Locale, mentre tablet e smartphone si collegano a esso tramite una semplice rete Wi-Fi chiusa (generata da un router o da un hotspot). Grazie a questa tecnologia, la sincronizzazione tra i reparti è istantanea, a prova di blackout della rete esterna e priva di latenza.</p>
-                    <p>Quando una comanda viene inserita dalla cassa, il sistema la suddivide automaticamente nelle sezioni di competenza e la invia istantaneamente ai reparti coinvolti. Lo stato delle comande viene aggiornato in tempo reale, eliminando completamente la necessità di biglietti cartacei e garantendo un flusso di lavoro ordinato.</p>
+                    <p>BistroBò è un sistema gestionale avanzato progettato per la gestione completa delle comande all'interno di una sagra, di un locale o di qualunque evento strutturato con più reparti operativi. Il sistema nasce con l'obiettivo di coordinare in modo fluido e immediato il lavoro della Cassa, della Cucina, del Banco Bevande, dell'area Snack e dell'Amministrazione, offrendo un ambiente completamente sincronizzato in tempo reale tramite un'architettura di <strong>Rete Locale (LAN)</strong>.</p>
+                    <p>A differenza dei sistemi basati su Cloud, BistroBò LAN garantisce la totale indipendenza da internet: un computer fa da Server Principale, e tutti gli altri dispositivi vi comunicano istantaneamente tramite un router o un hotspot Wi-Fi. Ogni reparto dispone di un'interfaccia dedicata, ottimizzata per le mansioni specifiche degli operatori, così da ridurre gli errori, velocizzare il servizio e garantire un controllo costante delle scorte e delle vendite, senza alcun rischio di disconnessioni esterne.</p>
+                    <p>Quando una comanda viene inserita dalla cassa, il sistema la suddivide automaticamente nelle sezioni di competenza e la invia ai reparti coinvolti. Cucina, Snack e Banco Bevande visualizzano immediatamente i prodotti da preparare. Lo stato delle comande viene aggiornato in tempo reale, permettendo alla cassa di informare i clienti con precisione ed eliminando la necessità di biglietti cartacei (comunque stampabili) o chiamate verbali.</p>
+                    <p>Il sistema include un modulo <strong>Preordini</strong> sincronizzato tramite ponte radio al web, la <strong>Chat integrata</strong> per la comunicazione tra reparti in ambienti rumorosi, e <strong>Temi visivi dinamici</strong> applicabili a tutti i dispositivi connessi in simultanea.</p>
+                    <p>Un aspetto fondamentale riguarda la gestione degli <strong>ingredienti</strong>: ad ogni invio, BistroBò scala automaticamente le quantità dal magazzino virtuale in base alle ricette configurate. Se un ingrediente si esaurisce, i piatti correlati vengono bloccati istantaneamente, evitando ordini impossibili da soddisfare.</p>
+                    <p>BistroBò si arricchisce inoltre di un'interfaccia dedicata al pubblico: lo <strong>Schermo Cliente Live</strong>. Questo monitor aggiuntivo, posizionabile in cassa, permette al cliente di seguire in tempo reale la composizione del proprio ordine, verificando immediatamente i piatti inseriti, il totale da pagare e il resto.</p>
                 </div>
 
                 <div id="accesso" class="mt-5">
-                    <h2>Accesso e Sicurezza</h2>
-                    <p>Nella versione LAN, l'accesso avviene semplicemente inquadrando il <strong>QR Code</strong> mostrato sullo schermo del PC Server. Questo aprirà immediatamente la Dashboard sul dispositivo mobile.</p>
-                    <p>Ogni operatore possiede un account univoco, associato a un ruolo specifico all'interno del sistema, che permette alla piattaforma di riconoscerne automaticamente la funzione e di indirizzarlo all'interfaccia più adatta alle sue mansioni. Limitando l'accesso alle sole funzioni pertinenti a ciascun utente, il sistema impedisce modifiche accidentali a dati sensibili, come scorte, prezzi o ingredienti.</p>
+                    <h2>Capitolo 0 - Accesso al sistema e Sicurezza</h2>
+                    <p>L'accesso al sistema BistroBò LAN è progettato per essere istantaneo, superando i lenti sistemi di login basati su email e password. Ogni operatore deve autenticarsi semplicemente connettendo il proprio tablet o smartphone alla rete Wi-Fi locale e inquadrando il <strong>QR Code</strong> mostrato sullo schermo del PC Server Principale.</p>
+                    
+                    <div class="info-box">
+                        <strong>Autenticazione Rapida:</strong> Una volta inquadrato il QR Code, si aprirà la schermata iniziale dove basterà premere il pulsante corrispondente al proprio reparto (es. <em>Cassa, Cucina, Bere, Snack</em> o <em>Schermo Cliente</em>). L'assegnazione è immediata.
+                    </div>
+
+                    <p>Questo meccanismo indirizza direttamente il personale all'interfaccia corrispondente. In questo modo, l'addetto alla cassa approderà alla sezione comande, mentre cucina e bar verranno accompagnati nelle rispettive aree, evitando accessi non autorizzati a funzioni amministrative.</p>
+                    <p><strong>Gestione dei Dispositivi:</strong> Dal momento in cui un dispositivo seleziona un ruolo, viene registrato nel sistema centrale con un ID Hardware univoco. L'amministratore, dal suo pannello, monitora in tempo reale tutti i terminali connessi e ha il potere assoluto di <strong>espellere</strong> (Kick) o <strong>bloccare in modo permanente</strong> (Ban) un dispositivo non autorizzato, mostrando all'intruso una inequivocabile schermata rossa di blocco.</p>
+                    <p>Una corretta selezione dei ruoli permette agli operatori di lavorare in un ambiente sicuro e coerente, garantendo la protezione delle informazioni e la continuità delle operazioni.</p>
                 </div>
 
                 <div id="cassa" class="mt-5">
                     <h2>Capitolo 1 - La Cassa</h2>
-                    <p>La Cassa rappresenta il centro operativo e il punto di partenza di ogni flusso di lavoro all'interno dell'ecosistema BistroBò. È l'interfaccia attraverso cui l'operatore inserisce, organizza, invia e monitora tutte le comande, gestendo nello stesso tempo pagamenti, ingredienti, stampe e comunicazioni interne.</p>
-                    <p>La compilazione della comanda avviene attraverso una doppia sezione affiancata: da un lato c'è il riquadro della Comanda Corrente, che mostra in tempo reale gli elementi già inseriti, mentre sull'altro lato sono presenti i menu suddivisi in Cibi, Bevande e Snack.</p>
-                    <p><strong>Gestione Pagamenti:</strong> La parte inferiore della schermata è dedicata al pagamento. Qui il sistema calcola automaticamente il totale e mette a disposizione un'interfaccia rapida per registrare i pagamenti in contanti o POS, calcolando anche il resto in automatico.</p>
+                    <p>La Cassa rappresenta il centro operativo di BistroBò. È l'interfaccia attraverso cui l'operatore inserisce, organizza, invia e monitora le comande, gestendo pagamenti, ingredienti critici, preordini e stampe. Appena si accede, l'interfaccia si adatta alle impostazioni attive, mostrando o nascondendo aree come i preordini o il menu Snack.</p>
+                    
+                    <h3>Creazione Comanda</h3>
+                    <p>La comanda viene identificata tramite un numero e una lettera, configurabili in manuale o in automatico (progressivo automatico). È possibile indicare se la comanda è d'asporto tramite un apposito flag. L'interfaccia è divisa: da un lato il riquadro della <strong>Comanda Corrente</strong>, dall'altro i menu suddivisi in <strong>Cibi, Bevande e Snack</strong>. Ogni voce riporta nome, prezzo e sconti attivi, rispettando eventuali blocchi (manuali o per esaurimento ingredienti) in tempo reale.</p>
+                    <p>Aggiungere un elemento richiede un singolo clic. La quantità è facilmente modificabile tramite i controlli + e - della comanda stessa. Il calcolo del subtotale è istantaneo.</p>
+
+                    <h3>Note Multi-Destinazione</h3>
+                    <p>L'operatore può scrivere annotazioni (allergie, richieste). Se attiva la funzione multi-destinazione, può indicare esattamente quali reparti (Cucina, Bere, Snack) riceveranno tali note, evitando confusione nei reparti non coinvolti.</p>
+
+                    <h3>Gestione Pagamenti e Resto</h3>
+                    <p>La parte inferiore è dedicata al pagamento rapido. Un'interfaccia a icone permette di cliccare le banconote/monete ricevute dal cliente. Il sistema <strong>calcola automaticamente il resto</strong> e suggerisce intelligentemente i tagli di denaro da restituire. È presente anche un comodo menu a tendina per contrassegnare i pagamenti effettuati tramite POS.</p>
+
+                    <h3>Invio e Suddivisione Automatica</h3>
+                    <p>All'invio, il sistema esegue una complessa validazione trasparente: controlla i campi, verifica che il numero comanda non esista già, e scala istantaneamente gli ingredienti. Subito dopo, la comanda viene smistata: i cibi in cucina, le bibite al bar, ecc. La cassa può seguire l'avanzamento dello stato in tempo reale ("da fare", "in elaborazione", "completato") direttamente dalla <em>Lista Comande</em>.</p>
+                    
+                    <p>In alto a destra viene mostrato il <strong>tempo medio di attesa</strong> (calcolato sulle ultime 10 comande cucina/snack), utilissimo per informare preventivamente il cliente in fila.</p>
                 </div>
 
                 <div id="cucina" class="mt-5">
-                    <h2>Capitolo 2 - La Cucina, Snack e Bar</h2>
-                    <p>La sezione dedicata alla Cucina e allo Snack rappresenta l'area produttiva principale. Non appena un ordine viene inviato, la cucina lo riceve in tempo reale grazie alla sincronizzazione istantanea LAN. L'interfaccia aggiorna automaticamente la lista senza necessità di ricaricare la pagina.</p>
-                    <p>Ogni voce della comanda può essere contrassegnata individualmente attraverso un "tick" che il personale può attivare appena un piatto è stato preparato. Quando tutti i piatti di un ordine sono stati spuntati, l'operatore può contrassegnare la comanda come "Completata", aggiornando lo stato anche in Cassa.</p>
+                    <h2>Capitolo 2 - La Cucina, gli Snack e il Banco Bevande</h2>
+                    <p>I reparti produttivi ricevono gli ordini in tempo reale. L'interfaccia aggiorna automaticamente la lista senza ricaricare la pagina.</p>
+                    <p>Se il reparto Snack è attivo, i piatti di questa categoria finiscono in un tablet separato, alleggerendo la cucina principale. Se disabilitato, la cucina riceve tutto unificato in un'unica interfaccia senza interruzioni operative.</p>
+
+                    <h3>Gestione e Spunta (Tick)</h3>
+                    <p>Ogni comanda riporta numero, lettera e le note a essa destinate. Ogni voce della comanda può essere contrassegnata individualmente attraverso un <strong>"tick" (spunta)</strong> appena un piatto è pronto. Questo permette di gestire agevolmente comande lunghe.</p>
+                    <p>Quando tutti i piatti sono spuntati, l'operatore preme "Segna Completato". L'azione aggiorna all'istante lo stato in Cassa. Le comande completate finiscono nell'apposita scheda "Storico".</p>
+
+                    <h3>Menu di Reparto e Ingredienti</h3>
+                    <p>L'area menu dei reparti fornisce una visione completa delle proprie preparazioni, incluse le logiche degli ingredienti necessari (es. "Patatine: 1.5 kg"). La sezione "Ingredienti" permette ai cuochi di monitorare lo stock fisico, di segnare un prodotto come "Esaurito" in caso di emergenza, bloccando preventivamente i piatti connessi prima che la cassa li venda.</p>
                 </div>
 
                 <div id="admin" class="mt-5">
                     <h2>Capitolo 3 - L'Amministratore</h2>
-                    <p>Il ruolo di Amministratore rappresenta il livello più alto di gestione. È la figura che ha il controllo completo su tutti i reparti, sulle impostazioni globali, sui dati, sugli utenti e sulle dinamiche interne.</p>
-                    <p><strong>Gestione Menu e Scorte:</strong> L'amministratore può creare nuovi piatti, modificarne i dettagli, bloccarli in cassa o aggiornarne i prezzi. Inoltre, ha accesso alla panoramica completa dello stock, monitorando le quantità residue di ogni ingrediente. Il sistema gestisce automaticamente le soglie critiche, generando avvisi per la cassa.</p>
+                    <p>L'Amministratore ha il controllo supremo su tutti i reparti. Dispone di un pannello avanzato per modellare il funzionamento dell'intero sistema, i cui effetti sono in tempo reale.</p>
+
+                    <ul>
+                        <li><strong>Simulatore di Ruoli:</strong> L'admin può passare all'istante alle interfacce di Cassa, Cucina, Bere o Snack per verificare o fornire supporto in momenti di urgenza, per poi tornare indietro con un solo clic.</li>
+                        <li><strong>Modifica Avanzata Comande:</strong> Permette di aggiungere, rimuovere piatti o eliminare del tutto ordini inviati. Le rimozioni rimborsano istantaneamente gli ingredienti al magazzino.</li>
+                        <li><strong>Gestione Menu:</strong> Creazione, modifica, aggiornamento prezzi, inserimento di ricette (ingredienti per porzione) e Sconti Avanzati (percentuale, Prendi X Paga Y, X Paga Y Fisso).</li>
+                        <li><strong>Gestione Ingredienti e Soglie:</strong> Analizza le unità di misura (Pezzi, Kg, Litri). Imposta soglie differenziate (es. avviso "Attenzione" a 2kg, avviso "Critico" a 0.5kg) attivando alert sonori in Cassa.</li>
+                    </ul>
+
+                    <h3>Controllo Postazioni LAN e Sicurezza</h3>
+                    <p>L'admin monitora in diretta ogni singolo dispositivo connesso alla rete che stia usando l'app. Può identificare terminali fantasma, forzare il logout (Espulsione) o applicare un <strong>Blocco Totale</strong> al dispositivo in caso di uso non autorizzato.</p>
+                    <p>È presente un pulsante per la <strong>Modalità Manutenzione</strong>: se attivato, scollega tutto il personale e oscura i display, consentendo all'Admin di operare in tranquillità sul database.</p>
+
+                    <h3>Statistiche e Backup</h3>
+                    <p>L'admin può generare report dettagliati sulle vendite, suddivisi per piatto, quantità, incasso e metodo di pagamento, esportabili in PDF o Excel. Può inoltre scaricare e ripristinare Backup completi del database o azzerare le comande a fine serata.</p>
+                </div>
+
+                <div id="preordini" class="mt-5">
+                    <h2>Capitolo 4 - Preordini</h2>
+                    <p>Il modulo Preordini consente ai clienti di inviare ordini in anticipo, integrandosi con un "Ponte in tempo reale" alla rete LAN. Se attivato, la Cassa vede una scheda dedicata ai preordini in arrivo.</p>
+                    <p>I preordini mostrano dati aggiuntivi facoltativi (Nome, Telefono, Posizione, Orario richiesto, Resto desiderato). L'operatore in Cassa, al momento concordato, seleziona il preordine e preme "Aggiungi": il sistema lo trasforma in una comanda reale, gli assegna un numero (o lettera preimpostata, es. "D"), scala gli ingredienti, lo stampa e lo smista ai reparti produttivi. I preordini aiutano enormemente a dilazionare i carichi di lavoro durante i picchi di affluenza.</p>
+                </div>
+
+                <div id="funzioni-varie" class="mt-5">
+                    <h2>Capitolo 5 - Funzioni Varie</h2>
+                    <p>Il sistema include strumenti trasversali per un'operatività perfetta:</p>
+                    <ul>
+                        <li><strong>Chat Interna:</strong> Un canale di comunicazione istantaneo tra i reparti. Indispensabile per gestire urgenze in ambienti rumorosi. L'Admin può svuotarla a fine serata.</li>
+                        <li><strong>Temi Visivi Dinamici:</strong> Dalle impostazioni, l'admin può cambiare l'aspetto di tutti i tablet del locale in un istante (es. Tema Estate, Scout, Inverno).</li>
+                        <li><strong>Sopravvivenza Offline e Riconnessione:</strong> Il sistema include un rilevatore di perdita di segnale LAN, bloccando l'interfaccia con una schermata scura per prevenire click accidentali e ripristinando la connessione al ritorno del segnale Wi-Fi.</li>
+                        <li><strong>Segnalazioni Sonore:</strong> Avvisi poli-fonici per l'arrivo di comande (in cucina), preordini, messaggi chat e allarmi critici sugli ingredienti.</li>
+                    </ul>
+                </div>
+
+                <div id="schermo-cliente" class="mt-5">
+                    <h2>Capitolo 6 - Schermo Cliente Live</h2>
+                    <p>Per la massima trasparenza, BistroBò integra una schermata indipendente pensata per essere riprodotta su un monitor o tablet rivolto verso il pubblico in fila.</p>
+                    <p>Accedendo alla schermata e selezionando il ruolo "Schermo Cliente", si sceglierà a quale Cassa specifica agganciarsi. Da quel momento, lo schermo replicherà in tempo reale ogni tocco del cassiere, mostrando i piatti inseriti, il <strong>Totale Ordine</strong>, l'importo <strong>Pagato</strong> in diretta, e il <strong>Resto</strong> dovuto, azzerandosi in automatico ad ogni invio comanda.</p>
+                </div>
+
+                <hr style="border-color: #334155; margin: 40px 0;">
+
+                <div id="conclusione">
+                    <h2>Conclusione</h2>
+                    <p>BistroBò LAN elimina la dipendenza da internet, offrendo la robustezza di una rete locale unita alla fluidità di un software di ultima generazione. La sua forza risiede nell'unificazione di tutti i reparti in un unico ecosistema perfettamente sincronizzato.</p>
+                    <p>Grazie all'eliminazione delle chiamate verbali e dei biglietti volanti, agli aggiornamenti automatici degli stati di preparazione e al controllo rigoroso del magazzino, BistroBò ottimizza tempi, risorse e qualità del servizio, elevando l'organizzazione della tua attività a standard professionali superiori.</p>
                 </div>
 
             </div>
         </div>
     </div>
 
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
