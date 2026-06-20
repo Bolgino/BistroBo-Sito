@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BistroBò | Il Gestionale per Ristorazione</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a; /* Sfondo scuro elegante */
+            color: #f8fafc;
+        }
+        /* Navbar personalizzata */
+        .navbar { background-color: rgba(15, 23, 42, 0.9) !important; backdrop-filter: blur(10px); }
+        .navbar-brand { font-weight: 800; font-size: 1.5rem; color: #4ade80 !important; }
+        
+        /* Hero Section */
+        .hero-section {
+            padding: 100px 0;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            border-bottom: 1px solid #334155;
+        }
+        .hero-title { font-weight: 800; font-size: 3.5rem; line-height: 1.2; }
+        .hero-title span { color: #4ade80; } /* Verde acceso per i dettagli */
+        .hero-subtitle { color: #94a3b8; font-size: 1.2rem; font-weight: 300; margin-bottom: 30px; }
+        
+        /* Bottoni */
+        .btn-custom-cloud {
+            background-color: #3b82f6; color: white; padding: 15px 30px; font-weight: 600; border-radius: 10px; transition: 0.3s;
+        }
+        .btn-custom-cloud:hover { background-color: #2563eb; color: white; transform: translateY(-3px); }
+        
+        .btn-custom-lan {
+            background-color: #4ade80; color: #0f172a; padding: 15px 30px; font-weight: 800; border-radius: 10px; transition: 0.3s; border: none;
+        }
+        .btn-custom-lan:hover { background-color: #22c55e; color: #0f172a; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(74, 222, 128, 0.3); }
+
+        /* Card Caratteristiche */
+        .feature-card {
+            background: #1e293b; padding: 30px; border-radius: 15px; border: 1px solid #334155; height: 100%; transition: 0.3s;
+        }
+        .feature-card:hover { border-color: #4ade80; transform: translateY(-5px); }
+        .feature-icon { font-size: 2.5rem; color: #4ade80; margin-bottom: 20px; }
+        
+        /* Guida rapida */
+        .guide-section { background-color: #020617; padding: 80px 0; }
+        .accordion-button { font-weight: 600; background-color: #1e293b; color: white; border: 1px solid #334155; }
+        .accordion-button:not(.collapsed) { background-color: #334155; color: #4ade80; }
+        .accordion-item { background-color: #1e293b; border: 1px solid #334155; color: #94a3b8; }
+        .accordion-body code { background: #0f172a; padding: 5px 10px; border-radius: 5px; color: #4ade80; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-utensils"></i> BistroBò</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#features">Caratteristiche</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#guida">Guida LAN</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-outline-success ms-lg-3" href="#download">Ottieni BistroBò</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section text-center text-lg-start mt-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="hero-title">Gestisci il tuo locale.<br><span>Senza interruzioni.</span></h1>
+                    <p class="hero-subtitle mt-4">
+                        Il primo sistema di comande ibrido. Usa la versione Cloud per la massima flessibilità, oppure scarica la versione LAN per un sistema ultra-rapido, indipendente da Internet e a prova di blackout.
+                    </p>
+                    <div class="d-flex flex-column flex-sm-row gap-3 mt-4" id="download">
+                        <a href="https://bolgino.github.io/BistroBo-App/index.html" class="btn btn-custom-cloud" target="_blank">
+                            <i class="fa-solid fa-cloud"></i> Apri Versione Cloud
+                        </a>
+                        <a href="#guida" class="btn btn-custom-lan">
+                            <i class="fa-solid fa-download"></i> Scarica per Windows (LAN)
+                        </a>
+                    </div>
+                    <p class="mt-3" style="font-size: 0.85rem; color: #64748b;">
+                        *La versione Windows richiede Windows 10/11 a 64-bit.
+                    </p>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0 text-center">
+                    <img src="https://via.placeholder.com/600x400/1e293b/4ade80?text=Screenshot+BistroBo" alt="BistroBo Preview" class="img-fluid rounded shadow-lg" style="border: 2px solid #334155;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="container py-5 mt-4">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Quale versione scegliere?</h2>
+            <p style="color: #94a3b8;">Due architetture diverse, la stessa incredibile facilità d'uso.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-wifi"></i></div>
+                    <h3 class="fw-bold">BistroBò Cloud</h3>
+                    <p>Ideale per chi vuole tutto subito, senza installare nulla. Perfetto per sagre con copertura internet stabile o per gestire il menu da casa.</p>
+                    <ul class="list-unstyled mt-3" style="color: #cbd5e1;">
+                        <li><i class="fa-solid fa-check text-success me-2"></i> Zero installazione</li>
+                        <li><i class="fa-solid fa-check text-success me-2"></i> Accessibile da qualsiasi dispositivo</li>
+                        <li><i class="fa-solid fa-check text-success me-2"></i> Sincronizzazione tramite Firebase</li>
+                        <li><i class="fa-solid fa-xmark text-danger me-2"></i> Richiede una connessione internet costante</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="feature-card" style="border-color: #4ade80;">
+                    <div class="feature-icon"><i class="fa-solid fa-network-wired"></i></div>
+                    <h3 class="fw-bold">BistroBò LAN (.exe)</h3>
+                    <p>La soluzione professionale per i servizi ad alta intensità. Usa un router o l'hotspot di un cellulare per creare una rete locale chiusa e velocissima.</p>
+                    <ul class="list-unstyled mt-3" style="color: #cbd5e1;">
+                        <li><i class="fa-solid fa-check text-success me-2"></i> <b>Nessuna connessione internet necessaria</b></li>
+                        <li><i class="fa-solid fa-check text-success me-2"></i> Comande istantanee (Zero lag)</li>
+                        <li><i class="fa-solid fa-check text-success me-2"></i> Generazione QRCode per i tablet dei camerieri</li>
+                        <li><i class="fa-solid fa-check text-success me-2"></i> Backup automatico in locale sul PC</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="guida" class="guide-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-white">Guida rapida: Come usare la versione LAN</h2>
+                <p style="color: #94a3b8;">Configura il tuo ristorante in 3 semplici passaggi, senza bisogno di un tecnico.</p>
+            </div>
+            
+            <div class="accordion" id="accordionGuida">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#step1">
+                            1. Crea la rete (Hotspot o Router)
+                        </button>
+                    </h2>
+                    <div id="step1" class="accordion-collapse collapse show" data-bs-parent="#accordionGuida">
+                        <div class="accordion-body">
+                            Non serve una vera connessione a internet! Puoi usare un router wifi scollegato dalla presa telefonica, oppure <b>l'Hotspot del tuo cellulare</b> (anche con i dati mobili disattivati). 
+                            <br><br>
+                            1. Accendi l'hotspot o il router.<br>
+                            2. Collega il PC (su cui hai scaricato l'app) a questa rete.<br>
+                            3. Collega anche i tablet o gli smartphone dei camerieri alla stessa rete.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step2">
+                            2. Avvia BistroBò Server
+                        </button>
+                    </h2>
+                    <div id="step2" class="accordion-collapse collapse" data-bs-parent="#accordionGuida">
+                        <div class="accordion-body">
+                            Apri il file <code>BistroBo_Setup.exe</code> scaricato da questo sito. Apparirà una finestra (Dashboard) che ti chiederà di selezionare la rete corretta dal menu a tendina.<br><br>
+                            Seleziona la rete del tuo Hotspot/Router. Immediatamente comparirà un <b>QR Code</b> sullo schermo del PC.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#step3">
+                            3. Collega i dispositivi e lavora!
+                        </button>
+                    </h2>
+                    <div id="step3" class="accordion-collapse collapse" data-bs-parent="#accordionGuida">
+                        <div class="accordion-body">
+                            Prendi i tablet o i telefoni che faranno da "Cassa", "Cucina" o "Snack". <br>
+                            Apri la fotocamera, inquadra il QR Code mostrato sul PC e... boom! Sei dentro il gestionale. <br><br>
+                            Da questo momento, ogni comanda inviata dalla cassa apparirà in cucina in tempo reale, senza consumare giga e senza blocchi.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-outline-light"><i class="fa-solid fa-file-pdf"></i> Scarica il Manuale Completo (PDF)</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4 text-center" style="background-color: #0f172a; border-top: 1px solid #1e293b;">
+        <div class="container" style="color: #64748b;">
+            <p class="mb-1">&copy; 2024 BistroBò. Sviluppato con passione per la ristorazione.</p>
+            <p class="mb-0" style="font-size: 0.8rem;">Basato su Node.js, Electron e Firebase.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
