@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuale Operativo Completo | BistroBò</title>
+    <title>Manuale Operativo Definitivo | BistroBò</title>
     
     <!-- Favicon -->
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
@@ -13,7 +13,7 @@
     <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         body {
@@ -22,82 +22,91 @@
             color: #cbd5e1;
             position: relative;
         }
-        .navbar { background-color: rgba(15, 23, 42, 0.95) !important; backdrop-filter: blur(10px); border-bottom: 1px solid #1e293b; }
+        .navbar { background-color: rgba(15, 23, 42, 0.98) !important; backdrop-filter: blur(10px); border-bottom: 1px solid #1e293b; }
         .navbar-brand { font-weight: 800; font-size: 1.2rem; color: #4ade80 !important; display: flex; align-items: center;}
         
         h1, h2, h3, h4, h5 { color: #f8fafc; font-weight: 600; }
-        h1 { font-weight: 800; color: #4ade80; border-bottom: 2px solid #1e293b; padding-bottom: 15px; font-size: 2.5rem; margin-top: 20px;}
-        h2 { color: #f8fafc; border-bottom: 1px solid #1e293b; padding-bottom: 10px; font-size: 1.8rem; margin-top: 50px; }
-        h3 { color: #38bdf8; font-size: 1.4rem; margin-top: 35px; border-left: 4px solid #38bdf8; padding-left: 12px; }
-        h4 { color: #fbbf24; font-size: 1.15rem; margin-top: 25px; }
+        h1 { font-weight: 800; color: #4ade80; border-bottom: 3px solid #1e293b; padding-bottom: 15px; font-size: 2.8rem; margin-top: 20px;}
+        h2 { color: #f8fafc; border-bottom: 1px solid #1e293b; padding-bottom: 10px; font-size: 2rem; margin-top: 60px; }
+        h3 { color: #38bdf8; font-size: 1.5rem; margin-top: 40px; border-left: 4px solid #38bdf8; padding-left: 15px; }
+        h4 { color: #fbbf24; font-size: 1.2rem; margin-top: 30px; }
         
-        /* Menu laterale (Indice) */
+        /* Sidebar */
         .sidebar {
             position: sticky;
             top: 90px;
             background: #1e293b;
-            padding: 20px;
+            padding: 25px 20px;
             border-radius: 12px;
             border: 1px solid #334155;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             max-height: calc(100vh - 110px);
             overflow-y: auto;
+        }
+        .sidebar .nav-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #64748b;
+            font-weight: 700;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 5px;
         }
         .sidebar a {
             color: #94a3b8;
             text-decoration: none;
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             transition: 0.2s;
-            font-size: 0.9rem;
-            border-left: 2px solid transparent;
-            padding-left: 10px;
+            font-size: 0.95rem;
+            border-left: 3px solid transparent;
+            padding-left: 12px;
             line-height: 1.4;
         }
         .sidebar a:hover, .sidebar a.active { 
             color: #4ade80; 
-            border-left: 2px solid #4ade80;
-            background: rgba(74, 222, 128, 0.1);
-            border-radius: 0 5px 5px 0;
+            border-left: 3px solid #4ade80;
+            background: rgba(74, 222, 128, 0.05);
+            border-radius: 0 6px 6px 0;
             font-weight: 500;
         }
 
-        /* Contenuto Testo */
-        .content-section { padding-top: 90px; padding-bottom: 50px; }
-        p { line-height: 1.8; font-size: 1.05rem; margin-bottom: 1rem; }
+        /* Content */
+        .content-section { padding-top: 90px; padding-bottom: 80px; }
+        p { line-height: 1.8; font-size: 1.05rem; margin-bottom: 1.2rem; }
         strong { color: #f8fafc; }
         ul { padding-left: 1.5rem; margin-bottom: 1.5rem; }
-        ul li { line-height: 1.7; margin-bottom: 8px; font-size: 1.05rem;}
+        ul li { line-height: 1.7; margin-bottom: 10px; font-size: 1.05rem;}
         
-        /* Box evidenziati */
-        .info-box { padding: 18px 20px; border-radius: 8px; margin: 25px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .info-box h5 { margin-top: 0; font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px;}
-        .info-box p:last-child { margin-bottom: 0; }
+        /* Box Informativi */
+        .info-box { padding: 20px 25px; border-radius: 8px; margin: 30px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .info-box h5 { margin-top: 0; font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;}
+        .info-box p:last-child, .info-box ul:last-child { margin-bottom: 0; }
         
-        .box-config { background: #1e293b; border-left: 4px solid #a855f7; border-right: 1px solid #334155; border-top: 1px solid #334155; border-bottom: 1px solid #334155;}
+        .box-config { background: #1e293b; border-left: 5px solid #a855f7; border-right: 1px solid #334155; border-top: 1px solid #334155; border-bottom: 1px solid #334155;}
         .box-config h5 { color: #a855f7; }
 
-        .box-cloud { background: rgba(56, 189, 248, 0.05); border-left: 4px solid #38bdf8; border-right: 1px solid rgba(56, 189, 248, 0.2); border-top: 1px solid rgba(56, 189, 248, 0.2); border-bottom: 1px solid rgba(56, 189, 248, 0.2);}
+        .box-cloud { background: rgba(56, 189, 248, 0.05); border-left: 5px solid #38bdf8; border-right: 1px solid rgba(56, 189, 248, 0.2); border-top: 1px solid rgba(56, 189, 248, 0.2); border-bottom: 1px solid rgba(56, 189, 248, 0.2);}
         .box-cloud h5 { color: #38bdf8; }
         
-        .box-lan { background: rgba(74, 222, 128, 0.05); border-left: 4px solid #4ade80; border-right: 1px solid rgba(74, 222, 128, 0.2); border-top: 1px solid rgba(74, 222, 128, 0.2); border-bottom: 1px solid rgba(74, 222, 128, 0.2);}
+        .box-lan { background: rgba(74, 222, 128, 0.05); border-left: 5px solid #4ade80; border-right: 1px solid rgba(74, 222, 128, 0.2); border-top: 1px solid rgba(74, 222, 128, 0.2); border-bottom: 1px solid rgba(74, 222, 128, 0.2);}
         .box-lan h5 { color: #4ade80; }
         
-        .box-warning { background: rgba(245, 158, 11, 0.05); border-left: 4px solid #f59e0b; border-right: 1px solid rgba(245, 158, 11, 0.2); border-top: 1px solid rgba(245, 158, 11, 0.2); border-bottom: 1px solid rgba(245, 158, 11, 0.2);}
-        .box-warning h5 { color: #f59e0b; }
-        
-        .box-danger { background: rgba(239, 68, 68, 0.05); border-left: 4px solid #ef4444; border-right: 1px solid rgba(239, 68, 68, 0.2); border-top: 1px solid rgba(239, 68, 68, 0.2); border-bottom: 1px solid rgba(239, 68, 68, 0.2);}
+        .box-danger { background: rgba(239, 68, 68, 0.05); border-left: 5px solid #ef4444; border-right: 1px solid rgba(239, 68, 68, 0.2); border-top: 1px solid rgba(239, 68, 68, 0.2); border-bottom: 1px solid rgba(239, 68, 68, 0.2);}
         .box-danger h5 { color: #ef4444; }
 
+        .setting-name { color: #fbbf24; font-weight: 600; font-family: monospace; background: #334155; padding: 2px 6px; border-radius: 4px; font-size: 0.95em;}
         .highlight { color: #4ade80; font-weight: 600; }
-        kbd { background-color: #334155; color: #f8fafc; padding: 3px 6px; border-radius: 4px; font-size: 0.9em; border: 1px solid #475569; font-family: monospace; }
+        kbd { background-color: #0f172a; color: #38bdf8; padding: 3px 8px; border-radius: 5px; font-size: 0.9em; border: 1px solid #334155; font-family: monospace; }
         
         .cap-badge {
-            background: #1e293b; color: #94a3b8; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; border: 1px solid #334155; display: inline-block; margin-bottom: 10px;
+            background: #1e293b; color: #e2e8f0; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; border: 1px solid #475569; display: inline-block; margin-bottom: 15px;
         }
     </style>
 </head>
-<body data-bs-spy="scroll" data-bs-target="#indiceManuale" data-bs-offset="120" tabindex="0">
+<body data-bs-spy="scroll" data-bs-target="#indiceManuale" data-bs-offset="150" tabindex="0">
 
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -117,288 +126,198 @@
             <!-- SIDEBAR INDICE -->
             <div class="col-lg-3 d-none d-lg-block">
                 <nav id="indiceManuale" class="sidebar flex-column">
-                    <div class="text-white mb-3" style="font-weight: 800; border-bottom: 1px solid #334155; padding-bottom: 10px; font-size: 1.1rem;"><i class="fa-solid fa-book-open me-2"></i> Indice Manuale</div>
+                    <div class="text-white mb-2" style="font-weight: 800; font-size: 1.2rem;"><i class="fa-solid fa-book-open me-2"></i> Indice Manuale</div>
                     
-                    <a class="nav-link" href="#introduzione">Architettura di Base</a>
-                    
-                    <div class="text-secondary fw-bold mt-4 mb-1" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Configurazione Iniziale</div>
-                    <a class="nav-link" href="#setup-menu">1. Menu, Ingredienti e Varianti</a>
-                    <a class="nav-link" href="#setup-combo">2. Piatti Combo & Sconti</a>
-                    <a class="nav-link" href="#setup-reparti">3. Profili Extra & Fallback</a>
-                    
-                    <div class="text-secondary fw-bold mt-4 mb-1" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Operatività in Cassa</div>
-                    <a class="nav-link" href="#uso-cassa">4. UI Cassa & Note Smistate</a>
-                    <a class="nav-link" href="#gestione-soldi">5. Gestione Soldi e Resto</a>
-                    <a class="nav-link" href="#preordini">6. Preordini e Asporto</a>
-                    
-                    <div class="text-secondary fw-bold mt-4 mb-1" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Reparti e Magazzino</div>
-                    <a class="nav-link" href="#gestione-comande">7. Gestione Spunte e Comande</a>
-                    <a class="nav-link" href="#magazzino">8. Magazzino & Auto-Blocco</a>
-                    
-                    <div class="text-secondary fw-bold mt-4 mb-1" style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px;">Amministrazione Avanzata</div>
-                    <a class="nav-link" href="#gestione-lan">9. Rete LAN e Stampanti IP</a>
-                    <a class="nav-link" href="#giornate">10. Chiusura Turno (Giornate)</a>
-                    <a class="nav-link" href="#gamification">11. Statistiche & Gamification</a>
+                    <a class="nav-link" href="#introduzione">Introduzione & Architettura</a>
+                    <a class="nav-link" href="#capitolo-0">0. Accesso e Sicurezza</a>
+                    <a class="nav-link" href="#capitolo-1">1. La Cassa e le Combo</a>
+                    <a class="nav-link" href="#capitolo-2">2. Cucina, Bar e Profili Extra</a>
+                    <a class="nav-link" href="#capitolo-3">3. L'Amministratore & Rete</a>
+                    <a class="nav-link" href="#capitolo-4">4. Gestione Preordini</a>
+                    <a class="nav-link" href="#capitolo-5">5. Funzioni Varie & Magazzino</a>
+                    <a class="nav-link" href="#capitolo-6">6. Schermo Cliente & Giochi</a>
+                    <a class="nav-link" href="#conclusione">Conclusione</a>
                 </nav>
             </div>
 
             <!-- TESTO MANUALE -->
-            <div class="col-lg-9">
-                <h1 class="mb-2">Manuale Operativo BistroBò</h1>
-                <p class="lead" style="color: #4ade80;">Guida tecnica e operativa per l'utilizzo avanzato del gestionale.</p>
-                <p class="text-secondary">BistroBò non è un semplice registratore di cassa, ma un ecosistema connesso in tempo reale. Questo manuale ti spiegherà <strong>come configurare il sistema</strong> per prevenire errori, velocizzare il servizio e mantenere il controllo totale sulle scorte e sui dipendenti.</p>
+            <div class="col-lg-9 ps-lg-4">
+                <h1 class="mb-2">Manuale Operativo Definitivo</h1>
+                <p class="lead" style="color: #4ade80;">Guida completa all'utilizzo del sistema di gestione comande per cassa, snack, cucina, bar e amministrazione[cite: 12].</p>
+                <p class="text-secondary">Questo documento riflette l'insieme completo delle funzionalità attualmente disponibili: dalla gestione delle comande alla comunicazione interna, dalla personalizzazione grafica alla gestione avanzata degli ingredienti, dalla sicurezza dei dati ai preordini e alle logiche LAN[cite: 12].</p>
                 
                 <hr style="border-color: #334155; margin: 40px 0;">
 
-                <!-- INTRODUZIONE E ARCHITETTURE -->
+                <!-- INTRODUZIONE -->
                 <div id="introduzione">
-                    <div class="cap-badge">Basi del Sistema</div>
-                    <h2>Architettura: Cloud vs LAN</h2>
-                    <p>BistroBò condivide un unico Database Centrale. Qualsiasi operazione fatta da un tablet (es. vendita di una birra) si riflette istantaneamente su tutti gli altri schermi. Tuttavia, esistono due modi per connettere i dispositivi:</p>
+                    <h2>Introduzione</h2>
+                    <p>BistroBò è un sistema gestionale avanzato progettato per la gestione completa delle comande all'interno di una sagra, di un locale o di qualunque evento strutturato con più reparti operativi[cite: 12]. Il sistema nasce con l'obiettivo di coordinare in modo fluido e immediato il lavoro della Cassa, della Cucina, del Banco Bevande, dell'area Snack e dell'Amministrazione[cite: 12].</p>
+                    
+                    <p>Quando una comanda viene inserita dalla cassa, il sistema la suddivide automaticamente nelle sezioni di competenza e la invia istantaneamente ai reparti coinvolti[cite: 12]. Cucina, Snack e Banco Bevande visualizzano immediatamente i prodotti che devono preparare, senza dover aggiornare la pagina o attendere comunicazioni manuali[cite: 12]. Lo stato delle comande viene aggiornato in tempo reale, permettendo alla cassa di informare i clienti con precisione[cite: 12].</p>
 
-                    <div class="info-box box-cloud">
-                        <h5><i class="fa-solid fa-cloud me-2"></i> Versione Cloud (Online)</h5>
-                        <p>Ideale per locali o piccoli eventi con copertura Wi-Fi o 4G stabile.</p>
-                        <ul>
-                            <li><strong>Accesso:</strong> Tramite link web, login con Email e Password.</li>
-                            <li><strong>Scudo Anti-Crash:</strong> Se il tablet perde il segnale internet, l'operatore può continuare a comporre la comanda. Il sistema non si blocca, ma mette in coda i dati. Appena la connessione torna, spara tutto al server in un colpo solo.</li>
-                            <li><strong>Limiti:</strong> La stampa degli scontrini richiede l'apertura del popup di sistema del browser (a meno di usare software bridge di terze parti).</li>
-                        </ul>
+                    <div class="info-box box-cloud mt-4">
+                        <h5><i class="fa-solid fa-cloud"></i> Versione Cloud (Online-First)</h5>
+                        <p>Basata sulla tecnologia Cloud Firebase[cite: 12]. Il sistema include un affidabile meccanismo di rilevamento della connessione. In caso di perdita della rete, una schermata dedicata blocca temporaneamente l'interfaccia impedendo l'invio di nuovi ordini[cite: 12]. Non appena la connessione viene ripristinata, la schermata scompare e il sistema torna pienamente operativo in modo automatico[cite: 12]. Tutte le operazioni critiche vengono gestite tramite transazioni protette[cite: 12].</p>
                     </div>
 
                     <div class="info-box box-lan">
-                        <h5><i class="fa-solid fa-network-wired me-2"></i> Versione LAN (Per Grandi Sagre)</h5>
-                        <p>Ideale per eventi dove migliaia di smartphone saturano le celle telefoniche facendo crollare internet.</p>
+                        <h5><i class="fa-solid fa-network-wired"></i> Versione LAN (Per Grandi Eventi)</h5>
+                        <p>Ideale per eventi ad alta densità dove le reti cellulari collassano. La versione LAN si appoggia a un server locale.</p>
                         <ul>
-                            <li><strong>Accesso:</strong> Un PC Windows fa da Server. I tablet si collegano al router locale (senza bisogno di internet) inquadrando il QR Code del PC. L'accesso è istantaneo, senza password.</li>
-                            <li><strong>Tracciamento Hardware:</strong> Ogni tablet riceve un ID univoco (es. <code>DEV-192837</code>). L'Admin sa sempre chi è online.</li>
-                            <li><strong>Stampanti di Rete (IP):</strong> <strong>Vero punto di forza.</strong> La cassa invia l'ordine al Server Locale, che a sua volta comunica direttamente in background con le stampanti Epson/Custom via cavo Ethernet. Lo scontrino esce in un decimo di secondo, <strong>senza alcuna finestra pop-up</strong> sul tablet della cassa.</li>
+                            <li><strong>Latenza Zero:</strong> I tablet della Cassa e dei reparti comunicano via Wi-Fi interno senza bisogno di internet.</li>
+                            <li><strong>Identificazione Hardware:</strong> Ogni dispositivo genera un <code>lan_device_id</code>, permettendo all'Amministratore di tracciare ogni postazione sulla rete.</li>
                         </ul>
                     </div>
                 </div>
 
-                <hr style="border-color: #334155; margin: 50px 0;">
+                <!-- CAPITOLO 0 -->
+                <div id="capitolo-0" class="mt-5">
+                    <h2>Capitolo 0 - Accesso al sistema e Sicurezza</h2>
+                    <p>L'accesso al sistema rappresenta il primo passo necessario per poter utilizzare tutte le funzioni operative dedicate ai vari reparti[cite: 12]. Ogni operatore possiede un account univoco, associato a un ruolo specifico all'interno del sistema, che permette alla piattaforma di riconoscerne automaticamente la funzione[cite: 12]. Questo meccanismo di accesso basato sui ruoli non solo semplifica l'esperienza degli operatori, ma garantisce anche un elevato livello di sicurezza, limitando l'accesso alle sole funzioni pertinenti a ciascun utente e impedendo modifiche accidentali a dati sensibili[cite: 12].</p>
 
-                <!-- SETUP MENU E INGREDIENTI -->
-                <div id="setup-menu">
-                    <div class="cap-badge">Configurazione Iniziale</div>
-                    <h2>1. Menu, Ingredienti e Varianti</h2>
-                    <p>La logica di BistroBò si basa sugli <strong>Ingredienti</strong>. Non si crea un "Piatto" vuoto, ma lo si associa alle scorte. Questo previene le vendite a vuoto.</p>
-
-                    <h3>Creazione di un Ingrediente Extra</h3>
-                    <p>Quando crei un ingrediente (es. <em>"Maionese"</em> o <em>"Bacon"</em>) dalla scheda Admin <kbd>Ingredienti</kbd>, puoi impostarlo come "Extra".</p>
-                    <div class="info-box box-config">
-                        <h5>⚙️ Configurazione Consigliata: Varianti</h5>
-                        <p>Spunta la casella <strong>Utilizzabile come variante / aggiunta nei piatti</strong>.<br>
-                        Definisci il <strong>Prezzo Extra (€)</strong> (es. 0.50€) e a quali categorie si applica (es. solo "Cibi" e "Snack").<br>
-                        In questo modo, quando il cassiere clicca su un Hamburger, potrà aggiungere il Bacon, e il sistema calcolerà in automatico i +0.50€ e scalerà 1 unità dal magazzino del Bacon.</p>
-                    </div>
-
-                    <h3>Creazione del Piatto</h3>
-                    <p>Dalla scheda <kbd>Menu</kbd>, crei il piatto. Assegni il Nome, il Prezzo e la Categoria (Cucina, Bere, Snack o un Profilo Extra).<br>
-                    <strong>Aggiunte Max Gratuite:</strong> Se inserisci "2", il cliente potrà aggiungere fino a 2 varianti (es. Ketchup e Maionese) senza pagare i 0.50€ impostati prima. Alla terza aggiunta, il sistema inizierà a far pagare.</p>
-                </div>
-
-                <!-- COMBO E SCONTI -->
-                <div id="setup-combo" class="mt-5">
-                    <h2>2. Piatti Combo e Sconti Globali</h2>
+                    <h4>Autenticazione Cloud</h4>
+                    <p>Ogni operatore deve autenticarsi inserendo le proprie credenziali personali[cite: 12]. Quando un nuovo operatore deve accedere per la prima volta, è necessario completare la procedura di registrazione[cite: 12]. Al termine dell'inserimento dei dati, il sistema invia automaticamente un'email di verifica[cite: 12]. In questa schermata ("Controllo Qualità"), cliccando sul pulsante "Conferma la mia Email", il sistema applicherà un codice di sicurezza univoco e validerà l'account[cite: 12].</p>
                     
-                    <h3>I Piatti Combo (I Menù Fisici)</h3>
-                    <p>Attivando <kbd>Abilita Sistema Piatti Combo</kbd> nelle impostazioni generali, puoi trasformare un piatto in un "Menù" (es. <em>"Menu Sagra"</em>).</p>
+                    <p>La gestione degli account può seguire due modalità diverse[cite: 12]:</p>
                     <ul>
-                        <li>In fase di creazione del piatto, spunta <strong>È un Piatto Combo (Menu)?</strong></li>
-                        <li>Seleziona i piatti <strong>ammessi</strong> nel menù (es. spunta "Hamburger", "Patatine", "Coca Cola").</li>
-                        <li>Imposta i <strong>Contorni Gratis Inclusi</strong> (es. 2).</li>
-                    </ul>
-                    <p><strong>Come si comporta in Cassa:</strong> Quando il cassiere clicca "Menu Sagra", si apre un popup obbligatorio. Il cassiere deve selezionare cosa inserire nel menu. I primi 2 piatti scelti avranno prezzo "GRATIS". Se il cliente vuole aggiungere una birra extra, il sistema manterrà il prezzo base del menu e sommerà il costo della birra a prezzo di listino. Nessun calcolo manuale richiesto.</p>
-
-                    <h3>Sconti Globali (Buoni Pasto, Staff, ecc.)</h3>
-                    <p>Nel pannello <kbd>Sconti</kbd> (sezione destra), l'Admin può creare sconti da applicare all'<strong>intero carrello</strong> della cassa.</p>
-                    <ul>
-                        <li><strong>Sconto %:</strong> (es. "Sconto Staff 50%"). Dimezza il totale.</li>
-                        <li><strong>Sconto Fisso:</strong> (es. "Buono 5€"). Sottrae 5€ dal totale (il totale non andrà mai in negativo).</li>
-                        <li><strong>Gratis:</strong> Azzera completamente il carrello (utile per i pasti dei volontari).</li>
-                    </ul>
-                </div>
-
-                <!-- PROFILI EXTRA -->
-                <div id="setup-reparti" class="mt-5">
-                    <h2>3. Profili Extra e Sistema di Fallback</h2>
-                    <p>BistroBò gestisce Cucina, Bere e Snack di default. Ma cosa succede se la tua sagra ha uno stand separato per la <strong>Pizzeria</strong> e uno per i <strong>Dolci</strong>?</p>
-                    
-                    <p>Dal menu <kbd>Gestione Profili</kbd>, puoi attivare fino a 3 "Extra".</p>
-                    <ul>
-                        <li><strong>Rinominazione:</strong> Clicca "Rinomina" su Extra 1 e chiamalo "Pizzeria". Questo nome si propagherà in tutto il database (menu, chat, pulsanti).</li>
-                        <li><strong>Tablet Dedicato:</strong> Ora, un tablet può fare login selezionando "Pizzeria". Quel tablet riceverà <strong>solo</strong> le comande contenenti pizze, filtrando via tutto il resto.</li>
+                        <li><strong>Approvazione Manuale:</strong> Ogni nuovo account rimane in attesa di autorizzazione anche dopo la verifica dell'email. Sarà l'amministratore a valutare la richiesta e assegnargli il ruolo[cite: 12].</li>
+                        <li><strong>Attivazione Automatica:</strong> Abilitando questa impostazione, in fase di registrazione al nuovo utente verrà mostrato un menù a tendina che gli consentirà di selezionare autonomamente il proprio ruolo (Cassa, Cucina, Banco Bevande, ecc.)[cite: 12]. Una volta completata la verifica, l'operatore sarà immediatamente operativo[cite: 12].</li>
                     </ul>
 
+                    <h4>Autenticazione LAN e Scudo Remoto</h4>
+                    <p>Nella versione LAN l'accesso è ancora più immediato: i dispositivi inquadrano il QR Code generato dal Server Locale e selezionano direttamente il ruolo a schermo, senza registrazione mail.</p>
                     <div class="info-box box-danger">
-                        <h5>🚨 Il Sistema di Fallback (Redirezione di Emergenza)</h5>
-                        <p>Immagina di chiudere la Pizzeria alle 23:00, disattivando il profilo Extra 1 dalle impostazioni, ma ci sono ancora Pizze nel tuo Menu configurate sotto quella categoria. Se la Cassa vende una pizza, questa finirebbe nel vuoto!</p>
-                        <p><strong>La Soluzione di BistroBò:</strong> Quando clicchi su "OFF" per spegnere un reparto, il sistema scansiona il Menu. Se trova piatti collegati a quel reparto, <strong>blocca lo spegnimento</strong> e apre un popup: <em>"Scegli in quale reparto inviare i piatti della Pizzeria finché è spenta"</em>.<br>
-                        Se selezioni "Cucina", da quel momento in poi, tutte le pizze battute in cassa verranno stampate e visualizzate sul monitor della Cucina centrale. Quando riaccenderai la Pizzeria l'indomani, il reindirizzamento si annullerà automaticamente.</p>
+                        <h5>🚨 Disconnessione Forzata e Blocco Dispositivo</h5>
+                        <p>Per massimizzare la sicurezza in tempo reale, l'amministratore dispone della funzione di Disconnessione Forzata[cite: 12]. Se si rende necessario revocare immediatamente l'accesso a un operatore, il sistema invierà un comando remoto che scollegherà all'istante l'utente da tutti i suoi dispositivi attivi[cite: 12]. L'operatore visualizzerà un avviso rosso sullo schermo ("Sei stato disconnesso dall'amministratore!") e verrà reindirizzato forzatamente alla schermata di login[cite: 12]. Nel sistema LAN, l'Admin può anche <strong>Bloccare</strong> l'hardware, paralizzando il touchscreen del tablet interessato.</p>
                     </div>
                 </div>
 
-                <hr style="border-color: #334155; margin: 50px 0;">
+                <!-- CAPITOLO 1 -->
+                <div id="capitolo-1" class="mt-5">
+                    <h2>Capitolo 1 - La Cassa, Scontrini e Combo</h2>
+                    <p>La Cassa rappresenta il centro operativo e il punto di partenza di ogni flusso di lavoro all'interno dell'ecosistema BistroBò[cite: 12]. L'interfaccia si adatta in base alle impostazioni attive, mostrando o nascondendo aree come preordini, ingredienti critici, flag per l'asporto, note multi-destinazione e menu Snack[cite: 12].</p>
 
-                <!-- LA CASSA -->
-                <div id="uso-cassa">
-                    <div class="cap-badge">Operatività in Cassa</div>
-                    <h2>4. La Cassa Ottimizzata e Note Smistate</h2>
-                    
-                    <h3>Cassa Standard vs Cassa Ottimizzata</h3>
-                    <p>Dalle impostazioni (icona ingranaggio), il cassiere può attivare la <strong>Cassa Ottimizzata</strong>. Questo cambia radicalmente il layout:</p>
+                    <h4>Creazione Comanda e Cassa Ottimizzata</h4>
+                    <p>La prima operazione è la creazione di una nuova comanda, identificata tramite un numero e una lettera, che garantiscono che ogni ordine sia tracciato in modo univoco[cite: 12]. Attivando le <strong>Comande Progressive</strong>, il sistema calcolerà autonomamente l'id successivo. È possibile indicare se la comanda è d'asporto tramite un apposito flag[cite: 12].</p>
+                    <p>La compilazione avviene attraverso una doppia sezione affiancata: da un lato c'è il riquadro della Comanda Corrente, mentre sull'altro lato sono presenti i menu[cite: 12].<br>
+                    <strong>Cassa Ottimizzata:</strong> Abilitando questo toggle, l'interfaccia si trasforma in un compatto POS a griglia. Nasconde gli ingredienti visivi e trasforma i piatti in grossi pulsanti (codificati per colore), ideali per battere scontrini alla cieca ad altissima velocità.</p>
+
+                    <h4>Piatti Combo (Menù Promozionali)</h4>
+                    <p>Il sistema gestisce ora i "Piatti Combo" (es. *Menù Fiera* a 15€). Selezionando una Combo in cassa, si apre un pop-up obbligatorio in cui l'operatore deve inserire i componenti del menù (es. Panino, Patatine, Bibita). L'Admin definisce quanti contorni/varianti sono <em>gratuiti</em>; se il cliente supera tale soglia, il sistema applica matematicamente il sovrapprezzo al totale della comanda in modo automatico.</p>
+
+                    <h4>Note Multi-Destinazione</h4>
+                    <p>Le note costituiscono un elemento fondamentale[cite: 12]. Se nelle impostazioni è attivata la funzione delle note multi-destinazione, l'operatore può indicare esattamente quali reparti devono riceverle, selezionando tra cucina, bere e snack[cite: 12]. Questo evita la trasmissione di informazioni ridondanti ai reparti non coinvolti[cite: 12]. Se l'impostazione è disabilitata, ogni nota inserita viene inviata unicamente alla cucina[cite: 12].</p>
+
+                    <h4>Gestione Pagamenti e Resto</h4>
+                    <p>La parte inferiore della schermata è dedicata al pagamento. Il sistema calcola automaticamente il totale della comanda e mette a disposizione un'interfaccia rapida per registrare i pagamenti in contanti tramite pulsanti dedicati a monete e banconote[cite: 12]. Ogni clic aggiunge l'importo selezionato, aggiornando automaticamente il resto da dare[cite: 12]. Il sistema esegue anche un algoritmo di scomposizione, mostrando a schermo esattamente quali e quante banconote restituire al cliente.</p>
+                    <p>Se il cliente paga con POS è possibile scegliere questa modalità dal menu dedicato[cite: 12], escludendo l'importo dai contanti per le statistiche di fine serata. Un toggle speciale permette di emettere <strong>Scontrini Separati</strong>, sputando dalla stampante un ticket individuale per ogni reparto coinvolto.</p>
+
+                    <h4>Invio, Transazioni e Tempo d'Attesa</h4>
+                    <p>Quando l'operatore invia la comanda, il sistema avvia una serie di processi complessi tramite transazioni sicure su Firebase[cite: 12]. Verifica la disponibilità degli ingredienti associati ai vari piatti, li scala dal magazzino in tempo reale e suddivide la comanda inoltrandola ai reparti coinvolti[cite: 12]. In alto a destra viene mostrato il "tempo medio di attesa", calcolato dinamicamente sulle ultime dieci comande[cite: 12]. L'Admin può escludere determinati reparti (es. il Bar) da questo calcolo per non falsare le stime di attesa della cucina vera e propria.</p>
+                </div>
+
+                <!-- CUCINA E PROFILI EXTRA -->
+                <div id="capitolo-2" class="mt-5">
+                    <h2>Capitolo 2 - Cucina, Bar e Profili Extra</h2>
+                    <p>La sezione dedicata alla Cucina e allo Snack rappresenta l'area produttiva principale, il punto in cui le comande inviate dalla cassa si trasformano in preparazioni reali[cite: 12]. L'interfaccia aggiorna automaticamente la lista senza necessità di ricaricare la pagina[cite: 12].</p>
+
+                    <h4>Identificazione e Stati</h4>
+                    <p>Ogni comanda è identificata dal numero e dalla lettera assegnati alla cassa, accompagnati dallo stato di preparazione[cite: 12]. Lo stato inizia come "Da preparare", passa a "In preparazione" quando il personale apre la comanda e termina con "Completato"[cite: 12]. I nuovi ordini vengono evidenziati in modo distintivo (es. lampeggi e suoni) e possono comparire in cima o in fondo alla lista in base alle preferenze configurate dall'amministratore[cite: 12].</p>
+
+                    <h4>Il Sistema a Spunta (Tick) e Vista Sommario</h4>
+                    <p>Ogni voce della comanda può essere contrassegnata individualmente attraverso un "tick" (checkbox) che il personale attiva appena un piatto è preparato[cite: 12]. Questo permette di sapere in qualsiasi momento quali prodotti sono completati[cite: 12]. Il grande pulsante "Segna Completato" è bloccato dal software finché l'operatore non spunta tutti i piatti presenti in quel cartellino, azzerando la possibilità di archiviare comande incomplete.<br>
+                    Nei momenti critici, il tasto <strong>Vista Sommario</strong> genera un overlay istantaneo che aggrega tutte le quantità in coda (es. *Hai 40 Hamburger e 15 Salsicce in totale da cuocere*), aiutando i fuochisti a dimensionare il carico sulla griglia.</p>
+
+                    <h4>I Profili Extra (Fino a 3 Reparti Aggiuntivi)</h4>
+                    <p>Per le sagre di grandi dimensioni, oltre a Cucina, Bere e Snack, è possibile configurare fino a <strong>3 Profili Extra</strong> (Extra 1, Extra 2, Extra 3).</p>
                     <ul>
-                        <li><strong>Standard:</strong> Mostra i piatti in lista (due per riga), includendo la descrizione degli ingredienti base. Ideale per chi deve spiegare i piatti ai clienti.</li>
-                        <li><strong>Ottimizzata:</strong> Rimuove gli ingredienti, gli spazi e i margini. Crea una fitta griglia di "pulsantoni" compatti, colorati lateralmente in base al reparto. Ideale per tablet piccoli o cassieri esperti che battono gli scontrini "a memoria" a ritmi altissimi.</li>
+                        <li><strong>Personalizzazione:</strong> L'Admin può rinominarli liberamente (es. "Pizzeria", "Dolci"). I tablet che effettueranno il login in quei reparti visualizzeranno esclusivamente le comande di competenza.</li>
+                        <li><strong>Protocollo di Emergenza (Fallback):</strong> Se un reparto viene spento a serata in corso (es. il pizzaiolo chiude), ma il menù contiene ancora piatti associati alla Pizzeria, il sistema di Cassa li invierebbe nel nulla. Per evitare ciò, al momento dello spegnimento l'Admin viene bloccato da un popup di sicurezza che gli chiede in quale reparto "vivo" (es. Cucina o Snack) dirottare temporaneamente le Pizze, garantendo la continuità operativa. Alla riaccensione, il <em>Fallback</em> si auto-cancella.</li>
                     </ul>
-
-                    <h3>Numerazioni e Asporto</h3>
-                    <p>Se è attiva l'opzione <strong>Comande Progressive</strong>, il cassiere non deve inserire il numero a mano: il sistema assegnerà automaticamente il progressivo, evitando duplicati se ci sono più casse che lavorano in contemporanea.<br>
-                    Tramite la casella <kbd>ASPORTO</kbd>, la comanda verrà taggata. Sul monitor della cucina apparirà un'etichetta visibile, indicando ai cuochi di usare i sacchetti anziché i vassoi.</p>
-
-                    <h3>Smistamento Chirurgico delle Note</h3>
-                    <p>Il box "Note" in cassa è accompagnato da delle caselle di spunta (Tick) per i vari reparti (es. <code>[X] Cucina</code>, <code>[ ] Bere</code>).</p>
-                    <div class="info-box box-warning">
-                        <h5>💡 Esempio di Utilizzo:</h5>
-                        <p>Il cliente ordina un panino e una birra e dice: <em>"Il panino tagliatelo a metà"</em>. <br>
-                        Il cassiere scrive "Tagliare a metà" nelle note, ma lascia spuntata <strong>solo la casella Cucina</strong>.<br>
-                        In questo modo, la nota non arriverà sul tablet del barista, mantenendo il suo monitor pulito da informazioni irrilevanti per le bevande.</p>
-                    </div>
                 </div>
 
-                <!-- GESTIONE SOLDI -->
-                <div id="gestione-soldi" class="mt-5">
-                    <h2>5. Gestione Soldi e Calcolo Resto</h2>
-                    <p>Per prevenire errori matematici a fine serata, abilita la <kbd>Gestione Resto e Soldi in Cassa</kbd>.</p>
-                    <p>Sul lato destro dello schermo comparirà un <strong>Tastierino Monetario</strong> (icone di banconote da 50€, 20€, ecc. e monete).<br>
-                    <strong>Flusso di lavoro:</strong>
-                    </p>
-                    <ol>
-                        <li>Il conto totale è 12.50€.</li>
-                        <li>Il cliente ti porge una banconota da 50€. Tu "tappi" sull'icona della banconota da 50€.</li>
-                        <li>In tempo reale, la Cassa scrive in rosso/verde: <strong>Pagato: 50.00€ | Resto: 37.50€</strong>.</li>
-                        <li>A fianco, ti suggerisce anche in piccolo le banconote fisiche da dare indietro: <em>(1x 20€, 1x 10€, 1x 5€, 1x 2€, 1x 0.50€)</em>.</li>
-                    </ol>
-                    <p>Selezionando "POS" dal menu a tendina Metodo di Pagamento, l'incasso non verrà sommato ai contanti nelle statistiche di fine serata dell'Admin.</p>
-                </div>
+                <!-- L'AMMINISTRATORE -->
+                <div id="capitolo-3" class="mt-5">
+                    <h2>Capitolo 3 - L'Amministratore e le Reti LAN</h2>
+                    <p>Il ruolo di Amministratore ha il controllo completo su tutti i reparti, sulle impostazioni globali, sui dati e sugli utenti[cite: 12]. Tramite il Simulatore di Ruoli, l'admin può passare in tempo reale alle interfacce operative senza effettuare alcun logout[cite: 12].</p>
 
-                <!-- PREORDINI E ASPORTO -->
-                <div id="preordini" class="mt-5">
-                    <h2>6. Preordini Web e Asporto Automatico</h2>
-                    <p>Il sistema include una pagina pubblica (raggiungibile via QR code dai tavoli) dove i clienti compongono il loro ordine. Affinché i preordini arrivino in Cassa, il PC Server (in caso di LAN) o il tablet (in caso di Cloud) deve avere internet.</p>
-                    
-                    <h3>Configurazioni lato Admin:</h3>
+                    <h4>Modifica Comande e Logiche di Sconto</h4>
+                    <p>L'admin dispone di una funzione di Modifica Avanzata per gli ordini già inviati[cite: 12]. In caso di rimozione di una preparazione, il sistema restituirà in modo completamente automatico gli ingredienti corrispondenti al magazzino, garantendo un allineamento perfetto delle scorte[cite: 12].</p>
+                    <p>In fase di creazione piatti o buoni pasto, il sistema supporta tre logiche matematiche di Sconto Avanzato: Sconto Percentuale, logica Prendi X - Paga Y (es. 3x2), e la logica X Paga Y Fisso (es. 3 birre per un totale fisso di 10€)[cite: 12]. Queste promozioni vengono calcolate automaticamente dal sistema di cassa[cite: 12].</p>
+
+                    <h4>Pannello LAN e Stampanti IP (Bypass Pop-up)</h4>
+                    <p>Se si utilizza l'app in locale tramite Server Windows, l'Admin sblocca la vera potenza hardware:</p>
                     <ul>
-                        <li><strong>Visibilità Menu Pubblico:</strong> Dal pannello Preordini dell'Admin, puoi cliccare sull'occhio. Si aprirà una lista dove potrai nascondere (OFF) i piatti che non vuoi far ordinare dal web (es. piatti complessi), pur mantenendoli vendibili dalla Cassa fisica.</li>
-                        <li><strong>Richiedi Info:</strong> Se attivato, il cliente è obbligato a inserire il suo Numero di Telefono, il numero del Tavolo (Posizione) e l'Orario di consegna desiderato.</li>
-                        <li><strong>Asporto Automatico:</strong> Se attivato, tutti i preordini che arrivano in Cassa verranno forzatamente marcati come "ASPORTO", semplificando la vita ai cassieri.</li>
+                        <li><strong>Controllo Terminali:</strong> Dal pannello, l'Admin vede i tablet connessi e il loro ultimo ping di rete. Può espellerli (Kick) o bloccarne il touchscreen da remoto. I dispositivi non autorizzati o che si spengono brutalmente vengono puliti automaticamente da uno spazzino software ogni 45 secondi.</li>
+                        <li><strong>Assegnazione Stampanti Fisiche:</strong> L'Admin mappa gli indirizzi IP delle stampanti termiche (Epson, Custom, ecc.) associandole ai tablet Cassa. Quando il cassiere clicca su "Invia Comanda", il tablet lancia un segnale silente al Server, che stampa fisicamente lo scontrino. <strong>Vengono annientate tutte le fastidiose finestre di pop-up di stampa di Chrome/Safari</strong>, moltiplicando la velocità di erogazione degli scontrini.</li>
                     </ul>
-
-                    <h3>Flusso in Cassa:</h3>
-                    <p>I preordini <strong>non</strong> vanno direttamente in cucina. Appaiono in una Tab lampeggiante sulla Cassa. Il cassiere, leggendo l'orario di consegna richiesto dal cliente, decide <strong>quando</strong> far partire la comanda. Cliccando "Aggiungi", l'ordine viene scaricato nel carrello della cassa, gli ingredienti vengono scalati dal magazzino, e premendo "Invia" parte regolarmente verso i reparti e le stampanti.</p>
                 </div>
 
-                <hr style="border-color: #334155; margin: 50px 0;">
+                <!-- PREORDINI -->
+                <div id="capitolo-4" class="mt-5">
+                    <h2>Capitolo 4 - Gestione Preordini e Asporto</h2>
+                    <p>I Preordini consentono ai clienti di inviare il proprio ordine direttamente da una pagina web dedicata (spesso tramite QR Code ai tavoli o agli ombrelloni)[cite: 12]. Il menu visualizzato è sempre aggiornato in base alle disponibilità reali e i preordini includono informazioni utili come il nome del cliente, o eventuali note di preparazione[cite: 12].</p>
 
-                <!-- GESTIONE COMANDE REPARTI -->
-                <div id="gestione-comande">
-                    <div class="cap-badge">Produzione e Reparti</div>
-                    <h2>7. Monitor Reparti: Gestione Spunte e Comande</h2>
-                    <p>I monitor di Cucina, Bar, Snack ed Extra sono ottimizzati per l'uso "sporco" e veloce.</p>
-                    
-                    <h3>Logica delle Spunte (Tick)</h3>
-                    <p>Ogni comanda è racchiusa in un "cartellino" bianco. Al suo interno ci sono i piatti, ad esempio: <em>2x Hamburger, 1x Patatine (come contorno)</em>.</p>
+                    <h4>Visibilità Menu e Richiesta Dati</h4>
+                    <p>Dall'interfaccia Admin (Pulsante "👁️ Visibilità Menù Pubblico"), puoi scegliere quali piatti nascondere alla clientela web, mantenendoli però vendibili dalla cassa fisica. Inoltre, puoi rendere obbligatoria la compilazione di campi extra da parte del cliente, come il Numero di Telefono, la Posizione/Tavolo e l'Orario di Consegna (fondamentale per scaglionare la preparazione e gestire in modo efficiente il ritiro o il delivery)[cite: 12].</p>
+
+                    <h4>Flusso Operativo e Asporto Automatico</h4>
+                    <p>Non appena il preordine viene confermato, il sistema lo registra e lo rende visibile in tempo reale a tutte le postazioni abilitate: la cassa e l'amministrazione[cite: 12]. Ogni preordine viene mostrato con un colore distintivo e, appena arriva, può essere accompagnato da un segnale sonoro[cite: 12].</p>
+                    <p><strong>Perché non vanno in cucina?</strong> I preordini non vengono inoltrati ai cuochi immediatamente per evitare che il cibo venga preparato con largo anticipo e si raffreddi. Il cassiere, all'orario congruo, scarica l'ordine nel proprio carrello. Se l'Admin ha abilitato l'opzione <strong>Asporto Automatico Preordini</strong>, la comanda appena scaricata assumerà la grossa dicitura "📦 Asporto". Quando il cassiere premerà "Invia", l'ordine diventerà una comanda vera, stamperà il ticket e allerterà i cuochi della natura "Take-away" del pasto.</p>
+                </div>
+
+                <!-- FUNZIONI VARIE -->
+                <div id="capitolo-5" class="mt-5">
+                    <h2>Capitolo 5 - Funzioni Varie e Magazzino</h2>
+                    <p>Il sistema BistroBò mette a disposizione una serie di strumenti trasversali progettati per migliorare l'organizzazione e la qualità dell'esperienza operativa[cite: 12].</p>
+
+                    <h4>Magazzino e Auto-Blocco di Emergenza</h4>
+                    <p>La gestione degli ingredienti critici rappresenta uno dei sistemi di sicurezza operativa più importanti di BistroBò[cite: 12]. La gestione delle soglie analizza in modo sofisticato le Unità di Misura (Pezzi, Chilogrammi e Litri). Ogni unità possiede logiche matematiche e soglie di allerta preconfigurate e differenziate[cite: 12]:</p>
                     <ul>
-                        <li>Accanto all'Hamburger c'è una casella di spunta. Il cuoco la "tappa" quando mette la carne sul fuoco.</li>
-                        <li>Accanto alle Patatine (che il sistema ha indentato verso destra in quanto "Contorno") c'è un'altra spunta. Il cuoco la tappa quando le frigge.</li>
-                        <li><strong>Controllo Sicurezza:</strong> Il grosso pulsante <kbd>Segna Completato</kbd> in basso rimane grigio e disabilitato finché <strong>tutte</strong> le spunte all'interno di quel cartellino non sono state flaggate. Questo impedisce di chiudere comande per sbaglio dimenticandosi un piatto.</li>
+                        <li>Per i chilogrammi (kg) l'avviso di "Soglia di Attenzione" scatta a 2 kg e il livello "Critico" a 0.5 kg[cite: 12].</li>
+                        <li>Per i pezzi (pz) l'allerta parte da 15 unità e la soglia critica a 5[cite: 12].</li>
+                        <li>Per i litri (l), le tolleranze sono proporzionate ai liquidi (attenzione a 5 L, critico a 1 L).</li>
                     </ul>
-                    <p>Quando la comanda viene completata, sparisce dal monitor della cucina, finisce nello "Storico", e sul monitor della Cassa lo stato passa da "In elaborazione" (Arancione) a "Completato" (Verde).</p>
+                    <p>Quando il livello scende sotto una certa soglia, il sistema genera avvisi visivi e sonori che raggiungono simultaneamente tutti i reparti[cite: 12]. Ma non è tutto: quando un ingrediente risulta esaurito, i piatti che lo utilizzano vengono automaticamente bloccati[cite: 12]. In tempo reale, i pulsanti in cassa diventano opachi e non cliccabili, impedendo che vengano accettati ordini impossibili da soddisfare[cite: 12].</p>
 
-                    <h3>Vista Sommario</h3>
-                    <p>Nei momenti di panico, cliccare sulle singole comande è lento. Il pulsante <kbd>VISTA SOMMARIO</kbd> in alto a destra apre un popup che raggruppa tutti i piatti in coda: <em>"Hai in totale 15 Hamburger e 30 Salsicce da cuocere"</em>. Fondamentale per il fuochista per sapere quanta roba buttare in griglia.</p>
+                    <h4>La Chat Interna</h4>
+                    <p>Uno degli strumenti più potenti è la Chat Interna, pensata per consentire una comunicazione immediata e diretta tra i reparti[cite: 12]. Permette di gestire imprevisti o segnalare problemi senza dover abbandonare la propria postazione, supportando notifiche sonore e visive[cite: 12]. Per non gravare sulle risorse di calcolo dei tablet, il motore database mantiene attivi in memoria solo gli <strong>ultimi 10 messaggi</strong>, attivando il Garbage Collector per quelli più antichi. L'Admin dispone comunque del tasto "Reset Chat" per pulire completamente la vista in caso di necessità.</p>
+
+                    <h4>Personalizzazione Grafica (Temi Visivi)</h4>
+                    <p>BistroBò include una funzione di personalizzazione grafica tramite Temi Visivi[cite: 12]. L'amministratore può selezionare temi differenti come Default, Scout, Autunno, Inverno, Primavera, Estate e l'interfaccia di ogni dispositivo collegato (e del sito pubblico dei clienti) si aggiornerà automaticamente in base alla scelta effettuata in tempo reale[cite: 12].</p>
                 </div>
 
-                <!-- MAGAZZINO E AUTO BLOCCO -->
-                <div id="magazzino" class="mt-5">
-                    <h2>8. Magazzino Intelligente e Auto-Blocco Piatti</h2>
-                    <p>Il magazzino lavora per unità specifiche: Pezzi (<kbd>pz</kbd>), Chilogrammi (<kbd>kg</kbd>) o Litri (<kbd>l</kbd>). Il codice di BistroBò ha delle soglie cablate matematicamente:</p>
+                <!-- SCHERMO CLIENTE -->
+                <div id="capitolo-6" class="mt-5">
+                    <h2>Capitolo 6 - Schermo Cliente Live e Gamification</h2>
                     
-                    <div class="info-box box-warning">
-                        <h5>Soglie di Allarme Configurate nel Sistema:</h5>
-                        <ul>
-                            <li><strong>Pezzi (pz):</strong> Attenzione sotto i 15 pz. Critico sotto i 5 pz.</li>
-                            <li><strong>Chilogrammi (kg):</strong> Attenzione sotto i 2 kg. Critico sotto 0.5 kg.</li>
-                            <li><strong>Litri (l):</strong> Attenzione sotto 5 L. Critico sotto 1 L.</li>
-                        </ul>
-                    </div>
+                    <h4>Lo Schermo Cliente Live</h4>
+                    <p>BistroBò si arricchisce di un'interfaccia dedicata esclusivamente al pubblico: lo Schermo Cliente Live[cite: 12]. Questo monitor aggiuntivo, posizionabile in cassa, permette al cliente di seguire in tempo reale la composizione del proprio ordine, garantendo la massima trasparenza e riducendo le incomprensioni al momento del pagamento[cite: 12].</p>
+                    <p>Dal menu a tendina (`cliente.html`), è necessario selezionare la postazione di Cassa attiva che si desidera "specchiare"[cite: 12]. Non appena il cassiere inizia a comporre una nuova comanda, il monitor aggiorna istantaneamente la propria lista mostrando i nomi dei piatti e i riquadri per Totale Ordine, Pagato e Resto[cite: 12]. La pagina si svuota in automatico e mostra la scritta "IN ATTESA DI ARTICOLI..." non appena l'ordine viene inviato o azzerato dalla cassa[cite: 12].</p>
 
-                    <p><strong>Cosa vede la Cassa:</strong> Quando un ingrediente entra in "Attenzione", appare una notifica arancione e il pulsante "Ingredienti Critici" lampeggia per avvisare il caposala di preparare le scorte. <br>
-                    <strong>L'Auto-Blocco:</strong> Quando un ingrediente arriva a 0, il sistema emette un suono rosso di allarme. <strong>In decimi di secondo, tutti i piatti nel Menu che contengono quell'ingrediente diventano grigi e non cliccabili sulla Cassa.</strong> È matematicamente impossibile vendere un piatto esaurito.</p>
-                    <p>Quando il magazziniere ricarica le scorte inserendo "50 pz" dal monitor della cucina o dall'admin, i piatti si sbloccano istantaneamente in Cassa.</p>
-                </div>
-
-                <hr style="border-color: #334155; margin: 50px 0;">
-
-                <!-- LAN E STAMPANTI AVANZATE -->
-                <div id="gestione-lan">
-                    <div class="cap-badge">Amministrazione Avanzata</div>
-                    <h2>9. Rete LAN, Stampanti IP e Dispositivi</h2>
-                    <p>La vera potenza della versione Server è la gestione hardware.</p>
-
-                    <h3>Pannello "Utenti LAN"</h3>
-                    <p>Qui vedi ogni tablet collegato al tuo router. Seleziona la tendina di fianco a un utente per <strong>Assegnargli un Ruolo</strong> (es. trasformare un utente anonimo in "Cassa"). Da qui puoi inviare il comando <strong>Blocca</strong> (schermo rosso) o <strong>Espelli</strong>.</p>
-                    <p>La funzione <strong>Pulisci Offline</strong> rimuove i "dispositivi fantasma" (tablet che sono stati spenti bruscamente senza fare logout) per mantenere l'interfaccia pulita.</p>
-
-                    <h3>Pannello "Stampanti Cassa"</h3>
-                    <p>Qui definisci la mappatura hardware. Il sistema ti elenca tutte le Casse attive in quel momento. Per ognuna, c'è un campo di testo dove inserisci l'indirizzo IP della stampante termica (es. <code>192.168.1.100</code>). Da quel momento, le stampe generate da quel tablet bypasseranno iOS/Windows/Android e andranno dirette alla stampante, azzerando i tempi di popup.</p>
-                </div>
-
-                <!-- GIORNATE -->
-                <div id="giornate" class="mt-5">
-                    <h2>10. Chiusura Turno e Sistema a Giornate</h2>
-                    <p>Il nemico dei vecchi gestionali è il tasto "Svuota Comande", che cancella irreparabilmente i dati a fine serata per fare spazio al giorno dopo.</p>
-
-                    <div class="info-box box-cloud">
-                        <h5>📦 La Funzione "Archivia Turno"</h5>
-                        <p>Dalle impostazioni (o dalle statistiche), clicca su <strong>Archivia Turno Corrente</strong>. Il sistema ti chiederà un nome (es. "Sabato Pranzo").</p>
-                        <p><strong>Operazioni automatiche eseguite in background:</strong></p>
-                        <ol>
-                            <li>Tutte le comande attive vengono zippate e salvate in modo permanente nel database (<code>storico_giornate</code>).</li>
-                            <li>L'incasso del turno e il fondo cassa vengono contabilizzati.</li>
-                            <li>I monitor di Cassa, Cucina e Bere vengono piallati e riportati a zero.</li>
-                            <li>Il contatore progressivo delle comande viene resettato a 1.</li>
-                        </ol>
-                        <p>Ora sei pronto per il "Sabato Cena". Nel pannello <kbd>Statistiche Vendita</kbd> avrai un menu a tendina che ti permetterà di visualizzare i grafici dell'intera sagra (Globale) o solo di uno specifico turno isolato (es. Sabato Pranzo), esportabili in <strong>Excel e PDF</strong>.</p>
-                    </div>
-                </div>
-
-                <!-- GAMIFICATION -->
-                <div id="gamification" class="mt-5">
-                    <h2>11. Statistiche, Gamification e Schermo Cliente</h2>
-                    
-                    <h3>Il "Gioco Scontrino" (Fidelizzazione Cliente)</h3>
-                    <p>Sotto stress, i clienti in coda si spazientiscono. Dalle Impostazioni, attiva <kbd>Gioco su Scontrino</kbd>. Alla fine di ogni ricevuta cartacea, la stampante termica aggiungerà, a rotazione casuale, un minigioco: un cruciverba, un sudoku, un labirinto, o il gioco del tris. I clienti giocheranno usando la carta termica nell'attesa dell'ordine.</p>
-
-                    <h3>Schermo Cliente Live</h3>
-                    <p>Aprendo il link `cliente.html` su una Smart TV o un tablet grande rivolto verso il pubblico, e associandolo a una Cassa attiva, il monitor riprodurrà in tempo reale i piatti che il cassiere sta digitando. I numeri enormi per "PAGATO" e "RESTO" garantiscono massima trasparenza, azzerando le incomprensioni sui contanti.</p>
-
-                    <h3>Wall of Fame (Classifica Staff)</h3>
-                    <p>BistroBò analizza segretamente le performance del tuo staff, visibili nella tab <kbd>Classifica Staff</kbd> dell'Admin. I trofei calcolati sono:</p>
+                    <h4>Gamification (I 12 Trofei dello Staff) e Gioco Scontrino</h4>
+                    <p>Il sistema calcola in background la latenza espressa in millisecondi tra il "Click" di invio del cassiere e il "Click" di completamento del cuoco. La dashboard Admin (<kbd>Classifica Staff</kbd>) restituisce i trofei della sagra per accendere una sana competizione tra i dipendenti:</p>
                     <ul>
-                        <li><strong>⚡ Cassiere Flash:</strong> Il cassiere con la media di tempo più bassa tra inserimento e completamento.</li>
-                        <li><strong>🏆 Lo Stacanovista:</strong> Chi ha battuto il maggior numero di ordini.</li>
-                        <li><strong>💰 Cassiere d'Oro:</strong> Chi ha generato l'incasso maggiore.</li>
-                        <li><strong>🍻 Re della Spina:</strong> Chi ha venduto più birre in assoluto.</li>
-                        <li><strong>👑 La Ferrari:</strong> Il reparto (es. Snack) con la media generale di evasione più bassa.</li>
-                        <li><strong>🚀 Il Razzo:</strong> L'ordine singolo evaso nel minor tempo in assoluto (record).</li>
-                        <li><strong>🐢 La Tartaruga:</strong> L'ordine singolo che ha richiesto più tempo (il ritardo peggiore).</li>
-                        <li><strong>🔥 Reparto On Fire:</strong> Il reparto che ha completato più ordini in totale.</li>
-                        <li><strong>🍕 Fame da Lupi:</strong> La comanda contenente il maggior numero fisico di piatti all'interno.</li>
-                        <li><strong>🧾 Scontrino d'Oro:</strong> Lo scontrino dal valore economico più alto mai battuto.</li>
+                        <li><strong>⚡ Cassiere Flash:</strong> L'operatore con la media di evasione ordine più rapida.</li>
+                        <li><strong>🏆 Lo Stacanovista:</strong> Chi ha servito il maggior numero di ordini.</li>
+                        <li><strong>💰 Cassiere d'Oro & 🧾 Scontrino d'Oro:</strong> I massimali di incasso economico generale e su singola battuta.</li>
+                        <li><strong>🍻 Re della Spina & Spillatura Record:</strong> Metriche specifiche filtrate sul reparto Bar (per l'erogazione dei liquidi).</li>
+                        <li><strong>👑 La Ferrari & 🚀 Il Razzo:</strong> Medie super performanti dei vari reparti (es. Snack) e la comanda evasa in assoluto più veloce di tutto l'evento.</li>
+                        <li><strong>🐢 La Tartaruga:</strong> La comanda con il ritardo peggiore della serata.</li>
+                        <li><strong>🍕 Fame da Lupi:</strong> La singola comanda che conteneva il numero più alto di piatti (il gruppo di amici più affamato).</li>
                     </ul>
+                    <p>Infine, abilitando il toggle <kbd>Gioco su Scontrino</kbd>, il server applicherà uno script di rendering in fondo allo scontrino termico che stamperà a rotazione casuale minigiochi per il pubblico (Tris, Sudoku, Parole Intrecciate, Labirinto), intrattenendo i clienti in fila durante i momenti di congestione.</p>
+                </div>
+
+                <!-- CONCLUSIONE -->
+                <div id="conclusione" class="mt-5">
+                    <h2>Conclusione e Sistema a Giornate</h2>
+                    <p>Nei vecchi gestionali l'operazione di chiusura comportava l'uso del tasto "Cancella tutto" perdendo irrimediabilmente i dati di contabilità per poter avviare il turno del giorno seguente. BistroBò ha integrato il <strong>Sistema di Archiviazione a Giornate</strong>.</p>
+                    
+                    <p>A fine turno (es. Sabato a mezzanotte), l'Admin clicca su <kbd>Archivia Turno Corrente</kbd>. Il server gli chiederà di nominare il turno (es. "Sabato Sera"). Il sistema estrarrà tutto l'array di comande e i dati del fondo cassa, comprimendoli e salvandoli per sempre nel nodo <code>storico_giornate</code> del database. Dopodiché svuoterà i monitor dei cuochi e dei cassieri, piallerà i totali giornalieri e resetterà a zero il contatore progressivo degli scontrini, restituendo un sistema pulito e scattante per il turno di Domenica.</p>
+                    <p>Nella pagina <strong>Statistiche</strong>, l'Admin potrà poi selezionare tramite menu a tendina se analizzare i grafici a torta e gli output Excel/PDF aggregando i dati di tutta l'intera Sagra Globale, oppure se focalizzarsi analiticamente sul singolo turno di "Sabato Sera".</p>
+
+                    <p class="mt-4">BistroBò è il risultato di un percorso di sviluppo, test, ottimizzazione e miglioramento costante che ha portato alla creazione di una piattaforma flessibile, moderna e in continua evoluzione[cite: 12]. Elevando l'organizzazione della tua attività a standard professionali superiori[cite: 12].</p>
                 </div>
 
             </div>
