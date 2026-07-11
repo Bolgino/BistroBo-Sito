@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuale Operativo | BistroBò</title>
+    <title>Manuale Operativo Definitivo | BistroBò</title>
     
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 
@@ -137,6 +137,9 @@
                     <a class="nav-link" href="#magazzino">Capitolo 7: Magazzino & Auto-Blocco</a>
                     <a class="nav-link" href="#lan-stampanti-chat">Capitolo 8: Chat, LAN & Stampanti</a>
                     <a class="nav-link" href="#giornate-statistiche">Capitolo 9: Chiusura & Gamification</a>
+
+                    <div class="nav-category">Riferimento Rapido</div>
+                    <a class="nav-link" href="#appendice-impostazioni">Appendice: Tutte le Impostazioni</a>
                 </nav>
             </div>
 
@@ -217,16 +220,25 @@
                         <p>Non esiste un "annulla" per questa operazione: una volta confermata, piatti, ingredienti, prezzi e configurazioni delle varianti vanno persi e vanno ricostruiti da capo. Usarlo solo con la certezza di voler ripartire da un menu vuoto.</p>
                     </div>
 
-                    <h4>I Profili Extra (Fino a 3 Reparti Aggiuntivi)</h4>
-                    <p>A differenza dei gestionali tradizionali che offrono solo Cucina e Bar, BistroBò scala abilitando fino a <strong>3 Profili Extra</strong> per supportare aree distaccate (es. Pizzeria, Gelatiere, Area Fritti).</p>
+                    <h4>Identità del Locale e Comfort dell'Operatore</h4>
                     <ul>
-                        <li><strong>Rinominazione Dinamica:</strong> Dalla scheda "Gestione Profili", l'Admin può attivare l'Extra 1 e rinominarlo in "Pizzeria". Questo termine sovrascriverà l'interfaccia ovunque: chat, menù e scontrini. Un operatore potrà fare login come "Pizzeria" ricevendo esclusivamente le comande di sua competenza.</li>
+                        <li><span class="setting-name">Nome Stand/Locale</span>: Un campo testo libero (default "BistroBò") che viene stampato nell'header dell'applicazione e in cima a ogni scontrino/report PDF esportato. Utile per personalizzare l'app con il nome reale della sagra o del punto vendita (es. "Sagra del Panino - Pro Loco XYZ") senza dover toccare il codice.</li>
+                        <li><span class="setting-name">Scorciatoie da Tastiera</span>: Se attivata, l'app ascolta combinazioni <kbd>Alt</kbd> + tasto per saltare istantaneamente tra le schede principali (Cassa, Comande, Chat) senza dover toccare lo schermo. Pensata per postazioni con tastiera fisica collegata (es. PC in reception) dove i click sono più lenti dello scatto da tastiera.</li>
+                        <li><span class="setting-name">Sistema Personalizzazioni</span> (interruttore generale delle varianti): È l'interruttore "madre" che abilita o disabilita ovunque i popup di personalizzazione piatto (aggiunte, contorni, varianti extra). Se lo si disattiva, i nomi dei piatti in Cassa smettono di essere cliccabili per l'apertura del popup: il piatto si aggiunge al carrello "secco", senza possibilità di personalizzazione. Utile per menu molto semplici (es. una sagra con un solo tipo di panino) dove le opzioni di personalizzazione sarebbero solo un ostacolo alla velocità di battitura.</li>
+                    </ul>
+
+                    <h4>I Profili Extra (Fino a 3 Reparti Aggiuntivi) e il Reparto Snack</h4>
+                    <p>Oltre a Cucina e Bar (sempre presenti), BistroBò offre due livelli di espansione dei reparti:</p>
+                    <ul>
+                        <li><strong>Reparto Snack:</strong> Un reparto "di base" aggiuntivo pensato per fritture/snack, attivabile con un semplice interruttore. Quando è <strong>disattivato</strong>, tutti i prodotti precedentemente assegnati a Snack vengono automaticamente accorpati e mostrati nel monitor della Cucina, così nulla va perso; quando è <strong>attivo</strong>, ottiene il proprio monitor di produzione dedicato e la propria sezione nel menu di Cassa.</li>
+                        <li><strong>Rinominazione Dinamica dei Profili Extra:</strong> Dalla scheda "Gestione Profili", l'Admin può attivare l'Extra 1 e rinominarlo in "Pizzeria". Questo termine sovrascriverà l'interfaccia ovunque: chat, menù e scontrini. Un operatore potrà fare login come "Pizzeria" ricevendo esclusivamente le comande di sua competenza.</li>
                     </ul>
 
                     <div class="info-box box-config">
                         <h5>⚙️ Protocollo di Emergenza: Il Fallback Dinamico</h5>
                         <p><strong>Lo Scenario:</strong> È mezzanotte, il pizzaiolo va a casa. L'Admin va in impostazioni per spegnere il profilo Pizzeria cliccando su "OFF". <em>Ma nel database (menù) ci sono ancora piatti configurati sotto quel reparto!</em> Se un cassiere li batte, finirebbero nel vuoto.</p>
                         <p><strong>Come interviene BistroBò:</strong> Il sistema analizza il DB e blocca lo spegnimento. Apre un popup che avverte l'Admin della presenza di piatti orfani, obbligandolo a selezionare un <strong>Reparto di Fallback</strong> (es. "Snack" o "Cucina"). Da questo istante, ogni Pizza battuta in Cassa verrà istantaneamente dirottata al monitor della Cucina. Alla riaccensione futura della Pizzeria, il routing forzato si autodistruggerà.</p>
+                        <p>Per default, se non viene specificato nulla, ciascun Profilo Extra spento dirotta automaticamente al reparto "Cibo" (Cucina): è la rete di sicurezza minima anche se l'Admin non configura esplicitamente un fallback diverso.</p>
                     </div>
                 </div>
 
@@ -275,17 +287,32 @@
                 <div id="operativita-cassa">
                     <div class="cap-badge">Capitolo 4</div>
                     <h2>Operatività in Cassa, Note e Gestione Soldi</h2>
-                    <p>La Cassa è l'interfaccia attraverso cui l'operatore inserisce, organizza, invia e monitora tutte le comande. Ogni ordine è identificato da un numero e una lettera. Attivando le <strong>Comande Progressive</strong>, il sistema calcolerà autonomamente l'id successivo senza possibilità di duplicati, anche con più casse che operano in parallelo.</p>
+                    <p>La Cassa è l'interfaccia attraverso cui l'operatore inserisce, organizza, invia e monitora tutte le comande.</p>
+
+                    <h4>Numerazione delle Comande</h4>
+                    <ul>
+                        <li><span class="setting-name">Comande Progressive</span>: se attivata, l'input del numero comanda in cassa viene bloccato (mostra "Auto" come placeholder) e il sistema calcola da solo l'id successivo leggendo e incrementando un contatore centralizzato sul database, senza possibilità di duplicati anche con più casse che battono contemporaneamente. Se disattivata, il numero va digitato manualmente dal cassiere ad ogni comanda. L'Admin dispone di un tasto "Reset Contatore" per azzerare la sequenza (es. a inizio di una nuova giornata/turno).</li>
+                        <li><span class="setting-name">Lettera Comanda</span>: aggiunge, accanto al numero, un secondo campo per una lettera (A-Z, convertita automaticamente in maiuscolo e validata) per distinguere più file/postazioni che condividono la stessa numerazione (es. "Fila 1 = A12", "Fila 2 = B12"). Se disattivata, l'etichetta cambia da "Numero e Lettera" a "Numero Comanda" e il campo lettera scompare.</li>
+                    </ul>
 
                     <h4>Cassa Standard vs Cassa Ottimizzata</h4>
-                    <p>Dalle impostazioni (icona ingranaggio), l'operatore può attivare la <strong>Cassa Ottimizzata</strong>. Mentre la cassa standard è a lista e descrittiva (mostra gli ingredienti sotto i piatti), quella ottimizzata comprime ferocemente il layout. Rimuove le descrizioni e converte l'intero menù in una griglia di pulsantoni colorati, massimizzando lo spazio. È la visualizzazione obbligatoria per tablet piccoli o per cassieri esperti che digitano "a memoria".</p>
+                    <p>Dalle impostazioni (icona ingranaggio), l'operatore può attivare la <strong>Cassa Ottimizzata</strong>. Mentre la cassa standard è a lista e descrittiva (mostra gli ingredienti sotto i piatti), quella ottimizzata applica una classe di stile dedicata che comprime ferocemente il layout: rimuove le descrizioni e converte l'intero menù in una griglia di pulsantoni colorati, massimizzando lo spazio e velocizzando i click. È la visualizzazione consigliata per tablet piccoli o per cassieri esperti che digitano "a memoria".</p>
+
+                    <h4>Selettore Quantità in Cassa</h4>
+                    <p>Se il "Selettore Quantità" è attivo, prima di toccare un piatto l'operatore può impostare un numero nell'apposito campo (es. "4") e il sistema aggiungerà al carrello quella quantità in un colpo solo, invece di dover toccare il piatto quattro volte di seguito. Se disattivato, ogni tocco aggiunge sempre e solo 1 unità.</p>
 
                     <h4>Note Multi-Destinazione</h4>
                     <p>Le note costituiscono un elemento fondamentale per la comunicazione. Se la funzione "note multi-destinazione" è attivata, l'operatore può indicare tramite delle caselle di spunta esattamente quali reparti devono ricevere l'avviso.<br>
-                    Se un cliente ordina un panino e una birra chiedendo "Tutto senza ghiaccio", il cassiere scriverà il messaggio e spunterà solo la casella "Bere". Questa nota sarà stampata e iniettata solo sul monitor del barista, mantenendo pulita e senza distrazioni la vista del cuoco.</p>
+                    Se un cliente ordina un panino e una birra chiedendo "Tutto senza ghiaccio", il cassiere scriverà il messaggio e spunterà solo la casella "Bere". Questa nota sarà stampata e iniettata solo sul monitor del barista, mantenendo pulita e senza distrazioni la vista del cuoco. Tecnicamente, i reparti selezionati vengono concatenati insieme al testo della nota e distribuiti solo ai monitor di competenza al momento dell'invio della comanda.</p>
+
+                    <h4>Stampa: Automatica e Scontrini Separati</h4>
+                    <ul>
+                        <li><span class="setting-name">Stampa Automatica Comande</span>: se attiva, nel momento stesso in cui una comanda viene salvata (o un preordine viene approvato), il sistema lancia da solo l'ordine di stampa, senza che il cassiere debba premere un tasto "Stampa" dedicato.</li>
+                        <li><span class="setting-name">Scontrini Separati</span>: forza la generazione di un ticket di stampa distinto per ciascun reparto coinvolto nella comanda (uno per la Cucina, uno per il Bar, ecc.) invece di un'unica lunga strisciata con tutte le voci insieme. Comodo quando le postazioni di stampa fisiche dei reparti sono lontane tra loro.</li>
+                    </ul>
 
                     <h4>Gestione Resto e Modulo Contanti</h4>
-                    <p>Per limitare gli errori matematici durante il servizio, abilita la <strong>Gestione Resto e Soldi in Cassa</strong>. Il sistema mostra una pulsantiera virtuale di tutti i tagli di banconote e monete in corso (<strong>50€, 20€, 10€, 5€, 2€, 1€, 0.50€, 0.20€, 0.10€, 0.05€, 0.02€, 0.01€</strong>). Il cassiere tocca i tagli ricevuti dal cliente e il sistema, tramite un motore di calcolo dedicato:</p>
+                    <p>Per limitare gli errori matematici durante il servizio, abilita l'impostazione <span class="setting-name">Gestione Soldi in Cassa</span>. Il sistema mostra una pulsantiera virtuale di tutti i tagli di banconote e monete in corso (<strong>50€, 20€, 10€, 5€, 2€, 1€, 0.50€, 0.20€, 0.10€, 0.05€, 0.02€, 0.01€</strong>). Il cassiere tocca i tagli ricevuti dal cliente e il sistema, tramite un motore di calcolo dedicato:</p>
                     <ol>
                         <li>Somma l'importo inserito e mostra istantaneamente il <strong>RESTO</strong> dovuto in grassetto gigante.</li>
                         <li>Scompone matematicamente il resto usando un algoritmo "a taglio minimo": parte dal taglio più grande disponibile e scende via via, fornendo la combinazione più semplice possibile di banconote e monete da restituire (es. <em>Resto 17,50€ = 1x 10€, 1x 5€, 1x 2€, 1x 0,50€</em>), evitando di dover consegnare tante monetine quando basterebbe un taglio più grande.</li>
@@ -322,6 +349,12 @@
                     <h4>Numerazione Dedicata e Verifica Dati</h4>
                     <p>Ogni preordine ricevuto dalla pagina web viene numerato con un prefisso lettera dedicato e configurabile (di default la lettera "<strong>D</strong>"), così da distinguerlo a colpo d'occhio dalle comande battute fisicamente in cassa, sia sui monitor di produzione che sugli scontrini.</p>
                     <p>Prima di confermare l'invio, il cliente passa per una pagina di <strong>verifica</strong> dedicata dove ricontrolla in chiaro i dati forniti (piatti scelti, telefono, posizione/tavolo, orario di ritiro) prima della conferma definitiva, riducendo gli errori di battitura da smartphone e gli ordini con dati incompleti o sbagliati.</p>
+
+                    <h4>Ordinamento e Notifiche dei Preordini</h4>
+                    <ul>
+                        <li><span class="setting-name">Ordina Preordini</span>: se attivo, la lista dei preordini in attesa in Cassa viene ordinata dal più recente al più vecchio in base all'orario esatto di invio; se disattivo, l'ordine cronologico non viene forzato.</li>
+                        <li><span class="setting-name">Suono Preordini</span>: attiva un allarme sonoro dedicato ogni volta che arriva un nuovo preordine dalla pagina web, indipendentemente dagli altri suoni dell'app, per non far perdere al cassiere un ordine arrivato mentre è impegnato altrove. È comunque subordinato al toggle generale "Suono Cassa": se quest'ultimo è disattivato, nessun suono verrà riprodotto anche con "Suono Preordini" attivo.</li>
+                    </ul>
                 </div>
 
                 <hr style="border-color: #334155; margin: 60px 0;">
@@ -401,10 +434,18 @@
                     <p>Nella pagina delle Statistiche, l'Admin potrà poi selezionare tramite menu a tendina se analizzare i grafici a torta e gli output Excel/PDF aggregando i dati di tutta l'intera Sagra, oppure se focalizzarsi analiticamente sul singolo turno archiviato in precedenza.</p>
 
                     <h4>Schermo Cliente Live</h4>
-                    <p>Per la massima trasparenza, BistroBò integra una schermata indipendente pensata per essere riprodotta su una Smart TV rivolta verso il pubblico. Si accede alla pagina, ci si sintonizza sull'ID della Cassa operativa, e lo schermo aggiornerà l'elenco delle voci, il Totale e il Resto in tempo reale man mano che il cassiere tocca i pulsanti.</p>
+                    <p>Per la massima trasparenza, BistroBò integra una schermata indipendente (<span class="setting-name">Display Cliente</span>, attivabile dalle impostazioni) pensata per essere riprodotta su una Smart TV rivolta verso il pubblico. Si accede alla pagina, ci si sintonizza sull'ID della Cassa operativa, e lo schermo aggiornerà l'elenco delle voci, il Totale e il Resto in tempo reale man mano che il cassiere tocca i pulsanti. La sincronizzazione funziona solo per i dispositivi che operano con ruolo Cassa o Admin.</p>
 
                     <h4>Il Gioco Scontrino</h4>
                     <p>Abilitando il toggle <kbd>Gioco su Scontrino</kbd>, il server inietterà uno script finale alla stampante termica. In fondo a ogni ricevuta verrà stampato a rotazione un cruciverba, un labirinto, un sudoku o il gioco del tris. Questa soluzione abbatte psicologicamente i tempi di attesa del pubblico durante le code per il ritiro del cibo.</p>
+
+                    <h4>Feedback Sonori dell'App</h4>
+                    <p>BistroBò usa i suoni come canale di attenzione parallelo allo schermo, utile in ambienti rumorosi. I toggle sono indipendenti e si combinano tra loro:</p>
+                    <ul>
+                        <li><span class="setting-name">Suono</span>: interruttore sonoro generale dell'applicazione.</li>
+                        <li><span class="setting-name">Suono Cassa</span>: governa gli avvisi acustici specifici della cassa, come la segnalazione di ingredienti esauriti o critici. È anche la condizione necessaria perché il "Suono Preordini" (Cap.5) possa suonare.</li>
+                        <li><span class="setting-name">Suono Chat</span>: riproduce una notifica sonora dedicata all'arrivo di un nuovo messaggio nella chat interna tra reparti.</li>
+                    </ul>
 
                     <h4>Wall of Fame (I 12 Trofei dello Staff)</h4>
                     <p>La Gamification estrae metriche in background calcolando la differenza (in millisecondi) tra il timestamp di invio in Cassa e i timestamp di chiusura dei singoli reparti. Genera una classifica (Wall of Fame) con riconoscimenti per stimolare una sana competizione nello staff:</p>
@@ -418,6 +459,61 @@
                         <li><strong>🔥 Reparto On Fire & 🍽️ Macina-Piatti:</strong> I massimi volumi di produzione e il numero fisico di item erogati.</li>
                         <li><strong>🍕 Fame da Lupi:</strong> La singola comanda contenente la maggior quantità di pietanze al suo interno.</li>
                     </ul>
+                </div>
+
+                <hr style="border-color: #334155; margin: 60px 0;">
+
+                <div id="appendice-impostazioni" class="mt-5">
+                    <div class="cap-badge">Appendice</div>
+                    <h2>Tabella Riassuntiva di Tutte le Impostazioni</h2>
+                    <p>Ogni interruttore del pannello Admin corrisponde a una voce salvata in tempo reale nel nodo <code>impostazioni</code> del database, condivisa istantaneamente da tutti i dispositivi collegati. Questa tabella raccoglie in un unico posto <strong>tutte</strong> le impostazioni disponibili, con il loro comportamento e il valore predefinito, come riferimento rapido per chi configura l'evento.</p>
+
+                    <div class="table-responsive">
+                        <table class="table table-dark table-bordered align-middle" style="font-size:0.92rem;">
+                            <thead>
+                                <tr><th>Impostazione</th><th>Cosa fa</th><th>Default</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="setting-name">nomeStand</td><td>Nome del locale/stand, stampato in header e su scontrini/report</td><td>"BistroBò"</td></tr>
+                                <tr><td class="setting-name">temaSalvato</td><td>Tema grafico attivo scelto dall'Admin</td><td>default</td></tr>
+                                <tr><td class="setting-name">modalitaNotte</td><td>Passa automaticamente al tema "Notte" dalle 21:00 alle 04:59</td><td>off</td></tr>
+                                <tr><td class="setting-name">manutenzione</td><td>Blocca il login a tutti tranne gli Admin</td><td>off</td></tr>
+                                <tr><td class="setting-name">scorciatoieTastiera</td><td>Abilita Alt+tasto per cambiare tab (Cassa/Comande/Chat)</td><td>off</td></tr>
+                                <tr><td class="setting-name">sistemaExtraAbilitato</td><td>Interruttore generale dei popup di personalizzazione piatto (varianti/aggiunte)</td><td>on</td></tr>
+                                <tr><td class="setting-name">snackAbilitato</td><td>Attiva il reparto/monitor Snack (altrimenti confluisce in Cucina)</td><td>off</td></tr>
+                                <tr><td class="setting-name">extra1/2/3Abilitato</td><td>Attiva i 3 profili extra rinominabili (es. Pizzeria)</td><td>off</td></tr>
+                                <tr><td class="setting-name">fallbackExtra1/2/3</td><td>Reparto di destinazione (Cucina/Bar) quando il relativo Extra è spento</td><td>"cibo" (Cucina)</td></tr>
+                                <tr><td class="setting-name">nuoveInAlto*</td><td>Per ciascun reparto, mostra le nuove comande in cima (true) o in coda (false) al monitor</td><td>varia</td></tr>
+                                <tr><td class="setting-name">piattiComboAbilitati</td><td>Abilita la gestione dei piatti Combo/Menu con popup di scelta contorni</td><td>off</td></tr>
+                                <tr><td class="setting-name">comandeProgressive</td><td>Numerazione automatica delle comande, con reset contatore manuale</td><td>off</td></tr>
+                                <tr><td class="setting-name">letteraComandaAbilitata</td><td>Aggiunge un campo lettera (A-Z) accanto al numero comanda</td><td>off</td></tr>
+                                <tr><td class="setting-name">cassaOttimizzata</td><td>Layout cassa compresso a griglia di pulsanti, senza descrizioni</td><td>off</td></tr>
+                                <tr><td class="setting-name">selettoreQuantitaCassa</td><td>Permette di aggiungere più unità di un piatto in un solo tocco</td><td>off</td></tr>
+                                <tr><td class="setting-name">noteDestinazioniAbilitate</td><td>Note in cassa indirizzabili a reparti specifici via checkbox</td><td>off</td></tr>
+                                <tr><td class="setting-name">gestioneSoldiCassa</td><td>Mostra la pulsantiera contanti e il calcolo automatico del resto</td><td>off</td></tr>
+                                <tr><td class="setting-name">copertoAbilitato / copertoValore</td><td>Aggiunge una riga "Coperto" a persona con costo fisso configurabile</td><td>off / 0</td></tr>
+                                <tr><td class="setting-name">asportoAbilitato</td><td>Mostra il checkbox "Asporto" in Cassa e nei preordini</td><td>off</td></tr>
+                                <tr><td class="setting-name">costoAsportoAbilitato / costoAsportoValore</td><td>Aggiunge automaticamente una riga "Costo Asporto" quando l'ordine è da asporto</td><td>off / 2.00€</td></tr>
+                                <tr><td class="setting-name">annullamentoVendita / tempoAnnullamento</td><td>Consente di annullare una comanda appena inviata entro X secondi</td><td>off / 30s</td></tr>
+                                <tr><td class="setting-name">esclusioniTempoCassa</td><td>Esclude reparti specifici (es. Bar) dal calcolo del tempo medio di attesa</td><td>nessuno escluso</td></tr>
+                                <tr><td class="setting-name">stampaAutomaticaComande</td><td>Stampa la comanda automaticamente al salvataggio, senza tasto dedicato</td><td>off</td></tr>
+                                <tr><td class="setting-name">scontriniSeparati</td><td>Stampa un ticket distinto per ogni reparto invece di un'unica strisciata</td><td>off</td></tr>
+                                <tr><td class="setting-name">displayClienteAbilitato</td><td>Sincronizza totale/resto verso lo Schermo Cliente Live (cliente.html)</td><td>off</td></tr>
+                                <tr><td class="setting-name">preordiniAbilitati</td><td>Abilita la pagina pubblica dei preordini e la relativa tab in cassa</td><td>off</td></tr>
+                                <tr><td class="setting-name">letteraPreordini</td><td>Prefisso lettera assegnato ai preordini (sempre maiuscolo)</td><td>"D"</td></tr>
+                                <tr><td class="setting-name">preordiniRichiediInfo</td><td>Rende obbligatori telefono, posizione e orario nel form pubblico</td><td>off</td></tr>
+                                <tr><td class="setting-name">ordinaPreordini</td><td>Ordina la lista preordini dal più recente al più vecchio</td><td>off</td></tr>
+                                <tr><td class="setting-name">preordiniAsportoAutomatico</td><td>Marca automaticamente ogni preordine come "Asporto"</td><td>off</td></tr>
+                                <tr><td class="setting-name">suono / suonoCassa / suonoChat / suonoPreordini</td><td>Toggle indipendenti per i feedback sonori generali, di cassa, chat e preordini</td><td>on</td></tr>
+                                <tr><td class="setting-name">chatAbilitata</td><td>Attiva la chat interna tra reparti</td><td>on</td></tr>
+                                <tr><td class="setting-name">giocoScontrino</td><td>Stampa un gioco casuale (cruciverba/labirinto/sudoku/tris) in fondo allo scontrino</td><td>off</td></tr>
+                                <tr><td class="setting-name">fondoCassa</td><td>Contante iniziale nel cassetto, usato per calcolare le discrepanze a fine turno</td><td>0</td></tr>
+                                <tr><td class="setting-name">sistemaGiornateAbilitato</td><td>Abilita l'archiviazione per giornate/turni e i relativi report separati</td><td>off</td></tr>
+                                <tr><td class="setting-name">contatoreComande</td><td>Numero progressivo interno delle comande, azzerabile manualmente</td><td>0</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-secondary" style="font-size:0.9rem;">Nota: alcune impostazioni elencate qui sono già spiegate nel dettaglio operativo nei capitoli precedenti; questa tabella serve come indice rapido di consultazione, non li sostituisce.</p>
                 </div>
 
             </div>
