@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manuale Operativo Definitivo | BistroBò</title>
+    <title>Manuale Operativo | BistroBò</title>
     
     <link rel="icon" href="img/favicon.ico" type="image/x-icon">
 
@@ -205,10 +205,17 @@
 
                     <h4>Personalizzazione e Modalità Manutenzione</h4>
                     <ul>
-                        <li><span class="setting-name">Tema Sito</span>: Modifica l'interfaccia grafica scegliendo tra temi preimpostati (Default, Scout, Autunno, Estate, ecc.).</li>
+                        <li><span class="setting-name">Tema Sito</span>: Modifica l'interfaccia grafica scegliendo tra 9 temi preimpostati: <strong>Default, Scout, Autunno, Inverno, Primavera, Estate, Chiaro, Notte</strong> e <strong>Astronave</strong>. Ogni tema ricolora completamente pulsanti, sfondi e badge di tutte le schermate operative.</li>
+                        <li><span class="setting-name">Modalità Notte Automatica</span>: Il sistema tiene traccia del tema scelto manualmente dall'Admin (il "tema salvato"). Ogni giorno, allo scoccare delle <strong>21:00</strong>, tutti i dispositivi passano automaticamente al tema "Notte" (più scuro e riposante per gli occhi durante il servizio serale). Al mattino successivo il tema originale scelto dall'Admin viene ripristinato automaticamente, senza bisogno di intervento manuale.</li>
                         <li><span class="setting-name">Simulatore Ruoli</span>: L'Admin può passare in tempo reale alle interfacce di Cassa, Cucina o Bar con un clic per testare il flusso o fornire supporto, senza effettuare logout.</li>
-                        <li><span class="setting-name">Modalità Manutenzione</span>: Lo "Spegnimento d'emergenza". Sbatte fuori tutti gli operatori (tranne gli Admin) e blocca la pagina dei preordini mostrando un avviso ai clienti.</li>
+                        <li><span class="setting-name">Modalità Manutenzione</span>: Lo "Spegnimento d'emergenza". Quando attivata, il sistema impedisce il login a qualsiasi ruolo diverso da Admin (mostrando un messaggio d'errore dedicato), sbatte fuori gli operatori già collegati e blocca la pagina dei preordini mostrando un avviso ai clienti.</li>
                     </ul>
+
+                    <div class="info-box box-danger">
+                        <h5>🚨 Azione Distruttiva: Svuota Menu/Dispensa</h5>
+                        <p>Nel pannello Admin è presente un comando di reset totale che <strong>elimina permanentemente</strong> l'intero menu e l'intera dispensa (tutti gli ingredienti) dal database. È pensato esclusivamente per ripartire da zero tra un evento e l'altro (es. a fine stagione, prima di configurare una nuova sagra con un menu completamente diverso).</p>
+                        <p>Non esiste un "annulla" per questa operazione: una volta confermata, piatti, ingredienti, prezzi e configurazioni delle varianti vanno persi e vanno ricostruiti da capo. Usarlo solo con la certezza di voler ripartire da un menu vuoto.</p>
+                    </div>
 
                     <h4>I Profili Extra (Fino a 3 Reparti Aggiuntivi)</h4>
                     <p>A differenza dei gestionali tradizionali che offrono solo Cucina e Bar, BistroBò scala abilitando fino a <strong>3 Profili Extra</strong> per supportare aree distaccate (es. Pizzeria, Gelatiere, Area Fritti).</p>
@@ -243,14 +250,23 @@
                         <li>Imposta i <strong>Contorni Gratis Inclusi</strong> (es. 2). In Cassa, il sistema aprirà un popup per costringere l'operatore a scegliere le componenti. Le prime 2 selezioni non altereranno il costo base di 12€. Dal terzo contorno in poi (se il cliente lo richiede), il sistema inizierà a conteggiare il sovrapprezzo esatto automaticamente.</li>
                     </ul>
 
+                    <h4>Sconto Extra Gratuite per Piatto</h4>
+                    <p>Oltre al prezzo extra fisso descritto sopra, ogni piatto può avere un numero di <strong>aggiunte/varianti incluse gratuitamente</strong> prima che scatti il sovrapprezzo. Esempio: un panino ha "1 aggiunta gratis" configurata; il cliente può chiedere "Bacon" senza pagare nulla in più, ma se ne chiede una seconda (es. anche "Maionese Extra"), da quel momento il sistema inizia a sommare il prezzo extra di ogni ulteriore variante scelta. Questo permette di offrire un piccolo margine di personalizzazione gratuita senza dover gestire manualmente ogni combinazione a prezzo pieno.</p>
+
                     <div class="info-box box-config">
-                        <h5>⚙️ Sconti Globali / Buoni Pasto</h5>
-                        <p>Dal menu "Sconti", puoi creare coupon validi per l'intero scontrino, iniettando una pulsantiera gialla nella schermata di Cassa. Logiche supportate:</p>
+                        <h5>⚙️ Sconti: per Riga, Globali e Buoni Pasto</h5>
+                        <p>BistroBò gestisce due livelli di sconto, applicabili anche insieme sullo stesso scontrino:</p>
                         <ul>
-                            <li><strong>Percentuale (%):</strong> Abbate il totale di una % fissa.</li>
-                            <li><strong>Fisso (€):</strong> Sottrae un importo netto (es. "Buono 5€"). Il sistema è protetto matematicamente: se applichi un buono da 5€ a un ordine da 3€, il totale andrà a 0€, mai in negativo.</li>
-                            <li><strong>Gratis:</strong> Azzera la comanda (es. per il pasto dei volontari o dello staff).</li>
+                            <li><strong>Sconto per singola riga/piatto:</strong> Direttamente in cassa, sul singolo articolo del carrello, l'operatore può applicare uno sconto <strong>Percentuale</strong> oppure una formula "<strong>X per Y</strong>" (es. "3x2": ordinando 3 unità dello stesso piatto, una viene automaticamente scontata al 100%). Utile per promozioni mirate su un singolo prodotto senza toccare il resto dello scontrino.</li>
+                            <li><strong>Sconto Globale / Coupon:</strong> Dal menu "Sconti", puoi creare coupon validi per l'intero scontrino, iniettando una pulsantiera gialla nella schermata di Cassa. Logiche supportate:
+                                <ul>
+                                    <li><strong>Percentuale (%):</strong> Abbatte il totale di una % fissa.</li>
+                                    <li><strong>Fisso (€):</strong> Sottrae un importo netto (es. "Buono 5€"). Il sistema è protetto matematicamente: se applichi un buono da 5€ a un ordine da 3€, il totale andrà a 0€, mai in negativo.</li>
+                                    <li><strong>Gratis:</strong> Azzera la comanda (es. per il pasto dei volontari o dello staff).</li>
+                                </ul>
+                            </li>
                         </ul>
+                        <p>Quando uno sconto globale viene applicato, per non falsare le statistiche di incasso per piatto, il sistema ridistribuisce proporzionalmente lo sconto su ogni riga della comanda in base al suo peso sul totale, così che i report per singolo prodotto restino coerenti con l'incasso reale.</p>
                     </div>
                 </div>
 
@@ -269,15 +285,21 @@
                     Se un cliente ordina un panino e una birra chiedendo "Tutto senza ghiaccio", il cassiere scriverà il messaggio e spunterà solo la casella "Bere". Questa nota sarà stampata e iniettata solo sul monitor del barista, mantenendo pulita e senza distrazioni la vista del cuoco.</p>
 
                     <h4>Gestione Resto e Modulo Contanti</h4>
-                    <p>Per limitare gli errori matematici durante il servizio, abilita la <strong>Gestione Resto e Soldi in Cassa</strong>. Il sistema mostra una pulsantiera virtuale di banconote e monete (50, 20, 10, 5, 2, 1, 0.50, ecc.). Il cassiere tocca le banconote ricevute dal cliente e il sistema:</p>
+                    <p>Per limitare gli errori matematici durante il servizio, abilita la <strong>Gestione Resto e Soldi in Cassa</strong>. Il sistema mostra una pulsantiera virtuale di tutti i tagli di banconote e monete in corso (<strong>50€, 20€, 10€, 5€, 2€, 1€, 0.50€, 0.20€, 0.10€, 0.05€, 0.02€, 0.01€</strong>). Il cassiere tocca i tagli ricevuti dal cliente e il sistema, tramite un motore di calcolo dedicato:</p>
                     <ol>
                         <li>Somma l'importo inserito e mostra istantaneamente il <strong>RESTO</strong> dovuto in grassetto gigante.</li>
-                        <li>Scompone matematicamente il resto, fornendo i tagli fisici esatti da restituire (es. <em>Resto 17€ = 1x 10€, 1x 5€, 1x 2€</em>).</li>
+                        <li>Scompone matematicamente il resto usando un algoritmo "a taglio minimo": parte dal taglio più grande disponibile e scende via via, fornendo la combinazione più semplice possibile di banconote e monete da restituire (es. <em>Resto 17,50€ = 1x 10€, 1x 5€, 1x 2€, 1x 0,50€</em>), evitando di dover consegnare tante monetine quando basterebbe un taglio più grande.</li>
                     </ol>
                     <p>Per la chiusura contabile, è possibile contrassegnare il "Metodo Pagamento" come <strong>POS</strong> per slegarlo dal conteggio dei contanti. Un ulteriore toggle permette di forzare la <strong>Stampa di Scontrini Separati</strong>, generando un ticket diverso per ogni reparto anziché una singola strisciata lunga.</p>
 
+                    <h4>Coperto per Persona</h4>
+                    <p>Se attivato dalle impostazioni, il "Coperto" aggiunge automaticamente in cassa una voce extra dal costo fisso configurabile, moltiplicata per il numero di persone al tavolo. Compare come riga separata e distinta dai piatti nello scontrino, per rendere trasparente al cliente il costo di servizio.</p>
+
+                    <h4>Annullamento Temporizzato</h4>
+                    <p>Anche dopo aver premuto "Invia", un errore in cassa può capitare. Se il toggle di sicurezza è attivo, ogni comanda appena inviata resta annullabile per una <strong>finestra di tempo configurabile (30 secondi di default)</strong>: un timer parte non appena la comanda viene spedita ai reparti, e finché non scade il cassiere può revocarla con un tasto dedicato. Superata la finestra, l'annullamento non è più disponibile e l'ordine deve essere gestito manualmente (es. comunicando a voce ai reparti coinvolti).</p>
+
                     <h4>Tempo di Attesa Proiettato</h4>
-                    <p>In alto a destra, la cassa mostra il "tempo medio di attesa", calcolato dinamicamente sulle ultime dieci comande. L'Admin può escludere determinati reparti (es. il Bar) da questo calcolo per non falsare le stime di attesa della cucina vera e propria con le preparazioni istantanee delle bevande.</p>
+                    <p>In alto a destra, la cassa mostra il "tempo medio di attesa", calcolato dinamicamente sullo storico delle comande già chiuse. L'Admin può escludere determinati reparti (es. il Bar) da questo calcolo per non falsare le stime di attesa della cucina vera e propria con le preparazioni istantanee delle bevande.</p>
                 </div>
 
                 <div id="preordini-asporto" class="mt-5">
@@ -294,8 +316,12 @@
                     <div class="info-box box-cloud">
                         <h5>📩 Flusso in Cassa (Asporto Automatico)</h5>
                         <p>I preordini <strong>non</strong> vanno direttamente nei monitor della cucina. Appaiono in una Tab gialla lampeggiante (con allarme sonoro) sulla schermata della Cassa. Sarà il cassiere, controllando l'orario richiesto dal cliente, a decidere quando evaderli. <br>
-                        Cliccando "Aggiungi", l'ordine viene iniettato nel carrello. Se l'Admin ha abilitato l'<strong>Asporto Automatico Preordini</strong>, la comanda appena scaricata assumerà istantaneamente la grossa dicitura "📦 Asporto". Premendo "Invia", la comanda andrà in stampa e allerterà i cuochi della natura "Take-away" del pasto, indicando di usare i sacchetti da asporto.</p>
+                        Cliccando "Aggiungi", l'ordine viene iniettato nel carrello. Se l'Admin ha abilitato l'<strong>Asporto Automatico Preordini</strong>, la comanda appena scaricata assumerà istantaneamente la grossa dicitura "📦 Asporto". Premendo "Invia", la comanda andrà in stampa e allerterà i cuochi della natura "Take-away" del pasto, indicando di usare i sacchetti da asporto. Se è configurato un "Costo Asporto" fisso, il sistema aggiunge automaticamente questa voce come riga separata nello scontrino, senza che il cassiere debba inserirla a mano.</p>
                     </div>
+
+                    <h4>Numerazione Dedicata e Verifica Dati</h4>
+                    <p>Ogni preordine ricevuto dalla pagina web viene numerato con un prefisso lettera dedicato e configurabile (di default la lettera "<strong>D</strong>"), così da distinguerlo a colpo d'occhio dalle comande battute fisicamente in cassa, sia sui monitor di produzione che sugli scontrini.</p>
+                    <p>Prima di confermare l'invio, il cliente passa per una pagina di <strong>verifica</strong> dedicata dove ricontrolla in chiaro i dati forniti (piatti scelti, telefono, posizione/tavolo, orario di ritiro) prima della conferma definitiva, riducendo gli errori di battitura da smartphone e gli ordini con dati incompleti o sbagliati.</p>
                 </div>
 
                 <hr style="border-color: #334155; margin: 60px 0;">
@@ -309,8 +335,11 @@
                     <p>Ogni singola voce di una comanda è affiancata da un checkbox (Tick). L'operatore lo spunta quando la pietanza viene fisicamente adagiata sul vassoio. <br>
                     <strong>Sicurezza Software:</strong> Il grande pulsante "Segna Completato", che archivia l'ordine facendolo sparire dallo schermo del cuoco e inviando il segnale di "Pronto" alla Cassa, <strong>resta bloccato e inattivo</strong> finché l'operatore non ha spuntato tutti i checkbox di quel singolo ordine. È impossibile consegnare un ordine incompleto per un errore di distrazione.</p>
 
+                    <h4>Comanda "Completata" a Livello Globale (Multi-Reparto)</h4>
+                    <p>Una comanda con piatti Cucina e bevande Bar coinvolge due reparti diversi che lavorano in parallelo su due monitor separati. Lo stato complessivo dell'ordine (quello mostrato in Cassa) passa a "<strong>Completata</strong>" solo nel momento in cui <strong>tutti</strong> i reparti coinvolti in quella specifica comanda hanno premuto "Segna Completato" sulla propria parte. Se il Bar ha già finito le bibite ma la Cucina non ha ancora terminato l'hamburger, l'ordine resta visivamente "in lavorazione" in Cassa: questo evita che il cassiere consegni un vassoio incompleto pensando che tutto sia pronto solo perché un reparto ha già finito.</p>
+
                     <h4>Vista Sommario (Cruscotto Quantità)</h4>
-                    <p>Sotto stress, guardare 40 comande singole è disorientante. Premendo il tasto <kbd>VISTA SOMMARIO</kbd>, si apre un modale che raggruppa dinamicamente e conta tutte le voci non ancora prodotte dell'intero reparto (es. <em>Da preparare in totale: 45 Hamburger, 22 Patatine</em>), consentendo all'addetto alla griglia o alla friggitrice di sapere esattamente quanta merce mettere in cottura in quel preciso momento.</p>
+                    <p>Sotto stress, guardare 40 comande singole è disorientante. Premendo il tasto <kbd>VISTA SOMMARIO</kbd>, si apre un modale che raggruppa dinamicamente e conta tutte le voci non ancora prodotte dell'intero reparto (es. <em>Da preparare in totale: 45 Hamburger, 22 Patatine</em>), consentendo all'addetto alla griglia o alla friggitrice di sapere esattamente quanta merce mettere in cottura in quel preciso momento. Il conteggio non si limita ai piatti principali: include anche i contorni e le varianti/aggiunte scelte dai clienti (es. quante porzioni extra di formaggio servono in totale), così chi cucina ha il quadro produttivo realmente completo, non solo la lista dei piatti "base".</p>
                 </div>
 
                 <div id="magazzino" class="mt-5">
@@ -328,7 +357,7 @@
                         </ul>
                     </div>
 
-                    <p>Quando il livello scende sotto la soglia di Attenzione, in Cassa inizia a lampeggiare l'avviso "Ingredienti Critici" per permettere al responsabile di rifornire le postazioni prima che sia troppo tardi.<br>
+                    <p>Quando il livello scende sotto la soglia di Attenzione, in Cassa inizia a lampeggiare l'avviso "Ingredienti Critici" per permettere al responsabile di rifornire le postazioni prima che sia troppo tardi. Il sistema tiene aggiornata questa lista in modo dinamico e continuo (non a intervalli fissi): ogni ingrediente che scende sotto soglia riceve un badge "sottosoglia" (attenzione) o "critico" (emergenza) e genera automaticamente una notifica push visibile a chi gestisce il magazzino, in tempo reale, ad ogni comanda che consuma quell'ingrediente.<br>
                     <strong>L'Auto-Blocco:</strong> Quando la disponibilità scende a 0, il sistema si attiva. Immediatamente, in decimi di secondo, su tutti i tablet della rete, i pulsanti di <strong>tutti i piatti del menu</strong> che impiegano quell'ingrediente esaurito diventano grigi e inibiti al click. La vendita è fisicamente stroncata alla radice, azzerando le lamentele dei clienti per piatti finiti ma battuti in cassa per errore.</p>
                     <p>Non appena il magazziniere ricarica le scorte inserendo una nuova quantità dal pannello Admin o dalla vista Cucina, i piatti si sbloccano istantaneamente in Cassa.</p>
                 </div>
@@ -354,6 +383,9 @@
                     <div class="cap-badge">Capitolo 9</div>
                     <h2>Chiusura Turno, Statistiche e Gamification</h2>
                     <p>Il tasto "Cancella comande" è un'azione distruttiva e irreversibile. Per gestire sagre ed eventi di più giorni mantenendo intatta la contabilità, si utilizza il <strong>Sistema di Archiviazione a Giornate</strong>.</p>
+
+                    <h4>Fondo Cassa Iniziale</h4>
+                    <p>Prima di iniziare a vendere, il cassiere (o l'Admin) inserisce il <strong>Fondo Cassa</strong>: il contante fisico presente nel cassetto ad inizio turno (es. per dare resto fin da subito). Questa è una funzione distinta e separata dall'archiviazione del turno: il Fondo Cassa serve al sistema per calcolare, a fine servizio, l'incasso atteso in contanti (Fondo iniziale + vendite in contanti) da confrontare con quanto effettivamente contato nel cassetto, individuando subito eventuali discrepanze prima di archiviare.</p>
 
                     <div class="info-box box-config">
                         <h5>📦 La Funzione "Archivia Turno"</h5>
