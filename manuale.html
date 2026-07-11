@@ -187,15 +187,16 @@
                         <li><strong>Approvazione Manuale:</strong> L'account verificato rimane in attesa di autorizzazione finché l'admin non gli assegna un ruolo dalla dashboard.</li>
                         <li><strong>Approvazione Automatica:</strong> Attivabile dalle Impostazioni. Consente al nuovo iscritto di selezionare autonomamente il ruolo (es. Cassa o Cucina) e di operare istantaneamente, bypassando l'approvazione umana. Ideale nei minuti caotici prima dell'apertura per far registrare i volontari dell'ultimo minuto.</li>
                     </ol>
-                    <p>Nella versione LAN l'accesso è ancora più immediato: i dispositivi inquadrano il QR Code generato dal Server Locale e selezionano direttamente il ruolo a schermo, senza necessità di registrazione via mail.</p>
+                    <p>Nella versione LAN l'accesso è ancora più immediato: non esiste registrazione via email. Alla partenza dell'app compare direttamente una schermata "Postazione LAN" con un pulsante per ciascun ruolo disponibile (<strong>💰 Cassa, 🍳 Cucina, 🍺 Bere, 🍟 Snack</strong>, e un pulsante nascosto <strong>Schermo Cliente</strong> che appare solo se l'impostazione relativa è attiva). Toccando un pulsante, il tablet si auto-registra: genera (o recupera da <code>localStorage</code>) un numero identificativo univoco della postazione, comunica la propria presenza al Server Locale via WebSocket e inizia a operare istantaneamente con quel ruolo, senza password.</p>
 
                     <div class="info-box box-danger">
                         <h5>🚨 Sicurezza: Disconnessione Forzata e Blocco Terminali</h5>
                         <p>L'amministratore monitora tutti gli accessi. Nel caso si renda necessario revocare l'accesso, il sistema invierà un comando remoto che scollegherà all'istante l'utente o il dispositivo.</p>
                         <ul>
-                            <li><strong>Kick (Espelli):</strong> L'utente vede l'avviso rosso "Sei stato disconnesso dall'amministratore!" e viene buttato fuori dall'app, costringendolo al ri-login.</li>
-                            <li><strong>Blocco Fisico (Solo LAN):</strong> Nelle versioni di rete locale, l'Admin può impostare lo stato del tablet su "bloccato". L'intero touchscreen viene paralizzato da un'enorme schermata di divieto rossa, impedendo qualsiasi battitura.</li>
+                            <li><strong>Kick (Espelli):</strong> Impostando lo stato della postazione a "kick", l'utente vede l'avviso "Sei stato disconnesso dall'amministratore" e viene riportato al login, costringendolo al ri-accesso.</li>
+                            <li><strong>Blocco Fisico (Solo LAN):</strong> Nelle versioni di rete locale, ogni tablet ha una propria voce nel registro <code>postazioni_lan</code>. Se il suo stato viene impostato su "bloccato", l'intero touchscreen viene sovrascritto da un'enorme schermata rossa "⛔ BLOCCATO – Rivolgiti all'amministratore", che paralizza ogni battitura e interrompe il battito cardiaco di rete del dispositivo. Appena lo stato smette di essere "bloccato", il tablet se ne accorge in tempo reale e si riavvia automaticamente da solo, senza bisogno che nessuno lo tocchi fisicamente.</li>
                         </ul>
+                        <p>Ogni postazione LAN invia inoltre un "battito cardiaco" (un aggiornamento del proprio timestamp) ogni 15 secondi mentre è loggata, e si auto-marca come "offline" nell'istante preciso in cui la pagina viene chiusa (evento di chiusura scheda/browser). Questo tiene sempre aggiornato, in automatico e senza intervento manuale, l'elenco di quali postazioni sono realmente online in quel momento, distinguendole da quelle spente o disconnesse.</p>
                     </div>
                 </div>
 
@@ -355,6 +356,11 @@
                         <li><span class="setting-name">Ordina Preordini</span>: se attivo, la lista dei preordini in attesa in Cassa viene ordinata dal più recente al più vecchio in base all'orario esatto di invio; se disattivo, l'ordine cronologico non viene forzato.</li>
                         <li><span class="setting-name">Suono Preordini</span>: attiva un allarme sonoro dedicato ogni volta che arriva un nuovo preordine dalla pagina web, indipendentemente dagli altri suoni dell'app, per non far perdere al cassiere un ordine arrivato mentre è impegnato altrove. È comunque subordinato al toggle generale "Suono Cassa": se quest'ultimo è disattivato, nessun suono verrà riprodotto anche con "Suono Preordini" attivo.</li>
                     </ul>
+
+                    <div class="info-box box-lan">
+                        <h5><i class="fa-solid fa-network-wired me-2"></i> Preordini nella Versione LAN</h5>
+                        <p>Nella versione Cloud i preordini vivono in pagine web separate (<code>preordini.html</code> per la lista lato cassa, <code>verifica.html</code> per la conferma dati del cliente). Nella <strong>versione LAN la logica è la stessa</strong> ma tutto è integrato direttamente dentro l'unica app locale: la Cassa ha una tab dedicata ai preordini in attesa e l'Admin dispone di un pannello "📩 Gestione Preordini" con la stessa gestione della visibilità dei piatti sul menù pubblico, così anche in assenza di connessione internet il flusso di raccolta ordini via smartphone funziona regolarmente sulla rete Wi-Fi locale.</p>
+                    </div>
                 </div>
 
                 <hr style="border-color: #334155; margin: 60px 0;">
@@ -402,12 +408,17 @@
                     <h4>La Chat Interna</h4>
                     <p>Pensata per consentire una comunicazione immediata tra reparti rumorosi, limitando gli spostamenti fisici (es. "Fusti birra finiti, mandatemi qualcuno al Bar"). Per evitare colli di bottiglia sui dispositivi, il Database esegue una routine di Garbage Collection, trattenendo in memoria visibile solo gli <strong>ultimi 10 messaggi</strong>. La ricezione attiva una notifica sonora. L'Admin dispone del tasto "Reset Chat" per pulire completamente la vista in caso di necessità.</p>
 
-                    <h4>Gestione Rete LAN e Spazzino di Rete</h4>
-                    <p>Per la massima affidabilità in contesti complessi, il sistema LAN sfrutta il modulo <code>postazioni_lan</code> per orchestrare l'hardware. L'app inietta un timestamp continuo (Heartbeat). Se un tablet esce dalla portata del Wi-Fi e non comunica per 45 secondi, lo spazzino di rete (routine in background) lo dichiara offline e lo rimuove dalla lista dei terminali attivi.</p>
+                    <h4>Gestione Rete LAN e Registro Postazioni</h4>
+                    <p>Per la massima affidabilità in contesti complessi, il sistema LAN sfrutta il modulo <code>postazioni_lan</code> per orchestrare l'hardware. Ogni tablet loggato inietta un timestamp continuo (Heartbeat, ogni 15 secondi) nella propria voce del registro. Se il tablet viene chiuso o esce dalla pagina, si auto-marca "offline" all'istante tramite l'evento di chiusura del browser; se invece perde semplicemente il segnale Wi-Fi senza chiudere la pagina, il sistema riconosce comunque il proprio stato "online" e lo ripristina in automatico ("istinto di sopravvivenza") appena la connessione torna, evitando falsi allarmi di disconnessione per micro-interruzioni di rete.</p>
 
-                    <h4>Assegnazione Diretta Stampanti IP (No Pop-up)</h4>
-                    <p>Il più grande limite dei gestionali web è la finestra di anteprima di stampa che si apre su iPad o PC ad ogni scontrino. La versione LAN di BistroBò elimina questo problema. <br>
-                    Dalla scheda <kbd>Stampanti Cassa</kbd>, l'Admin mappa gli indirizzi IP delle stampanti termiche locali (es. <code>192.168.1.100</code>) associandoli all'ID del tablet di Cassa. Premendo "Invia Comanda", il tablet lancia la direttiva al Server Locale tramite WebSockets. Il Server Windows comunica *in formato raw* via Ethernet con la stampante fisica. Questo azzera i tempi di caricamento, <strong>bypassa la finestra di anteprima del browser</strong> e accelera enormemente lo smaltimento delle code.</p>
+                    <h4>Ricerca Automatica e Assegnazione delle Stampanti (No Pop-up)</h4>
+                    <p>Il più grande limite dei gestionali web è la finestra di anteprima di stampa che si apre su iPad o PC ad ogni scontrino. La versione LAN di BistroBò elimina questo problema, ma non tramite indirizzi IP inseriti a mano: il meccanismo è ad <strong>auto-scoperta</strong>.</p>
+                    <ol>
+                        <li>Dal pannello Admin, nella scheda "Stampanti", l'Admin preme <strong>"Trova Stampanti"</strong>: il tablet chiede al Server Locale (via WebSocket/Socket.io) l'elenco di tutte le stampanti installate/collegate al PC che fa da server.</li>
+                        <li>Il server risponde con la lista dei nomi delle stampanti realmente disponibili (es. quelle USB o di rete già configurate su Windows); il sistema mostra un avviso se nessuna stampante viene rilevata, invitando a controllare i cavi.</li>
+                        <li>Per ciascun cassiere/postazione (riconoscibile dall'icona 📱 se è un dispositivo LAN puro, o 👤 se è un account Cloud, con un pallino verde/rosso per lo stato online/offline), l'Admin seleziona da un menu a tendina quale stampante scoperta assegnargli.</li>
+                    </ol>
+                    <p>Da quel momento, quando quella postazione preme "Invia Comanda" o chiude uno scontrino, il comando di stampa viene inviato via WebSocket direttamente al Server Locale, che lo trasmette *in formato raw* alla stampante fisica assegnata. Questo azzera i tempi di caricamento e <strong>bypassa completamente la finestra di anteprima del browser</strong>. Se una postazione non ha nessuna stampante assegnata (o il Server Locale non è raggiungibile), il sistema ricade automaticamente sul classico popup di stampa del browser, così nessuna comanda resta bloccata per un problema di configurazione hardware.</p>
                 </div>
 
                 <hr style="border-color: #334155; margin: 60px 0;">
@@ -435,6 +446,11 @@
 
                     <h4>Schermo Cliente Live</h4>
                     <p>Per la massima trasparenza, BistroBò integra una schermata indipendente (<span class="setting-name">Display Cliente</span>, attivabile dalle impostazioni) pensata per essere riprodotta su una Smart TV rivolta verso il pubblico. Si accede alla pagina, ci si sintonizza sull'ID della Cassa operativa, e lo schermo aggiornerà l'elenco delle voci, il Totale e il Resto in tempo reale man mano che il cassiere tocca i pulsanti. La sincronizzazione funziona solo per i dispositivi che operano con ruolo Cassa o Admin.</p>
+
+                    <div class="info-box box-lan">
+                        <h5><i class="fa-solid fa-network-wired me-2"></i> Schermo Cliente nella Versione LAN</h5>
+                        <p>Nella versione LAN, il pulsante "Schermo Cliente" sulla schermata di login compare solo se l'impostazione Display Cliente è attiva. Il tablet dedicato mostra un menu a tendina con l'elenco delle postazioni Cassa attive sulla rete locale: l'operatore seleziona a quale cassa "affiancarsi" e conferma. Da quel momento il tablet resta sintonizzato in tempo reale sui dati di quella specifica cassa (<code>displayLive/&lt;id-cassa&gt;</code>), mostrando l'elenco piatti, il totale, il pagato e il resto man mano che l'operatore batte lo scontrino; finché non arriva nessun articolo, lo schermo mostra semplicemente "IN ATTESA DI ARTICOLI...".</p>
+                    </div>
 
                     <h4>Il Gioco Scontrino</h4>
                     <p>Abilitando il toggle <kbd>Gioco su Scontrino</kbd>, il server inietterà uno script finale alla stampante termica. In fondo a ogni ricevuta verrà stampato a rotazione un cruciverba, un labirinto, un sudoku o il gioco del tris. Questa soluzione abbatte psicologicamente i tempi di attesa del pubblico durante le code per il ritiro del cibo.</p>
@@ -514,6 +530,22 @@
                         </table>
                     </div>
                     <p class="text-secondary" style="font-size:0.9rem;">Nota: alcune impostazioni elencate qui sono già spiegate nel dettaglio operativo nei capitoli precedenti; questa tabella serve come indice rapido di consultazione, non li sostituisce.</p>
+
+                    <h4><i class="fa-solid fa-network-wired me-2"></i> Voci Esclusive della Versione LAN</h4>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-bordered align-middle" style="font-size:0.92rem;">
+                            <thead>
+                                <tr><th>Voce / Nodo Database</th><th>Cosa fa</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="setting-name">impostazioni/postazioni_lan/&lt;id&gt;</td><td>Registro dei terminali fisici collegati alla rete locale: stato (online/offline/bloccato), ruolo, nome postazione e timestamp del battito cardiaco (ogni 15s)</td></tr>
+                                <tr><td class="setting-name">stato: "bloccato"</td><td>Paralizza il touchscreen del tablet con una schermata rossa "⛔ BLOCCATO"; si sblocca e si riavvia da sola quando lo stato cambia</td></tr>
+                                <tr><td class="setting-name">azione: "kick"</td><td>Forza il logout immediato della postazione, riportandola alla schermata di login</td></tr>
+                                <tr><td class="setting-name">impostazioni/stampantiCassa/&lt;uid&gt;</td><td>Nome della stampante (scoperta via Socket.io) assegnata a ciascun cassiere/postazione per la stampa diretta senza popup del browser</td></tr>
+                                <tr><td class="setting-name">displayLive/&lt;id-cassa&gt;</td><td>Flusso dati in tempo reale (piatti, totale, pagato, resto) consumato dallo Schermo Cliente per mirrorare una cassa specifica</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
             </div>
