@@ -138,6 +138,11 @@
                     <a class="nav-link" href="#lan-stampanti-chat">Capitolo 8: Chat, LAN & Stampanti</a>
                     <a class="nav-link" href="#giornate-statistiche">Capitolo 9: Chiusura & Gamification</a>
 
+                    <div class="nav-category">Staff & Operazioni</div>
+                    <a class="nav-link" href="#mansionario">Capitolo 10: Mansionario e Procedure</a>
+                    <a class="nav-link" href="#gestione-scarti">Capitolo 11: Gestione Scarti</a>
+                    <a class="nav-link" href="#profilo-xp">Capitolo 12: Profilo, XP e Badge</a>
+
                     <div class="nav-category">Riferimento Rapido</div>
                     <a class="nav-link" href="#appendice-impostazioni">Appendice: Tutte le Impostazioni</a>
                 </nav>
@@ -228,6 +233,25 @@
                         <li><span class="setting-name">Sistema Personalizzazioni</span> (interruttore generale delle varianti): È l'interruttore "madre" che abilita o disabilita ovunque i popup di personalizzazione piatto (aggiunte, contorni, varianti extra). Se lo si disattiva, i nomi dei piatti in Cassa smettono di essere cliccabili per l'apertura del popup: il piatto si aggiunge al carrello "secco", senza possibilità di personalizzazione. Utile per menu molto semplici (es. una sagra con un solo tipo di panino) dove le opzioni di personalizzazione sarebbero solo un ostacolo alla velocità di battitura.</li>
                     </ul>
 
+                    <h4>Temi Stagionali Automatici</h4>
+                    <p>Oltre ai 9 temi manuali e alla Modalità Notte, esiste un terzo livello di automatismo: il toggle <span class="setting-name">Temi Stagionali</span>. Quando attivato, <strong>bypassa completamente la scelta manuale del tema</strong> e seleziona in autonomia il tema visivo più adatto alla stagione corrente, in base alla data di sistema:</p>
+                    <ul>
+                        <li><strong>🌸 Primavera</strong> (20 marzo – 20 giugno): tema chiaro e fresco</li>
+                        <li><strong>☀️ Estate</strong> (21 giugno – 22 settembre): tema caldo e vivace</li>
+                        <li><strong>🍂 Autunno</strong> (23 settembre – 20 dicembre): tema ambrato e caldo</li>
+                        <li><strong>❄️ Inverno</strong> (21 dicembre – 19 marzo): tema scuro e gelido</li>
+                    </ul>
+                    <p>Le priorità si sovrappongono in questo ordine: <strong>Modalità Notte</strong> (più forte) &gt; <strong>Temi Stagionali</strong> &gt; <strong>Tema Manuale</strong>. Quindi dalle 21:00 scatta comunque il tema "Notte" anche se i temi stagionali sono attivi. Mentre i temi stagionali sono ON, il selettore manuale del tema viene disabilitato nell'interfaccia admin per evitare confusione.</p>
+
+                    <h4>Bacheca Avvisi Globale</h4>
+                    <p>La tab <strong>📢 Bacheca Avvisi</strong> nel pannello Admin è il sistema di comunicazione d'emergenza verso tutti gli operatori. L'Admin digita un testo (es. "Il fritto non si vende più – ingredienti finiti!") e lo pubblica. Il risultato è immediato:</p>
+                    <ol>
+                        <li>Su ogni dispositivo collegato compare un <strong>modal a schermo intero</strong> che blocca l'interfaccia operativa.</li>
+                        <li>L'operatore deve leggere l'avviso e premere il pulsante <strong>"Conferma e Continua"</strong> per chiuderlo e tornare al lavoro. Non può essere ignorato o chiuso in altro modo.</li>
+                        <li>Gli Admin non vedono il popup su se stessi, per evitare di bloccarsi mentre lo pubblicano.</li>
+                    </ol>
+                    <p>Ideale per comunicare al volo cambi di prezzo, ingredienti terminati, o istruzioni operative urgenti durante il servizio, senza dover urlare da un capo all'altro della cucina.</p>
+
                     <h4>I Profili Extra (Fino a 3 Reparti Aggiuntivi) e il Reparto Snack</h4>
                     <p>Oltre a Cucina e Bar (sempre presenti), BistroBò offre due livelli di espansione dei reparti:</p>
                     <ul>
@@ -262,6 +286,9 @@
                         <li>Seleziona dalla lista i piatti "Ammessi" all'interno del menù.</li>
                         <li>Imposta i <strong>Contorni Gratis Inclusi</strong> (es. 2). In Cassa, il sistema aprirà un popup per costringere l'operatore a scegliere le componenti. Le prime 2 selezioni non altereranno il costo base di 12€. Dal terzo contorno in poi (se il cliente lo richiede), il sistema inizierà a conteggiare il sovrapprezzo esatto automaticamente.</li>
                     </ul>
+
+                    <h4>Personalizzazione delle Varianti sui Contorni dei Combo</h4>
+                    <p>Quando il cliente sceglie un contorno all'interno di un piatto combo (es. "Patatine" come accompagnamento del panino), il cassiere può aprire un <strong>secondo popup dedicato</strong> tocando il contorno già selezionato. Questo popup mostra la lista degli ingredienti/varianti configurate per quel contorno specifico (es. "Ketchup", "Maionese", "Senza Sale") e permette di personalizzarlo esattamente come si farebbe con un piatto singolo. La scelta viene aggiunta alla riga del contorno nella comanda, separata dalla personalizzazione del piatto principale, così cucina e bar ricevono istruzioni complete e precise senza ambiguità.</p>
 
                     <h4>Sconto Extra Gratuite per Piatto</h4>
                     <p>Oltre al prezzo extra fisso descritto sopra, ogni piatto può avere un numero di <strong>aggiunte/varianti incluse gratuitamente</strong> prima che scatti il sovrapprezzo. Esempio: un panino ha "1 aggiunta gratis" configurata; il cliente può chiedere "Bacon" senza pagare nulla in più, ma se ne chiede una seconda (es. anche "Maionese Extra"), da quel momento il sistema inizia a sommare il prezzo extra di ogni ulteriore variante scelta. Questo permette di offrire un piccolo margine di personalizzazione gratuita senza dover gestire manualmente ogni combinazione a prezzo pieno.</p>
@@ -328,38 +355,87 @@
 
                     <h4>Tempo di Attesa Proiettato</h4>
                     <p>In alto a destra, la cassa mostra il "tempo medio di attesa", calcolato dinamicamente sullo storico delle comande già chiuse. L'Admin può escludere determinati reparti (es. il Bar) da questo calcolo per non falsare le stime di attesa della cucina vera e propria con le preparazioni istantanee delle bevande.</p>
+
+                    <h4>Richiedi Numero Tavolo</h4>
+                    <p>Quando l'impostazione <span class="setting-name">Richiedi Tavolo</span> è attiva, la cassa mostra un campo obbligatorio per il numero di tavolo. Il cassiere <strong>non può inviare la comanda</strong> finché questo campo non è compilato — il tasto "Invia" rimane disabilitato. Il numero di tavolo inserito viene salvato nella comanda e stampato sullo scontrino, ed è visibile anche sul monitor di produzione per consentire ai cuochi di chiamare il cliente corretto al momento del ritiro. Disattivandolo, il campo scompare e il flusso torna al normale invio senza numero tavolo.</p>
+
+                    <h4>Sconti Globali: Interruttore Master</h4>
+                    <p>L'impostazione <span class="setting-name">Sconti Globali Abilitati</span> è un interruttore padre che governa la visibilità dell'intero sistema coupon. Quando è <strong>OFF</strong>, la sezione "Sconti" sparisce sia dal pannello Admin (non si possono creare coupon) sia dalla Cassa (la pulsantiera gialla dei coupon non appare). È utile per eventi dove si vuole operare a prezzo pieno senza la possibilità che un cassiere applichi sconti per errore. Quando si riattiva, tutti i coupon precedentemente creati sono ancora lì — nessun dato viene cancellato.</p>
                 </div>
 
                 <div id="preordini-asporto" class="mt-5">
                     <div class="cap-badge">Capitolo 5</div>
-                    <h2>Preordini Web e Asporto Automatico</h2>
-                    <p>I Preordini consentono ai clienti di inviare il proprio ordine direttamente dallo smartphone tramite una pagina web pubblica (accessibile solitamente via QR Code al tavolo).</p>
-                    
-                    <h4>Setup Pubblico e Richiesta Dati</h4>
+                    <h2>Preordini Web, Modalità e Tracking Ordine</h2>
+                    <p>Il sistema preordini consente ai clienti di ordinare direttamente dallo smartphone prima ancora di arrivare al bancone. L'Admin abilita il sistema dalla scheda Impostazioni e genera uno o più QR Code che i clienti scansionano. La novità principale è che non esiste più un unico tipo di preordine: BistroBò supporta <strong>quattro modalità distinte</strong>, ognuna con una propria esperienza cliente e i propri campi obbligatori, attivabili e disattivabili singolarmente.</p>
+
+                    <h4>Le Quattro Modalità di Preordine</h4>
+                    <p>Ciascuna modalità si attiva passando il parametro <code>?mode=</code> nell'URL della pagina preordini. L'Admin genera il QR code corretto per ogni modalità direttamente dall'apposito pannello. Il sistema controlla in Firebase (<code>impostazioni/modPreordini/[modalità]</code>) se quella modalità è attiva prima di mostrare il form al cliente, e se è disabilitata mostra un messaggio di servizio non disponibile.</p>
+
+                    <div class="table-responsive my-3">
+                        <table class="table table-dark table-bordered align-middle" style="font-size:0.93rem;">
+                            <thead><tr><th>Modalità</th><th>Scenario d'uso</th><th>Campi richiesti al cliente</th><th>Note automatiche</th></tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td class="setting-name">fila</td>
+                                    <td>Coda generica a un bancone, sagra, stand</td>
+                                    <td>Solo <strong>Nome</strong></td>
+                                    <td>–</td>
+                                </tr>
+                                <tr>
+                                    <td class="setting-name">tavolo</td>
+                                    <td>Servizio al tavolo con numero passato via URL (<code>?t=5</code>)</td>
+                                    <td><strong>Nome</strong> + il tavolo viene passato dal QR e mostrato in un box "Stai ordinando per il Tavolo 5"</td>
+                                    <td>Il numero tavolo si salva automaticamente nella comanda</td>
+                                </tr>
+                                <tr>
+                                    <td class="setting-name">deliveroo</td>
+                                    <td>Consegna a domicilio / delivery esterno</td>
+                                    <td><strong>Nome e Cognome, Telefono, Indirizzo di consegna, Orario di consegna</strong></td>
+                                    <td>Imposta automaticamente <code>asporto: true</code> sulla comanda</td>
+                                </tr>
+                                <tr>
+                                    <td class="setting-name">sanmatteo</td>
+                                    <td>Stand numerati, eventi con postazioni fisse (es. "Stand 3")</td>
+                                    <td><strong>Nome, Telefono, Postazione, Orario desiderato</strong></td>
+                                    <td>–</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4>Generazione QR Code per ogni Modalità</h4>
+                    <p>Dal pannello Admin, il pulsante <strong>"Genera QR Code"</strong> apre un modal che mostra i QR code per tutte le modalità attive. Per la modalità <span class="setting-name">tavolo</span> è presente un campo dove inserire il numero specifico: il sistema genera un QR con URL del tipo <code>preordini.html?mode=tavolo&amp;t=5</code>. Basta stampare i QR, laminarli e posizionarli sui tavoli: ogni QR porterà il cliente direttamente al form pre-compilato con il numero tavolo già bloccato e non modificabile.</p>
+
+                    <h4>Annullamento Preordine (30 secondi)</h4>
+                    <p>Anche il cliente può sbagliare. Dopo aver premuto "Conferma Ordine", la pagina del preordine mostra un <strong>countdown di 30 secondi</strong> con un tasto "Annulla". Finché il timer non scade, il cliente può revocare l'ordine appena inviato con un click senza dover contattare la cassa. Superata la finestra, il preordine è permanente e può essere gestito solo dal cassiere lato interno.</p>
+
+                    <h4>Flusso in Cassa: dal Preordine alla Comanda</h4>
+                    <p>I preordini <strong>non</strong> vanno mai direttamente nei monitor della cucina — passano sempre per l'approvazione del cassiere. Appaiono in una <strong>tab gialla lampeggiante</strong> con allarme sonoro nella schermata della Cassa. Il cassiere controlla l'orario richiesto, le note speciali e decide quando evadere l'ordine. Cliccando "Aggiungi al carrello", il preordine viene iniettato con tutti i suoi piatti e varianti. Se l'Admin ha abilitato l'<strong>Asporto Automatico Preordini</strong>, la comanda assumerà automaticamente la dicitura "📦 Asporto" senza che il cassiere debba spuntarla a mano. Il costo asporto, se configurato, appare come riga separata nello scontrino.</p>
+
+                    <h4>Numerazione Dedicata, Prefisso e Verifica</h4>
+                    <p>Ogni preordine riceve un numero con un <strong>prefisso lettera configurabile</strong> (default "<strong>D</strong>") per distinguerlo a colpo d'occhio dalle comande manuali, sia sui monitor di produzione che sugli scontrini. Prima dell'invio definitivo, il cliente viene reindirizzato a una <strong>pagina di verifica</strong> (<code>verifica.html</code>) dove può rileggere in chiaro tutti i dati: piatti scelti, eventuali varianti, dati personali e orario di ritiro. Solo dopo aver confermato esplicitamente la comanda viene registrata nel sistema.</p>
+
+                    <h4>Ordinamento e Notifiche</h4>
                     <ul>
-                        <li><strong>Visibilità Piatti:</strong> Dall'interfaccia Admin (Pulsante "👁️ Visibilità Menù Pubblico"), puoi scegliere quali piatti nascondere alla clientela web (es. piatti che richiedono lunghe preparazioni), mantenendoli però regolarmente vendibili in cassa.</li>
-                        <li><strong>Richiesta Informazioni:</strong> Se abilitata, il form web impedirà l'invio dell'ordine se il cliente non fornisce: <em>Telefono, Posizione (es. Tavolo 14) e Orario di Ritiro/Consegna desiderato</em>. Fondamentale per scaglionare la preparazione e gestire in modo efficiente il delivery.</li>
+                        <li><span class="setting-name">Ordina Preordini</span>: se attivo, la lista in cassa mostra i preordini dal più recente al più vecchio in base all'orario di invio; se disattivato, l'ordine non viene forzato.</li>
+                        <li><span class="setting-name">Suono Preordini</span>: allarme sonoro dedicato all'arrivo di ogni nuovo preordine, indipendente dagli altri suoni. Subordinato al toggle "Suono Cassa": se quest'ultimo è OFF, nessun suono viene riprodotto nemmeno per i preordini.</li>
+                        <li><span class="setting-name">Visibilità Piatti</span>: dal pulsante "👁️ Visibilità Menù Pubblico" nell'admin, si può nascondere singoli piatti al menu online (es. voci con lunga preparazione) mantenendoli vendibili in cassa.</li>
                     </ul>
 
                     <div class="info-box box-cloud">
-                        <h5>📩 Flusso in Cassa (Asporto Automatico)</h5>
-                        <p>I preordini <strong>non</strong> vanno direttamente nei monitor della cucina. Appaiono in una Tab gialla lampeggiante (con allarme sonoro) sulla schermata della Cassa. Sarà il cassiere, controllando l'orario richiesto dal cliente, a decidere quando evaderli. <br>
-                        Cliccando "Aggiungi", l'ordine viene iniettato nel carrello. Se l'Admin ha abilitato l'<strong>Asporto Automatico Preordini</strong>, la comanda appena scaricata assumerà istantaneamente la grossa dicitura "📦 Asporto". Premendo "Invia", la comanda andrà in stampa e allerterà i cuochi della natura "Take-away" del pasto, indicando di usare i sacchetti da asporto. Se è configurato un "Costo Asporto" fisso, il sistema aggiunge automaticamente questa voce come riga separata nello scontrino, senza che il cassiere debba inserirla a mano.</p>
+                        <h5>📱 Tracking Ordine in Tempo Reale: la Nuova Pagina <code>stato-ordine.html</code></h5>
+                        <p>Quando l'impostazione <span class="setting-name">QR Code Stato Ordine</span> è attiva, la <strong>copia cliente</strong> dello scontrino include automaticamente un QR code stampato. Il cliente scansiona il QR e apre <code>stato-ordine.html?n=&lt;numero&gt;</code> — una pagina live, senza login, che aggiorna in tempo reale lo stato della sua comanda reparto per reparto:</p>
+                        <ul>
+                            <li>Ogni reparto coinvolto (Cucina, Bar, Snack, Extra) appare con un badge dinamico: <strong>"In Preparazione"</strong> mentre lavora, <strong>"Pronto! ✅"</strong> quando ha segnato la voce come completata.</li>
+                            <li>Quando <em>tutti</em> i reparti sono passati a "Pronto", la pagina suona un <strong>arpeggio gioioso</strong> e mostra un messaggio di ritiro.</li>
+                            <li>La pagina eredita il tema visivo dell'app (inclusa la Modalità Notte e i Temi Stagionali) per una coerenza visiva completa anche lato cliente.</li>
+                        </ul>
+                        <p>In questo modo il cliente sa esattamente quando il suo cibo è pronto, senza dover fare la fila al bancone o chiedere allo staff — riducendo drasticamente le code e i richiami vocali in sala.</p>
                     </div>
-
-                    <h4>Numerazione Dedicata e Verifica Dati</h4>
-                    <p>Ogni preordine ricevuto dalla pagina web viene numerato con un prefisso lettera dedicato e configurabile (di default la lettera "<strong>D</strong>"), così da distinguerlo a colpo d'occhio dalle comande battute fisicamente in cassa, sia sui monitor di produzione che sugli scontrini.</p>
-                    <p>Prima di confermare l'invio, il cliente passa per una pagina di <strong>verifica</strong> dedicata dove ricontrolla in chiaro i dati forniti (piatti scelti, telefono, posizione/tavolo, orario di ritiro) prima della conferma definitiva, riducendo gli errori di battitura da smartphone e gli ordini con dati incompleti o sbagliati.</p>
-
-                    <h4>Ordinamento e Notifiche dei Preordini</h4>
-                    <ul>
-                        <li><span class="setting-name">Ordina Preordini</span>: se attivo, la lista dei preordini in attesa in Cassa viene ordinata dal più recente al più vecchio in base all'orario esatto di invio; se disattivo, l'ordine cronologico non viene forzato.</li>
-                        <li><span class="setting-name">Suono Preordini</span>: attiva un allarme sonoro dedicato ogni volta che arriva un nuovo preordine dalla pagina web, indipendentemente dagli altri suoni dell'app, per non far perdere al cassiere un ordine arrivato mentre è impegnato altrove. È comunque subordinato al toggle generale "Suono Cassa": se quest'ultimo è disattivato, nessun suono verrà riprodotto anche con "Suono Preordini" attivo.</li>
-                    </ul>
 
                     <div class="info-box box-lan">
                         <h5><i class="fa-solid fa-network-wired me-2"></i> Preordini nella Versione LAN</h5>
-                        <p>Nella versione Cloud i preordini vivono in pagine web separate (<code>preordini.html</code> per la lista lato cassa, <code>verifica.html</code> per la conferma dati del cliente). Nella <strong>versione LAN la logica è la stessa</strong> ma tutto è integrato direttamente dentro l'unica app locale: la Cassa ha una tab dedicata ai preordini in attesa e l'Admin dispone di un pannello "📩 Gestione Preordini" con la stessa gestione della visibilità dei piatti sul menù pubblico, così anche in assenza di connessione internet il flusso di raccolta ordini via smartphone funziona regolarmente sulla rete Wi-Fi locale.</p>
+                        <p>Nella versione Cloud i preordini vivono in pagine web separate (<code>preordini.html</code>, <code>verifica.html</code>, <code>stato-ordine.html</code>). Nella <strong>versione LAN</strong> tutta la logica è integrata nell'unica app locale: la Cassa ha una tab preordini dedicata e l'Admin ha un pannello "📩 Gestione Preordini" con la stessa gestione di visibilità e modalità. Le quattro modalità funzionano anche offline sulla rete Wi-Fi locale, con i clienti che accedono alla pagina preordini tramite l'IP del server locale invece che da internet.</p>
                     </div>
                 </div>
 
@@ -475,6 +551,151 @@
                         <li><strong>🔥 Reparto On Fire & 🍽️ Macina-Piatti:</strong> I massimi volumi di produzione e il numero fisico di item erogati.</li>
                         <li><strong>🍕 Fame da Lupi:</strong> La singola comanda contenente la maggior quantità di pietanze al suo interno.</li>
                     </ul>
+
+                    <h4>Auto-Backup Cloud</h4>
+                    <p>Distinto dal backup manuale scaricabile come file JSON, il sistema di <strong>Auto-Backup Cloud</strong> lavora silenziosamente in background. Quando attivato, esegue snapshot automatici e periodici dell'intero database direttamente sul cloud Firebase, senza che nessuno debba ricordarsi di farlo.</p>
+                    <ul>
+                        <li><span class="setting-name">autoBackupAbilitato</span>: accende il loop. Alla prima attivazione, esegue subito un backup, poi continua a intervalli regolari.</li>
+                        <li><span class="setting-name">autoBackupIntervallo</span>: frequenza in <strong>minuti</strong> tra un backup e il successivo (es. 30 = ogni mezz'ora). Il sistema esegue il backup solo se i dati sono effettivamente cambiati dall'ultimo snapshot (confronto di hash), evitando di scrivere dati identici.</li>
+                    </ul>
+                    <p><strong>Cosa viene salvato:</strong> lo snapshot è completo — include <code>comande</code>, <code>menu</code>, <code>ingredienti</code>, <code>impostazioni</code>, <code>utenti</code>, <code>preordini</code>, <code>storico_giornate</code> e <code>scontiGlobali</code>. È più completo del backup manuale (che esclude preordini e storico giornate).</p>
+                    <p><strong>Rotazione automatica:</strong> il sistema mantiene sempre solo i <strong>2 backup più recenti</strong>. Prima di salvare il nuovo snapshot, ordina i backup esistenti per timestamp e cancella quelli in eccesso, così il nodo <code>cloud_backups</code> non cresce indefinitamente.</p>
+
+                    <div class="info-box box-config">
+                        <h5>⚙️ Come Ripristinare da un Backup Cloud</h5>
+                        <p>Dall'apposita sezione nel pannello Admin (visibile solo quando autoBackupAbilitato è ON), compare la lista dei backup disponibili con data e ora. Cliccando "Ripristina DB" sul backup desiderato, il sistema chiede una conferma esplicita, poi <strong>sovrascrive l'intero database corrente</strong> con i dati del backup scelto e ricarica l'app. L'operazione è irreversibile: tutto ciò che è stato registrato <em>dopo</em> il backup verrà perso. Da usare solo in caso di corruzione accidentale dei dati o cancellazione involontaria.</p>
+                    </div>
+                </div>
+
+                <hr style="border-color: #334155; margin: 60px 0;">
+
+                <div id="mansionario" class="mt-5">
+                    <div class="cap-badge">Capitolo 10</div>
+                    <h2>Mansionario: Procedure di Turno per il Personale</h2>
+                    <p>Il <strong>Mansionario</strong> è il sistema con cui l'Admin definisce, per iscritto, le procedure operative di ogni ruolo. Non è solo una nota testuale: è un documento strutturato con spunte interattive, che il sistema può rendere obbligatorio prima del logout. Lo scopo è garantire che ogni operatore — specialmente i volontari che operano poche volte all'anno — sappia esattamente cosa fare e non dimentichi le operazioni di chiusura del turno.</p>
+
+                    <h4>Struttura: due Documenti per Ruolo</h4>
+                    <p>Per ciascun ruolo attivo (Cassa, Cucina, Bar, Snack, Extra 1/2/3), l'Admin può creare <strong>due versioni distinte del mansionario</strong>:</p>
+                    <ul>
+                        <li><strong>📋 Generico (Consultazione):</strong> Un documento di riferimento sempre disponibile — lista delle procedure standard, posizione degli strumenti, numeri di emergenza, istruzioni per casi particolari. L'operatore può aprirlo in qualsiasi momento toccando il pulsante "📋 Mansionario" nella barra superiore, senza interrompere il flusso di cassa o produzione.</li>
+                        <li><strong>🔒 Chiusura (Pre-Logout):</strong> Una checklist di operazioni da eseguire prima di staccare. Appare automaticamente come popup quando l'operatore preme "Logout", se l'impostazione <span class="setting-name">mansionarioRichiediLogout</span> è attiva.</li>
+                    </ul>
+
+                    <h4>Come l'Admin Crea e Modifica i Mansionari</h4>
+                    <p>Dalla tab <strong>"📋 Mansionario"</strong> nel pannello Admin, si trova un editor doppio per ogni ruolo. L'editor è un campo di testo ricco (<em>contenteditable</em>) con una piccola toolbar:</p>
+                    <ul>
+                        <li><kbd>G</kbd> <strong>Grassetto</strong>, <kbd>C</kbd> <strong>Corsivo</strong>, <kbd>S</kbd> <strong>Sottolineato</strong> per formattare il testo.</li>
+                        <li>☑ <strong>"Aggiungi Spunta"</strong>: inserisce una riga con una checkbox interattiva. L'operatore potrà spuntarla fisicamente al momento del logout.</li>
+                    </ul>
+                    <p>Il contenuto viene salvato come HTML nel nodo Firebase <code>mansionari/[ruolo]/generico</code> e <code>mansionari/[ruolo]/logout</code>. Le modifiche si propagano istantaneamente a tutti i dispositivi con quel ruolo, senza bisogno di ricaricare.</p>
+
+                    <div class="info-box box-danger">
+                        <h5>⛔ Mansionario Obbligatorio: il Logout Blindato</h5>
+                        <p>L'impostazione <span class="setting-name">mansionarioObbligatorio</span> trasforma il mansionario da "consultazione consigliata" a "blocco fisico al logout". Quando è ON:</p>
+                        <ul>
+                            <li>Il pulsante "Annulla" scompare dal popup — l'operatore non può chiudere la finestra senza completare le voci.</li>
+                            <li>Il pulsante "Conferma e Logout" resta <strong>disabilitato e grigio</strong> finché tutte le checkbox del mansionario di chiusura non sono state spuntate una per una.</li>
+                            <li>Solo quando l'ultima spunta è messa, il pulsante si illumina e il logout diventa possibile.</li>
+                        </ul>
+                        <p>Gli Admin sono esclusi da questo blocco: vedono il popup di conferma ma possono sempre fare logout senza dover spuntare nulla, per non rimanere bloccati in caso di emergenza.</p>
+                    </div>
+
+                    <h4>Le Tre Impostazioni del Mansionario</h4>
+                    <ul>
+                        <li><span class="setting-name">mansionarioAbilitato</span>: master switch. Se OFF, il pulsante "📋 Mansionario" scompare dalla topbar e nessun popup viene mai mostrato.</li>
+                        <li><span class="setting-name">mansionarioRichiediLogout</span>: mostra automaticamente il mansionario di chiusura quando l'operatore preme Logout. Se OFF, il mansionario è solo consultabile manualmente, non appare mai da solo.</li>
+                        <li><span class="setting-name">mansionarioObbligatorio</span>: se ON, richiede che tutte le checkbox siano spuntate prima di poter completare il logout. Ha effetto solo se <span class="setting-name">mansionarioRichiediLogout</span> è anch'esso ON.</li>
+                    </ul>
+                </div>
+
+                <hr style="border-color: #334155; margin: 60px 0;">
+
+                <div id="gestione-scarti" class="mt-5">
+                    <div class="cap-badge">Capitolo 11</div>
+                    <h2>Gestione Scarti: Registrare e Tracciare gli Sprechi</h2>
+                    <p>In qualsiasi evento gastronomico, una parte degli ingredienti o dei piatti finisce sprecata: un vassoio di patatine caduto, una birra versata, un panino bruciacchiato. Senza un sistema di tracciamento, questo spreco rimane invisibile nel magazzino e distorce le statistiche di consumo. BistroBò include un modulo dedicato che permette agli operatori di ogni reparto di registrare uno scarto in pochi secondi, aggiornando automaticamente le scorte di magazzino.</p>
+
+                    <h4>Chi Può Registrare uno Scarto</h4>
+                    <p>Il pulsante di accesso al popup scarti è presente direttamente nel monitor operativo di ciascun reparto: <strong>Cucina, Bar, Snack, Extra 1/2/3</strong>. Non è necessario passare dall'Admin — l'operatore può registrare lo scarto immediatamente, senza interrompere la produzione. Il pannello Admin ha una vista riepilogativa separata per analizzare il registro completo degli scarti.</p>
+
+                    <h4>Scarto di Ingrediente vs. Scarto di Piatto</h4>
+                    <p>Il popup mostra due gruppi distinti, selezionabili da un menu a tendina:</p>
+                    <ul>
+                        <li><strong>🍅 Ingredienti / Dispensa:</strong> si seleziona l'ingrediente grezzo (es. "Farina 00") e si inserisce la quantità sprecata nella sua unità di misura. Il sistema decrementa direttamente la scorta di quell'ingrediente in magazzino.</li>
+                        <li><strong>🍔 Piatti / Menu Completo:</strong> si seleziona un piatto finito (es. "Panino con Porchetta"). Il sistema <strong>legge automaticamente la ricetta</strong> del piatto dal database e decrementa tutti gli ingredienti che lo compongono nella quantità proporzionale alla porzione sprecata. Non serve sapere a memoria quanta farina va in un panino: il sistema lo sa già.</li>
+                    </ul>
+
+                    <div class="info-box box-config">
+                        <h5>⚙️ Dati Salvati per ogni Scarto</h5>
+                        <p>Ogni scarto registrato crea una voce permanente nel nodo Firebase <code>scarti</code> con la seguente struttura:</p>
+                        <ul>
+                            <li><strong>tipo</strong>: <code>"ing"</code> (ingrediente) o <code>"menu"</code> (piatto)</li>
+                            <li><strong>id_oggetto</strong>: l'ID univoco dell'ingrediente o del piatto nel database</li>
+                            <li><strong>nome</strong>: il nome leggibile (es. "Birra Media")</li>
+                            <li><strong>quantita</strong>: la quantità sprecata con la sua unità di misura</li>
+                            <li><strong>reparto</strong>: il reparto che ha registrato lo scarto (es. "bere")</li>
+                            <li><strong>timestamp</strong>: il momento esatto della registrazione</li>
+                            <li><strong>operatore_uid</strong>: l'ID dell'operatore che ha effettuato la registrazione, per la tracciabilità</li>
+                        </ul>
+                        <p>Questo log è accessibile dall'Admin per analisi post-evento: quanti scarti per tipo, quale reparto spreca di più, quale piatto causa più perdite.</p>
+                    </div>
+                </div>
+
+                <hr style="border-color: #334155; margin: 60px 0;">
+
+                <div id="profilo-xp" class="mt-5">
+                    <div class="cap-badge">Capitolo 12</div>
+                    <h2>Profilo Operatore, XP e Sistema Badge</h2>
+                    <p>BistroBò traccia la <strong>crescita professionale</strong> di ogni operatore nel tempo tramite un sistema di punti esperienza (XP) e badge/rank. A differenza della Wall of Fame — che misura le performance di un singolo evento — gli XP si accumulano tra un evento e l'altro, costruendo una storia della carriera dell'operatore nel sistema.</p>
+
+                    <h4>Come si Guadagnano gli XP</h4>
+                    <p>Il sistema accredita punti automaticamente su ogni azione produttiva completata, senza bisogno di intervento manuale:</p>
+                    <ul>
+                        <li><strong>+10 XP</strong> ogni volta che la Cassa emette uno scontrino (funzione <code>stampaScontrino</code>)</li>
+                        <li><strong>+5 XP</strong> ogni volta che un reparto (Cucina, Bar, Snack, Extra) chiude un ordine segnandolo come completato</li>
+                    </ul>
+                    <p>L'incremento avviene tramite una <em>transazione atomica</em> sul database — il che significa che anche se due operatori chiudono ordini contemporaneamente, ogni punto viene conteggiato correttamente, senza perdite per scritture concorrenti.</p>
+
+                    <h4>I 7 Livelli Badge</h4>
+                    <p>Al raggiungimento di ogni soglia XP, il sistema calcola automaticamente il badge corrispondente e aggiorna l'interfaccia di tutti i dispositivi in tempo reale:</p>
+                    <div class="table-responsive my-3">
+                        <table class="table table-dark table-bordered align-middle" style="font-size:0.93rem;">
+                            <thead><tr><th>Badge</th><th>XP richiesti</th><th>Significato operativo</th></tr></thead>
+                            <tbody>
+                                <tr><td>🥉 Apprendista</td><td>250 XP</td><td>Primo turno completato — ha imparato le basi</td></tr>
+                                <tr><td>🥈 Aiuto Cuoco</td><td>1.000 XP</td><td>Operatore affidabile, conosce il flusso</td></tr>
+                                <tr><td>🥇 Cuoco Esperto</td><td>2.500 XP</td><td>Gestisce autonomamente il reparto</td></tr>
+                                <tr><td>🔪 Chef di Partita</td><td>5.000 XP</td><td>Veterano, può formare altri</td></tr>
+                                <tr><td>💎 Sous Chef</td><td>10.000 XP</td><td>Colonna portante di ogni evento</td></tr>
+                                <tr><td>🌟 Executive Chef</td><td>20.000 XP</td><td>Eccellenza operativa costante</td></tr>
+                                <tr><td>👑 Leggenda Vivente</td><td>40.000 XP</td><td>Il miglior operatore che l'evento abbia mai visto</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4>Il Profilo Personale</h4>
+                    <p>Ogni operatore può personalizzare il proprio profilo toccando il proprio nome nella barra superiore. Si apre il modal <strong>"Il Mio Profilo"</strong> con due opzioni:</p>
+                    <ul>
+                        <li><strong>Avatar Emoji:</strong> una griglia di emoji selezionabili (👨‍🍳, 🍕, ⚡ e molte altre) che viene mostrata accanto al nome in tutta l'interfaccia. Salva in Firebase sotto <code>utenti/[uid]/avatar</code>.</li>
+                        <li><strong>Stato:</strong> un campo testo libero (es. "Pronto a spaccare 💪" o "Turno serale, stanco ma ci sono") visibile agli altri operatori nella barra superiore. Salva sotto <code>utenti/[uid]/stato</code>.</li>
+                    </ul>
+
+                    <h4>Dove Compaiono XP e Badge nell'Interfaccia</h4>
+                    <ul>
+                        <li><strong>Barra superiore:</strong> l'avatar, il nome utente e il testo di stato sono visibili costantemente in alto a destra su tutti i dispositivi.</li>
+                        <li><strong>Menu dropdown (clic sul nome):</strong> mostra il totale XP accumulati e il badge corrente con il relativo colore/icona, oltre alle voci "Profilo" e "Logout".</li>
+                        <li><strong>Pannello Admin / Gestione Utenti:</strong> l'Admin può vedere XP e badge di tutti gli operatori iscritti, utile per riconoscere i veterani e assegnare ruoli di responsabilità.</li>
+                    </ul>
+
+                    <div class="info-box box-config">
+                        <h5>⚙️ Wall of Fame vs Sistema XP: le Differenze</h5>
+                        <p>I due sistemi convivono e si completano, ma misurano cose diverse:</p>
+                        <ul>
+                            <li><strong>Wall of Fame</strong> (Cap. 9): misura le <em>performance di un singolo evento</em> in tempo reale — chi è il più veloce stasera, chi ha incassato di più questa sagra. Si azzera a ogni nuovo evento.</li>
+                            <li><strong>Sistema XP/Badge</strong>: misura la <em>carriera nel lungo periodo</em> — quante comande ha chiuso quell'operatore in tutto l'anno, in tutti gli eventi in cui ha partecipato. Non si azzera mai, cresce di evento in evento.</li>
+                        </ul>
+                        <p>Un volontario con il badge 👑 Leggenda Vivente è qualcuno che ha dedicato centinaia di turni alla sagra nel corso degli anni: riconoscerlo visivamente motiva l'intera squadra.</p>
+                    </div>
                 </div>
 
                 <hr style="border-color: #334155; margin: 60px 0;">
@@ -526,6 +747,32 @@
                                 <tr><td class="setting-name">fondoCassa</td><td>Contante iniziale nel cassetto, usato per calcolare le discrepanze a fine turno</td><td>0</td></tr>
                                 <tr><td class="setting-name">sistemaGiornateAbilitato</td><td>Abilita l'archiviazione per giornate/turni e i relativi report separati</td><td>off</td></tr>
                                 <tr><td class="setting-name">contatoreComande</td><td>Numero progressivo interno delle comande, azzerabile manualmente</td><td>0</td></tr>
+                                <tr><td colspan="3" style="background:#0f172a; color:#64748b; font-size:0.85rem; letter-spacing:1px; text-transform:uppercase; font-weight:700;">Bacheca, Temi e Comunicazione</td></tr>
+                                <tr><td class="setting-name">temiStagionaliAttivi</td><td>Bypass del tema manuale: impone automaticamente il tema della stagione corrente (Primavera/Estate/Autunno/Inverno). Blocca la selezione manuale del tema finché è ON. Priorità inferiore alla Modalità Notte</td><td>off</td></tr>
+                                <tr><td class="setting-name">avvisoGlobale (bacheca)</td><td>Testo dell'avviso pubblicato dall'Admin. Se presente, mostra un modal bloccante su tutti i dispositivi finché non viene confermato</td><td>""</td></tr>
+                                <tr><td colspan="3" style="background:#0f172a; color:#64748b; font-size:0.85rem; letter-spacing:1px; text-transform:uppercase; font-weight:700;">Cassa Avanzata</td></tr>
+                                <tr><td class="setting-name">richiediTavolo</td><td>Rende obbligatorio il campo "Numero Tavolo" in cassa prima dell'invio della comanda; il tasto Invia è disabilitato finché non è compilato</td><td>off</td></tr>
+                                <tr><td class="setting-name">scontiGlobaliAbilitati</td><td>Interruttore master del sistema coupon: se OFF nasconde la sezione Sconti in admin e la pulsantiera coupon in cassa</td><td>on</td></tr>
+                                <tr><td colspan="3" style="background:#0f172a; color:#64748b; font-size:0.85rem; letter-spacing:1px; text-transform:uppercase; font-weight:700;">Preordini Multi-Modalità</td></tr>
+                                <tr><td class="setting-name">modPreordini/fila</td><td>Abilita la modalità coda generica (solo nome) nella pagina preordini pubblica</td><td>off</td></tr>
+                                <tr><td class="setting-name">modPreordini/tavolo</td><td>Abilita la modalità servizio al tavolo (numero tavolo via URL ?t=)</td><td>off</td></tr>
+                                <tr><td class="setting-name">modPreordini/deliveroo</td><td>Abilita la modalità delivery (nome+cognome, telefono, indirizzo, orario; asporto automatico)</td><td>off</td></tr>
+                                <tr><td class="setting-name">modPreordini/sanmatteo</td><td>Abilita la modalità stand numerati (nome, telefono, postazione, orario)</td><td>off</td></tr>
+                                <tr><td class="setting-name">qrCodeStatoOrdine</td><td>Stampa un QR code sulla copia cliente che punta a stato-ordine.html?n=&lt;numero&gt; per il tracking live reparto per reparto</td><td>off</td></tr>
+                                <tr><td colspan="3" style="background:#0f172a; color:#64748b; font-size:0.85rem; letter-spacing:1px; text-transform:uppercase; font-weight:700;">Backup Automatico</td></tr>
+                                <tr><td class="setting-name">autoBackupAbilitato</td><td>Attiva il loop di backup periodico automatico verso il nodo cloud_backups del database</td><td>off</td></tr>
+                                <tr><td class="setting-name">autoBackupIntervallo</td><td>Frequenza del backup automatico in minuti; esegue solo se i dati sono cambiati dall'ultimo snapshot</td><td>30</td></tr>
+                                <tr><td colspan="3" style="background:#0f172a; color:#64748b; font-size:0.85rem; letter-spacing:1px; text-transform:uppercase; font-weight:700;">Mansionario (Procedure di Turno)</td></tr>
+                                <tr><td class="setting-name">mansionarioAbilitato</td><td>Interruttore master del mansionario: mostra/nasconde il pulsante 📋 in topbar e abilita l'editor admin</td><td>off</td></tr>
+                                <tr><td class="setting-name">mansionarioRichiediLogout</td><td>Mostra automaticamente il mansionario di chiusura quando l'operatore preme Logout</td><td>off</td></tr>
+                                <tr><td class="setting-name">mansionarioObbligatorio</td><td>Blocca il pulsante "Conferma e Logout" finché tutte le checkbox del mansionario non sono spuntate; nasconde il tasto Annulla</td><td>off</td></tr>
+                                <tr><td class="setting-name">mansionari/[ruolo]/generico</td><td>HTML del documento di consultazione permanente per quel ruolo (generato dall'editor rich-text admin)</td><td>""</td></tr>
+                                <tr><td class="setting-name">mansionari/[ruolo]/logout</td><td>HTML della checklist di chiusura mostrata pre-logout per quel ruolo</td><td>""</td></tr>
+                                <tr><td colspan="3" style="background:#0f172a; color:#64748b; font-size:0.85rem; letter-spacing:1px; text-transform:uppercase; font-weight:700;">Scarti e Profilo</td></tr>
+                                <tr><td class="setting-name">scarti/[id]</td><td>Nodo log degli scarti: tipo (ing/menu), nome, quantità, reparto, timestamp, operatore_uid</td><td>–</td></tr>
+                                <tr><td class="setting-name">utenti/[uid]/exp</td><td>XP totali accumulati dall'operatore (incremento transazionale: +10 per scontrino emesso, +5 per ordine chiuso)</td><td>0</td></tr>
+                                <tr><td class="setting-name">utenti/[uid]/avatar</td><td>Emoji avatar scelto dall'operatore nel modal Profilo (es. 👨‍🍳)</td><td>""</td></tr>
+                                <tr><td class="setting-name">utenti/[uid]/stato</td><td>Testo di stato personale visibile in topbar (es. "Pronto a spaccare 💪")</td><td>""</td></tr>
                             </tbody>
                         </table>
                     </div>
