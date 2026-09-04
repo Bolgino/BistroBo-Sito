@@ -178,6 +178,25 @@
                         </ul>
                     </div>
                 </div>
+                <div id="installazione-pwa" class="mt-5">
+                    <div class="cap-badge">Setup Iniziale</div>
+                    <h2>Installazione App (PWA) sui Dispositivi</h2>
+                    <p>BistroBò è sviluppata come <strong>Progressive Web App (PWA)</strong>. Grazie al <em>Service Worker</em> e al <em>Manifest</em> integrati, non devi scaricarla dagli store (App Store o Google Play). Puoi installarla direttamente dal browser sui tablet di Cassa, Cucina e Bar per farla girare <strong>a schermo intero, come un'app nativa</strong>, isolandola dalle distrazioni del browser e migliorandone le prestazioni e la stabilità in caso di cali di rete.</p>
+
+                    <div class="info-box box-cloud">
+                        <h5>📱 Come Installare BistroBò sui Terminali</h5>
+                        <p>Apri il link dell'applicazione sul dispositivo che vuoi configurare e segui questi passaggi:</p>
+                        <ul>
+                            <li><strong>Su iPad / iPhone (Safari):</strong> Tocca l'icona "Condividi" (il quadrato con la freccia verso l'alto) nella barra di navigazione e seleziona <strong>"Aggiungi a schermata Home"</strong>. Verrà creata l'icona dell'app sulla home del dispositivo.</li>
+                            <li><strong>Su Tablet / Smartphone Android (Chrome):</strong> Tocca i tre puntini in alto a destra e seleziona <strong>"Aggiungi a schermata Home"</strong> o <strong>"Installa app"</strong>. Segui le istruzioni a schermo.</li>
+                            <li><strong>Su PC / Mac (Chrome o Edge):</strong> Nella barra degli indirizzi, in alto a destra (vicino alla stella dei preferiti), comparirà un'icona a forma di monitor con una freccia. Cliccala e seleziona "Installa".</li>
+                        </ul>
+                        <p><strong>Importante:</strong> Una volta installata, apri BistroBò sempre dall'icona creata sulla schermata Home e non dal browser. In questo modo si aprirà a schermo intero, senza barra degli indirizzi, impedendo agli operatori di chiudere le schede per errore.</p>
+                    </div>
+
+                    <h4>Gestione Errori e Link Scaduti (Pagina 404)</h4>
+                    <p>Il sistema è progettato per gestire in sicurezza i flussi anomali. Se un cliente scansiona un QR Code dei preordini alterato, parziale o tenta di accedere a una pagina rimossa, il sistema intercetta l'errore e lo reindirizza alla pagina di cortesia (<strong>Errore 404</strong>). Questa schermata lo avvisa in modo chiaro che il link non è valido e offre un pulsante per tornare in sicurezza alla vetrina principale, impedendo blocchi o crash sul dispositivo del cliente.</p>
+                </div>
 
                 <hr style="border-color: #334155; margin: 50px 0;">
 
@@ -192,6 +211,8 @@
                         <li><strong>Approvazione Manuale:</strong> L'account verificato rimane in attesa di autorizzazione finché l'admin non gli assegna un ruolo dalla dashboard.</li>
                         <li><strong>Approvazione Automatica:</strong> Attivabile dalle Impostazioni. Consente al nuovo iscritto di selezionare autonomamente il ruolo (es. Cassa o Cucina) e di operare istantaneamente, bypassando l'approvazione umana. Ideale nei minuti caotici prima dell'apertura per far registrare i volontari dell'ultimo minuto.</li>
                     </ol>
+                    <h4>Recupero Password</h4>
+                    <p>In caso di smarrimento delle credenziali, gli operatori possono utilizzare il link <strong>"Hai dimenticato la password?"</strong> presente nella schermata di Login. Inserendo la propria email, il sistema Firebase invierà in automatico un link sicuro per reimpostare la password in totale autonomia, senza richiedere l'intervento dell'Amministratore.</p>
                     <p>Nella versione LAN l'accesso è ancora più immediato: non esiste registrazione via email. Alla partenza dell'app compare direttamente una schermata "Postazione LAN" con un pulsante per ciascun ruolo disponibile (<strong>💰 Cassa, 🍳 Cucina, 🍺 Bere, 🍟 Snack</strong>, e un pulsante nascosto <strong>Schermo Cliente</strong> che appare solo se l'impostazione relativa è attiva). Toccando un pulsante, il tablet si auto-registra: genera (o recupera da <code>localStorage</code>) un numero identificativo univoco della postazione, comunica la propria presenza al Server Locale via WebSocket e inizia a operare istantaneamente con quel ruolo, senza password.</p>
 
                     <div class="info-box box-danger">
@@ -251,7 +272,9 @@
                         <li>Gli Admin non vedono il popup su se stessi, per evitare di bloccarsi mentre lo pubblicano.</li>
                     </ol>
                     <p>Ideale per comunicare al volo cambi di prezzo, ingredienti terminati, o istruzioni operative urgenti durante il servizio, senza dover urlare da un capo all'altro della cucina.</p>
-
+                    <h4>Registro Attività di Sistema (Audit Log)</h4>
+                    <p>La tab <strong>📜 Log Sistema</strong> nel pannello Admin è uno schedario di sola lettura che traccia in automatico tutte le azioni sensibili compiute dagli operatori all'interno del gestionale (es. l'eliminazione di una comanda, la modifica di un ordine, il reset del magazzino o la chiusura dei reparti).</p>
+                    <p>Il sistema registra per ciascun evento il timestamp esatto, il nome dell'operatore, l'email e il ruolo, garantendo una tracciabilità totale e trasparente di ogni operazione critica eseguita durante il servizio.</p>
                     <h4>I Profili Extra (Fino a 3 Reparti Aggiuntivi) e il Reparto Snack</h4>
                     <p>Oltre a Cucina e Bar (sempre presenti), BistroBò offre due livelli di espansione dei reparti:</p>
                     <ul>
@@ -278,6 +301,12 @@
                         <li>Inserisci il <strong>Prezzo Extra</strong> (es. 0.50€) e la <strong>Qty scalata</strong> al magazzino ad ogni utilizzo.</li>
                         <li>Scegli in quali reparti (Cibi, Bevande, ecc.) mostrare questa opzione in Cassa.</li>
                     </ol>
+                    <h4>Diete e Allergeni (SG, SL, V, VG)</h4>
+                    <p>In fase di creazione o modifica di un piatto, è possibile assegnare dei tag specifici per le intolleranze o le scelte alimentari: <strong>Senza Glutine (SG), Senza Lattosio (SL), Vegetariano (V), Vegano (VG)</strong>.</p>
+                    <ul>
+                        <li><strong>In Cassa e Produzione:</strong> I tag appaiono come marcatori rossi ad alto contrasto accanto al nome del piatto, per allertare immediatamente il cassiere e i cuochi ed evitare contaminazioni incrociate durante la preparazione.</li>
+                        <li><strong>Nei Preordini Pubblici:</strong> I clienti visualizzeranno una comoda barra di filtri in cima al menu per isolare istantaneamente, ad esempio, solo i piatti senza glutine o vegani.</li>
+                    </ul>
 
                     <h4>Piatti Combo (Menù Fisso Integrato)</h4>
                     <p>Puoi offrire pacchetti come "Menu Sagra: Panino + Bibita + Patatine a 12€".</p>
@@ -346,7 +375,13 @@
                         <li>Scompone matematicamente il resto usando un algoritmo "a taglio minimo": parte dal taglio più grande disponibile e scende via via, fornendo la combinazione più semplice possibile di banconote e monete da restituire (es. <em>Resto 17,50€ = 1x 10€, 1x 5€, 1x 2€, 1x 0,50€</em>), evitando di dover consegnare tante monetine quando basterebbe un taglio più grande.</li>
                     </ol>
                     <p>Per la chiusura contabile, è possibile contrassegnare il "Metodo Pagamento" come <strong>POS</strong> per slegarlo dal conteggio dei contanti. Un ulteriore toggle permette di forzare la <strong>Stampa di Scontrini Separati</strong>, generando un ticket diverso per ogni reparto anziché una singola strisciata lunga.</p>
-
+                    <h4>Divisione del Conto e Pagamenti Misti</h4>
+                    <p>Tramite il pulsante <kbd>🧮 Dividi Conto</kbd> presente in Cassa, è possibile gestire le casistiche di pagamento complesse attraverso tre modalità avanzate:</p>
+                    <ul>
+                        <li><strong>Misto (Contanti + POS):</strong> Per lo stesso scontrino, permette di digitare la cifra esatta pagata in contanti; il sistema calcola automaticamente la rimanenza da battere sul POS, aggiornando le statistiche correttamente.</li>
+                        <li><strong>Alla Romana:</strong> Divide il totale in parti uguali specificando il numero di commensali (es. Diviso 4 = 12,50€ a testa). Permette poi di registrare quante quote sono saldate in contanti e quante col POS.</li>
+                        <li><strong>Per Articoli:</strong> Ideale per le comitive. Mostra l'elenco dei piatti ordinati e permette di "spuntare" solo le voci che il Cliente 1 vuole pagare in quel momento, calcolando il subtotale parziale e permettendo di saldarlo indipendentemente dal resto del tavolo.</li>
+                    </ul>
                     <h4>Coperto per Persona</h4>
                     <p>Se attivato dalle impostazioni, il "Coperto" aggiunge automaticamente in cassa una voce extra dal costo fisso configurabile, moltiplicata per il numero di persone al tavolo. Compare come riga separata e distinta dai piatti nello scontrino, per rendere trasparente al cliente il costo di servizio.</p>
 
@@ -355,7 +390,14 @@
 
                     <h4>Tempo di Attesa Proiettato</h4>
                     <p>In alto a destra, la cassa mostra il "tempo medio di attesa", calcolato dinamicamente sullo storico delle comande già chiuse. L'Admin può escludere determinati reparti (es. il Bar) da questo calcolo per non falsare le stime di attesa della cucina vera e propria con le preparazioni istantanee delle bevande.</p>
-
+                    <h4>Fondi e Filtri Avanzati nelle Liste Comande</h4>
+                    <p>Sia nella schermata di Cassa che nel pannello Admin, le liste delle comande inviate dispongono di una <strong>barra di filtri avanzati</strong> in tempo reale. Durante il servizio caotico, l'operatore può isolare rapidamente gli ordini digitando o selezionando parametri specifici:</p>
+                    <ul>
+                        <li><strong>Numero Comanda o Lettera:</strong> Per rintracciare subito un ordine specifico cercandone il progressivo.</li>
+                        <li><strong>Numero Tavolo:</strong> Per visualizzare al volo tutte le comande collegate a un determinato tavolo.</li>
+                        <li><strong>Contenuto Piatto:</strong> Un campo di ricerca testuale che filtra le comande in base ai prodotti contenuti (es. digitando "Patatine" compaiono solo gli ordini che le contengono).</li>
+                        <li><strong>Intervallo Orario (Da / A):</strong> Filtra le comande emesse in una specifica fascia temporale, utile per controlli amministrativi o verifiche su ritardi.</li>
+                    </ul>
                     <h4>Richiedi Numero Tavolo</h4>
                     <p>Quando l'impostazione <span class="setting-name">Richiedi Tavolo</span> è attiva, la cassa mostra un campo obbligatorio per il numero di tavolo. Il cassiere <strong>non può inviare la comanda</strong> finché questo campo non è compilato — il tasto "Invia" rimane disabilitato. Il numero di tavolo inserito viene salvato nella comanda e stampato sullo scontrino, ed è visibile anche sul monitor di produzione per consentire ai cuochi di chiamare il cliente corretto al momento del ritiro. Disattivandolo, il campo scompare e il flusso torna al normale invio senza numero tavolo.</p>
 
@@ -455,6 +497,15 @@
 
                     <h4>Vista Sommario (Cruscotto Quantità)</h4>
                     <p>Sotto stress, guardare 40 comande singole è disorientante. Premendo il tasto <kbd>VISTA SOMMARIO</kbd>, si apre un modale che raggruppa dinamicamente e conta tutte le voci non ancora prodotte dell'intero reparto (es. <em>Da preparare in totale: 45 Hamburger, 22 Patatine</em>), consentendo all'addetto alla griglia o alla friggitrice di sapere esattamente quanta merce mettere in cottura in quel preciso momento. Il conteggio non si limita ai piatti principali: include anche i contorni e le varianti/aggiunte scelte dai clienti (es. quante porzioni extra di formaggio servono in totale), così chi cucina ha il quadro produttivo realmente completo, non solo la lista dei piatti "base".</p>
+                    <div class="info-box box-danger">
+                        <h5>🛑 Chiusura Fine Servizio (Blocco Reparto)</h5>
+                        <p>Quando la serata volge al termine o un reparto esaurisce la capacità produttiva, l'operatore autorizzato può cliccare il pulsante <strong>"🛑 CHIUDI REPARTO"</strong> dal proprio monitor di produzione.</p>
+                        <ul>
+                            <li><strong>Effetto immediato:</strong> Tutti i pulsanti dei piatti appartenenti a quel reparto, nella schermata di Cassa, diventano grigi, non cliccabili e marchiati con l'etichetta "🛑 Chiuso".</li>
+                            <li><strong>Preordini:</strong> I piatti del reparto chiuso diventano istantaneamente non ordinabili anche per i clienti dal proprio smartphone.</li>
+                            <li><strong>Sicurezza:</strong> L'operazione è reversibile solo dall'Amministratore, che può forzare la riapertura del reparto dalla scheda "Gestione Profili" del pannello Admin.</li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div id="magazzino" class="mt-5">
@@ -481,9 +532,10 @@
                     <div class="cap-badge">Capitolo 8</div>
                     <h2>Chat Interna, Rete LAN e Stampanti IP</h2>
                     
-                    <h4>La Chat Interna</h4>
-                    <p>Pensata per consentire una comunicazione immediata tra reparti rumorosi, limitando gli spostamenti fisici (es. "Fusti birra finiti, mandatemi qualcuno al Bar"). Per evitare colli di bottiglia sui dispositivi, il Database esegue una routine di Garbage Collection, trattenendo in memoria visibile solo gli <strong>ultimi 10 messaggi</strong>. La ricezione attiva una notifica sonora. L'Admin dispone del tasto "Reset Chat" per pulire completamente la vista in caso di necessità.</p>
-
+                    <h4>La Chat Interna e i Messaggi Privati</h4>
+                    <p>Pensata per consentire una comunicazione immediata tra reparti rumorosi, limitando gli spostamenti fisici (es. "Fusti birra finiti, mandatemi qualcuno al Bar"). Il Database trattiene in memoria visibile solo gli <strong>ultimi 50 messaggi</strong>, eliminando automaticamente i più vecchi per non appesantire i dispositivi. La ricezione attiva una notifica sonora.</p>
+                    <p><strong>Messaggi Privati:</strong> Tramite il menu a tendina a fianco della barra di digitazione, è possibile inviare un messaggio a "🌐 Tutti" (Broadcast) oppure selezionare un singolo reparto (es. <code>@Cassa</code>, <code>@Cucina</code>, <code>@Admin</code>). I messaggi privati appariranno <strong>evidenziati in giallo/arancione</strong> e saranno visibili solo al mittente e al destinatario designato, evitando di inondare gli schermi degli altri reparti con comunicazioni non pertinenti.</p>
+                    
                     <h4>Gestione Rete LAN e Registro Postazioni</h4>
                     <p>Per la massima affidabilità in contesti complessi, il sistema LAN sfrutta il modulo <code>postazioni_lan</code> per orchestrare l'hardware. Ogni tablet loggato inietta un timestamp continuo (Heartbeat, ogni 15 secondi) nella propria voce del registro. Se il tablet viene chiuso o esce dalla pagina, si auto-marca "offline" all'istante tramite l'evento di chiusura del browser; se invece perde semplicemente il segnale Wi-Fi senza chiudere la pagina, il sistema riconosce comunque il proprio stato "online" e lo ripristina in automatico ("istinto di sopravvivenza") appena la connessione torna, evitando falsi allarmi di disconnessione per micro-interruzioni di rete.</p>
 
@@ -519,7 +571,12 @@
                     </div>
                     
                     <p>Nella pagina delle Statistiche, l'Admin potrà poi selezionare tramite menu a tendina se analizzare i grafici a torta e gli output Excel/PDF aggregando i dati di tutta l'intera Sagra, oppure se focalizzarsi analiticamente sul singolo turno archiviato in precedenza.</p>
-
+                    <h4>Gestione Spese e Utile Netto</h4>
+                    <p>Il sistema non si limita a contare i soldi in entrata. La scheda <strong>💸 Spese e Rimborsi</strong> nel pannello Admin funge da registro di "prima nota" per le uscite dell'evento (es. acquisto urgente di ghiaccio, bicchieri di plastica, ecc.).</p>
+                    <ul>
+                        <li><strong>Registrazione:</strong> Si inserisce la descrizione, l'importo e chi ha anticipato i soldi, con una spunta per segnalare se la spesa è "Da Rimborsare" a un volontario.</li>
+                        <li><strong>Calcolo Utile:</strong> Il sistema genera un cruscotto finanziario in tempo reale che confronta l'<strong>Incasso Lordo</strong> della Sagra con il <strong>Totale Spese</strong> inserito, calcolando e mostrando matematicamente l'<strong>Utile (Guadagno Netto)</strong> dell'evento.</li>
+                    </ul>
                     <h4>Schermo Cliente Live</h4>
                     <p>Per la massima trasparenza, BistroBò integra una schermata indipendente (<span class="setting-name">Display Cliente</span>, attivabile dalle impostazioni) pensata per essere riprodotta su una Smart TV rivolta verso il pubblico. Si accede alla pagina, ci si sintonizza sull'ID della Cassa operativa, e lo schermo aggiornerà l'elenco delle voci, il Totale e il Resto in tempo reale man mano che il cassiere tocca i pulsanti. La sincronizzazione funziona solo per i dispositivi che operano con ruolo Cassa o Admin.</p>
 
