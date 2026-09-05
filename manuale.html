@@ -636,18 +636,25 @@
                         <li><strong>🍕 Fame da Lupi:</strong> La singola comanda contenente la maggior quantità di pietanze al suo interno.</li>
                     </ul>
 
-                    <h4>Auto-Backup Cloud</h4>
-                    <p>Distinto dal backup manuale scaricabile come file JSON, il sistema di <strong>Auto-Backup Cloud</strong> lavora silenziosamente in background. Quando attivato, esegue snapshot automatici e periodici dell'intero database direttamente sul cloud Firebase, senza che nessuno debba ricordarsi di farlo.</p>
+                    <h4>Esportazione Dati e Backup di Sistema</h4>
+                    <p>BistroBò è dotato di due motori di salvataggio distinti che operano in modo diverso in base all'architettura che stai utilizzando.</p>
+
                     <ul>
-                        <li><span class="setting-name">autoBackupAbilitato</span>: accende il loop. Alla prima attivazione, esegue subito un backup, poi continua a intervalli regolari.</li>
-                        <li><span class="setting-name">autoBackupIntervallo</span>: frequenza in <strong>minuti</strong> tra un backup e il successivo (es. 30 = ogni mezz'ora). Il sistema esegue il backup solo se i dati sono effettivamente cambiati dall'ultimo snapshot (confronto di hash), evitando di scrivere dati identici.</li>
+                        <li><strong>Backup Completo (Versione Cloud):</strong> Cliccando il pulsante "Scarica Backup" dal pannello Admin online, il sistema genererà un file JSON contenente l'intero ecosistema. Scaricherà comande, preordini, utenti, log, display, menù e impostazioni. È il salvataggio definitivo per la sicurezza dei dati.</li>
+                        <li><strong>Backup Strutturale (Versione LAN):</strong> Sulla rete locale, il pulsante di backup ha uno scopo diverso: funge da esportatore di <em>Template</em>. Scarica esclusivamente l'ossatura dell'evento (Menù, Ingredienti, Impostazioni, Sconti, Mansionari e Spese), escludendo deliberatamente gli operatori e lo storico delle comande. Questa genialità permette di estrarre la configurazione perfetta di una sagra appena conclusa per importarla istantaneamente l'anno successivo su un server vergine, senza portarsi dietro la "spazzatura" del database passato.</li>
                     </ul>
-                    <p><strong>Cosa viene salvato:</strong> lo snapshot è completo — include <code>comande</code>, <code>menu</code>, <code>ingredienti</code>, <code>impostazioni</code>, <code>utenti</code>, <code>preordini</code>, <code>storico_giornate</code> e <code>scontiGlobali</code>. È più completo del backup manuale (che esclude preordini e storico giornate).</p>
-                    <p><strong>Rotazione automatica:</strong> il sistema mantiene sempre solo i <strong>2 backup più recenti</strong>. Prima di salvare il nuovo snapshot, ordina i backup esistenti per timestamp e cancella quelli in eccesso, così il nodo <code>cloud_backups</code> non cresce indefinitamente.</p>
+
+                    <h4>Auto-Backup Cloud (Silenzioso)</h4>
+                    <p>Oltre al backup manuale, la versione Cloud dispone di un <strong>Auto-Backup</strong> che lavora silenziosamente in background. Quando attivato tramite l'interruttore <span class="setting-name">autoBackupAbilitato</span>, esegue snapshot automatici e periodici (es. ogni 30 minuti) dell'intero database direttamente sul cloud Firebase.</p>
+                    <p><strong>Rotazione intelligente:</strong> Il sistema non scriverà nulla se rileva che non sono state fatte operazioni dall'ultimo salvataggio (confronto hash). Inoltre, manterrà sempre e solo le <strong>2 copie più recenti</strong>. Prima di salvare il nuovo snapshot, cancella quelli in eccesso, garantendo che lo spazio cloud non si saturi mai.</p>
 
                     <div class="info-box box-config">
-                        <h5>⚙️ Come Ripristinare da un Backup Cloud</h5>
-                        <p>Dall'apposita sezione nel pannello Admin (visibile solo quando autoBackupAbilitato è ON), compare la lista dei backup disponibili con data e ora. Cliccando "Ripristina DB" sul backup desiderato, il sistema chiede una conferma esplicita, poi <strong>sovrascrive l'intero database corrente</strong> con i dati del backup scelto e ricarica l'app. L'operazione è irreversibile: tutto ciò che è stato registrato <em>dopo</em> il backup verrà perso. Da usare solo in caso di corruzione accidentale dei dati o cancellazione involontaria.</p>
+                        <h5>⚙️ Come Ripristinare da un Backup</h5>
+                        <p>Dall'apposita sezione nel pannello Admin, è possibile ricaricare i dati in due modi:</p>
+                        <ul>
+                            <li><strong>Da file locale (.json):</strong> Cliccando "Ripristina Backup", potrai caricare il file scaricato sul tuo PC. Il sistema applicherà i nodi contenuti nel file, sovrascrivendo l'assetto attuale. Ideale per caricare il "Template" della sagra in locale all'inizio dell'evento.</li>
+                            <li><strong>Da Cloud Rapido:</strong> Cliccando "Ripristina DB" sulla lista delle copie automatiche, il sistema sovrascriverà l'intero database corrente con i dati del backup orario scelto, riavviando l'app. Attenzione: l'operazione è irreversibile e va usata solo in caso di corruzione accidentale o sabotaggio dei dati in corso d'opera.</li>
+                        </ul>
                     </div>
                 </div>
 
