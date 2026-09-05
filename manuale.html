@@ -165,7 +165,7 @@
                         <p>Ideale per locali o piccoli eventi con copertura Wi-Fi o 4G stabile.</p>
                         <ul>
                             <li><strong>Sincronizzazione Cloud:</strong> L'intero sistema comunica tramite i server remoti Firebase.</li>
-                            <li><strong>Scudo Anti-Crash:</strong> Il sistema include un affidabile meccanismo di rilevamento della connessione. In caso di perdita della rete (micro-disconnessioni), l'interfaccia <em>non</em> si blocca: le modifiche vengono messe in coda e sparate al server non appena la connessione torna, evitando comande perse.</li>
+                            <li><strong>Scudo Anti-Crash & Polling:</strong> Il sistema include un rilevatore di connessione (Heartbeat). In caso di perdita della rete internet, l'interfaccia Cloud attiva un livello di sicurezza (Schermata di Connessione Persa) che paralizza le battiture a vuoto per prevenire asincronie nel database. Il sistema esegue un polling continuo in background e ricaricherà automaticamente la pagina ripristinando la sessione non appena il segnale 4G/Wi-Fi tornerà stabile.</li>
                         </ul>
                     </div>
 
@@ -180,19 +180,34 @@
                 </div>
                 <div id="installazione-pwa" class="mt-5">
                     <div class="cap-badge">Setup Iniziale</div>
-                    <h2>Installazione App (PWA) sui Dispositivi</h2>
-                    <p>BistroBò è sviluppata come <strong>Progressive Web App (PWA)</strong>. Grazie al <em>Service Worker</em> e al <em>Manifest</em> integrati, non devi scaricarla dagli store (App Store o Google Play). Puoi installarla direttamente dal browser sui tablet di Cassa, Cucina e Bar per farla girare <strong>a schermo intero, come un'app nativa</strong>, isolandola dalle distrazioni del browser e migliorandone le prestazioni e la stabilità in caso di cali di rete.</p>
+                    <h2>Avvio Sistema e Installazione sui Dispositivi</h2>
+                    <p>Le procedure di avvio e configurazione dei tablet cambiano radicalmente in base alla versione di BistroBò che l'Amministratore decide di utilizzare per l'evento.</p>
 
                     <div class="info-box box-cloud">
-                        <h5>📱 Come Installare BistroBò sui Terminali</h5>
-                        <p>Apri il link dell'applicazione sul dispositivo che vuoi configurare e segui questi passaggi:</p>
+                        <h5><i class="fa-solid fa-cloud me-2"></i> A) Versione Cloud: Installazione App (PWA)</h5>
+                        <p>La versione Cloud si comporta come una <strong>Progressive Web App (PWA)</strong>. Non serve scaricarla dagli store. Apri il link web pubblico dell'applicazione sul dispositivo che vuoi usare come postazione e segui questi passaggi:</p>
                         <ul>
-                            <li><strong>Su iPad / iPhone (Safari):</strong> Tocca l'icona "Condividi" (il quadrato con la freccia verso l'alto) nella barra di navigazione e seleziona <strong>"Aggiungi a schermata Home"</strong>. Verrà creata l'icona dell'app sulla home del dispositivo.</li>
-                            <li><strong>Su Tablet / Smartphone Android (Chrome):</strong> Tocca i tre puntini in alto a destra e seleziona <strong>"Aggiungi a schermata Home"</strong> o <strong>"Installa app"</strong>. Segui le istruzioni a schermo.</li>
-                            <li><strong>Su PC / Mac (Chrome o Edge):</strong> Nella barra degli indirizzi, in alto a destra (vicino alla stella dei preferiti), comparirà un'icona a forma di monitor con una freccia. Cliccala e seleziona "Installa".</li>
+                            <li><strong>Su iPad / iPhone (Safari):</strong> Tocca l'icona "Condividi" (il quadrato con la freccia verso l'alto) e seleziona <strong>"Aggiungi a schermata Home"</strong>.</li>
+                            <li><strong>Su Tablet Android (Chrome):</strong> Tocca i tre puntini in alto a destra e seleziona <strong>"Aggiungi a schermata Home"</strong> o <strong>"Installa app"</strong>.</li>
+                            <li><strong>Su PC / Mac (Chrome o Edge):</strong> Nella barra degli indirizzi, in alto a destra, clicca l'icona a forma di monitor con freccia e seleziona "Installa".</li>
                         </ul>
-                        <p><strong>Importante:</strong> Una volta installata, apri BistroBò sempre dall'icona creata sulla schermata Home e non dal browser. In questo modo si aprirà a schermo intero, senza barra degli indirizzi, impedendo agli operatori di chiudere le schede per errore.</p>
+                        <p><strong>Importante:</strong> Una volta installata, apri BistroBò sempre dall'icona creata sulla schermata Home. In questo modo si aprirà a schermo intero (isolata dal browser), impedendo agli operatori di chiudere le schede per errore.</p>
                     </div>
+
+                    <div class="info-box box-lan">
+                        <h5><i class="fa-solid fa-network-wired me-2"></i> B) Versione LAN: Avvio Server e Connessione Client</h5>
+                        <p>In un contesto locale ad alta densità (es. in una sagra isolata), l'infrastruttura è centralizzata sul PC Windows che fa da server:</p>
+                        <ol>
+                            <li><strong>Rete Locale:</strong> Collega il PC e tutti i tablet allo stesso router Wi-Fi dedicato (non è necessario che il router abbia accesso a internet).</li>
+                            <li><strong>Avvio Server:</strong> Sul PC Windows, avvia il Server Locale. Si aprirà un terminale che farà partire il cuore del sistema e mostrerà un indirizzo IP, ad esempio: <code>http://192.168.1.50:3000</code>.</li>
+                            <li><strong>Dashboard Server:</strong> Cliccando sull'icona a forma di codice QR in alto a destra nell'interfaccia LAN, puoi aprire il pannello di controllo locale per monitorare il flusso dei dati.</li>
+                            <li><strong>Connessione Tablet:</strong> Prendi i tablet di Cassa e Cucina, apri il browser (Chrome/Safari) e digita nella barra degli indirizzi l'IP fornito dal server (es. <code>192.168.1.50:3000</code>). Anche qui, puoi usare la funzione "Aggiungi a schermata home" per creare l'icona veloce.</li>
+                        </ol>
+                    </div>
+
+                    <h4>Gestione Errori e Link Scaduti (Pagina 404)</h4>
+                    <p>Il sistema è progettato per gestire in sicurezza i flussi anomali. Se un cliente scansiona un QR Code dei preordini alterato o tenta di accedere a una pagina rimossa, il sistema intercetta l'errore e lo reindirizza alla pagina di cortesia (<strong>Errore 404</strong>). Questa schermata lo avvisa che il link non è valido e offre un pulsante per tornare alla vetrina principale, impedendo blocchi o crash sul dispositivo del cliente.</p>
+                </div>
 
                     <h4>Gestione Errori e Link Scaduti (Pagina 404)</h4>
                     <p>Il sistema è progettato per gestire in sicurezza i flussi anomali. Se un cliente scansiona un QR Code dei preordini alterato, parziale o tenta di accedere a una pagina rimossa, il sistema intercetta l'errore e lo reindirizza alla pagina di cortesia (<strong>Errore 404</strong>). Questa schermata lo avvisa in modo chiaro che il link non è valido e offre un pulsante per tornare in sicurezza alla vetrina principale, impedendo blocchi o crash sul dispositivo del cliente.</p>
@@ -208,7 +223,7 @@
                     <h4>Registrazione e Flussi di Approvazione</h4>
                     <p>Nella versione Cloud, l'operatore si registra con Email e Password, ricevendo una mail con un link per la validazione. L'Amministratore può decidere due flussi operativi per i nuovi utenti:</p>
                     <ol>
-                        <li><strong>Approvazione Manuale:</strong> L'account verificato rimane in attesa di autorizzazione finché l'admin non gli assegna un ruolo dalla dashboard.</li>
+                        <li><strong>Approvazione Manuale (Flusso Standard):</strong> L'operatore si registra con Email e Password. Il sistema invia tramite EmailJS un link magico sicuro. Cliccando il link, si atterra sulla pagina <strong>Verifica Profilo</strong>, dove l'utente preme "Conferma Operazione" per validare il token. A questo punto l'account è verificato ma rimane "in panchina" finché l'Amministratore non lo approva e gli assegna un ruolo dalla dashboard.</li>
                         <li><strong>Approvazione Automatica:</strong> Attivabile dalle Impostazioni. Consente al nuovo iscritto di selezionare autonomamente il ruolo (es. Cassa o Cucina) e di operare istantaneamente, bypassando l'approvazione umana. Ideale nei minuti caotici prima dell'apertura per far registrare i volontari dell'ultimo minuto.</li>
                     </ol>
                     <h4>Recupero Password</h4>
@@ -468,16 +483,19 @@
                         <h5>📱 Tracking Ordine in Tempo Reale: la Nuova Pagina <code>stato-ordine.html</code></h5>
                         <p>Quando l'impostazione <span class="setting-name">QR Code Stato Ordine</span> è attiva, la <strong>copia cliente</strong> dello scontrino include automaticamente un QR code stampato. Il cliente scansiona il QR e apre <code>stato-ordine.html?n=&lt;numero&gt;</code> — una pagina live, senza login, che aggiorna in tempo reale lo stato della sua comanda reparto per reparto:</p>
                         <ul>
-                            <li>Ogni reparto coinvolto (Cucina, Bar, Snack, Extra) appare con un badge dinamico: <strong>"In Preparazione"</strong> mentre lavora, <strong>"Pronto! ✅"</strong> quando ha segnato la voce come completata.</li>
-                            <li>Quando <em>tutti</em> i reparti sono passati a "Pronto", la pagina suona un <strong>arpeggio gioioso</strong> e mostra un messaggio di ritiro.</li>
-                            <li>La pagina eredita il tema visivo dell'app (inclusa la Modalità Notte e i Temi Stagionali) per una coerenza visiva completa anche lato cliente.</li>
+                            <li>Ogni reparto coinvolto (Cucina, Bar, Snack, Extra) appare con un badge dinamico: <strong>"In coda ⏳"</strong>, <strong>"In Preparazione 🍳"</strong> e infine <strong>"Pronto! ✅"</strong>.</li>
+                            <li>Quando <em>tutti</em> i reparti sono passati a "Pronto", la pagina mostra l'avviso <strong>"TUTTO PRONTO PER IL RITIRO! 🎉"</strong>.</li>
+                            <li><strong>Sblocco Audio:</strong> A causa delle rigide policy dei browser smartphone che bloccano la riproduzione audio automatica, la pagina include un pulsante <strong>"🔊 Attiva Suono Notifiche"</strong>. Se il cliente lo tocca preventivamente, la pagina riprodurrà un arpeggio sonoro non appena la comanda sarà completa, anche se il telefono è appoggiato sul tavolo.</li>
+                            <li>La pagina eredita il tema visivo dell'app (inclusa la Modalità Notte e i Temi Stagionali) per una coerenza visiva completa.</li>
                         </ul>
                         <p>In questo modo il cliente sa esattamente quando il suo cibo è pronto, senza dover fare la fila al bancone o chiedere allo staff — riducendo drasticamente le code e i richiami vocali in sala.</p>
                     </div>
 
                     <div class="info-box box-lan">
-                        <h5><i class="fa-solid fa-network-wired me-2"></i> Preordini nella Versione LAN</h5>
-                        <p>Nella versione Cloud i preordini vivono in pagine web separate (<code>preordini.html</code>, <code>verifica.html</code>, <code>stato-ordine.html</code>). Nella <strong>versione LAN</strong> tutta la logica è integrata nell'unica app locale: la Cassa ha una tab preordini dedicata e l'Admin ha un pannello "📩 Gestione Preordini" con la stessa gestione di visibilità e modalità. Le quattro modalità funzionano anche offline sulla rete Wi-Fi locale, con i clienti che accedono alla pagina preordini tramite l'IP del server locale invece che da internet.</p>
+                        <h5><i class="fa-solid fa-network-wired me-2"></i> Il Ponte (Bridge) Cloud-LAN per i Preordini</h5>
+                        <p>In contesti dove lo Staff opera interamente sulla rete Wi-Fi chiusa (LAN) per abbattere la latenza, sorge un problema: come fanno i clienti a inviare preordini con i loro smartphone in 4G se il gestionale è isolato da internet? BistroBò risolve questo ostacolo ingegneristico con un <strong>Ponte Bidirezionale</strong>.</p>
+                        <p>Un dispositivo "Master" (es. il PC in cassa centrale) viene connesso sia al Wi-Fi locale che a Internet. Questo nodo apre una speciale interfaccia invisibile che si aggancia al Cloud Firebase: scarica i preordini dei clienti in background non appena vengono inviati, e li "inietta" istantaneamente nel Server Locale via WebSocket (e viceversa, trasmette lo stato dell'ordine verso il Cloud).</p>
+                        <p>Il risultato? I clienti usano i propri Giga e il sito pubblico senza impallare il router della Sagra, mentre la Cassa interna riceve i preordini offline a latenza zero, in perfetta sincronia.</p>
                     </div>
                 </div>
 
@@ -577,12 +595,17 @@
                         <li><strong>Registrazione:</strong> Si inserisce la descrizione, l'importo e chi ha anticipato i soldi, con una spunta per segnalare se la spesa è "Da Rimborsare" a un volontario.</li>
                         <li><strong>Calcolo Utile:</strong> Il sistema genera un cruscotto finanziario in tempo reale che confronta l'<strong>Incasso Lordo</strong> della Sagra con il <strong>Totale Spese</strong> inserito, calcolando e mostrando matematicamente l'<strong>Utile (Guadagno Netto)</strong> dell'evento.</li>
                     </ul>
-                    <h4>Schermo Cliente Live</h4>
-                    <p>Per la massima trasparenza, BistroBò integra una schermata indipendente (<span class="setting-name">Display Cliente</span>, attivabile dalle impostazioni) pensata per essere riprodotta su una Smart TV rivolta verso il pubblico. Si accede alla pagina, ci si sintonizza sull'ID della Cassa operativa, e lo schermo aggiornerà l'elenco delle voci, il Totale e il Resto in tempo reale man mano che il cassiere tocca i pulsanti. La sincronizzazione funziona solo per i dispositivi che operano con ruolo Cassa o Admin.</p>
-
+                    <h4>Schermo Cliente Live (Tabellone Ordini)</h4>
+                    <p>Per la massima trasparenza, BistroBò integra una schermata indipendente (<span class="setting-name">Display Cliente</span>, attivabile dalle impostazioni) pensata per essere riprodotta su una Smart TV o tablet rivolto verso il pubblico. Mostra l'elenco delle voci, il Totale, il Pagato e il Resto in tempo reale man mano che il cassiere batte lo scontrino.</p>
+                    
+                    <div class="info-box box-cloud">
+                        <h5><i class="fa-solid fa-cloud me-2"></i> Schermo Cliente nella Versione Cloud</h5>
+                        <p>Una volta abilitato il toggle nelle Impostazioni Admin, comparirà un link diretto <strong>"📺 Apri Schermo Cliente"</strong> sotto all'impostazione. Cliccandolo, si aprirà la pagina dedicata (<code>cliente.html</code>). Per ragioni di sicurezza, il display Cloud è protetto: richiede il login con un account Staff o con le credenziali predefinite per il display (es. <code>cliente@bistrobo.it</code>). Una volta loggato, basta selezionare dal menu a tendina quale Cassa monitorare.</p>
+                    </div>
+                    
                     <div class="info-box box-lan">
                         <h5><i class="fa-solid fa-network-wired me-2"></i> Schermo Cliente nella Versione LAN</h5>
-                        <p>Nella versione LAN, il pulsante "Schermo Cliente" sulla schermata di login compare solo se l'impostazione Display Cliente è attiva. Il tablet dedicato mostra un menu a tendina con l'elenco delle postazioni Cassa attive sulla rete locale: l'operatore seleziona a quale cassa "affiancarsi" e conferma. Da quel momento il tablet resta sintonizzato in tempo reale sui dati di quella specifica cassa (<code>displayLive/&lt;id-cassa&gt;</code>), mostrando l'elenco piatti, il totale, il pagato e il resto man mano che l'operatore batte lo scontrino; finché non arriva nessun articolo, lo schermo mostra semplicemente "IN ATTESA DI ARTICOLI...".</p>
+                        <p>Nella versione LAN, il pulsante "Schermo Cliente" sulla schermata di login locale compare istantaneamente se l'impostazione Display Cliente è attiva sul server. Il tablet dedicato mostra un menu a tendina con l'elenco delle casse attive sulla rete locale: l'operatore seleziona a quale cassa "affiancarsi" e conferma. Da quel momento il tablet resta sintonizzato via Socket (<code>displayLive/&lt;id-cassa&gt;</code>) a latenza zero.</p>
                     </div>
 
                     <h4>Il Gioco Scontrino</h4>
