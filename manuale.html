@@ -195,13 +195,14 @@
                     </div>
 
                     <div class="info-box box-lan">
-                        <h5><i class="fa-solid fa-network-wired me-2"></i> B) Versione LAN: Avvio Server e Connessione Client</h5>
-                        <p>In un contesto locale ad alta densità (es. in una sagra isolata), l'infrastruttura è centralizzata sul PC Windows che fa da server:</p>
+                        <h5><i class="fa-solid fa-network-wired me-2"></i> B) Versione LAN: Installazione Guidata e Avvio</h5>
+                        <p>In un contesto locale ad alta densità (es. in una sagra isolata), l'infrastruttura è centralizzata su un PC Windows che funge da server locale:</p>
                         <ol>
+                            <li><strong>Installazione Guidata (Wizard):</strong> Scarica il pacchetto server LAN di BistroBò sul PC Windows principale. L'eseguibile avvierà una comoda installazione guidata che configurerà automaticamente l'ambiente (Node.js, driver di stampa e permessi di rete) senza richiedere alcuna competenza tecnica.</li>
                             <li><strong>Rete Locale:</strong> Collega il PC e tutti i tablet allo stesso router Wi-Fi dedicato (non è necessario che il router abbia accesso a internet).</li>
-                            <li><strong>Avvio Server:</strong> Sul PC Windows, avvia il Server Locale. Si aprirà un terminale che farà partire il cuore del sistema e mostrerà un indirizzo IP, ad esempio: <code>http://192.168.1.50:3000</code>.</li>
-                            <li><strong>Dashboard Server:</strong> Cliccando sull'icona a forma di codice QR in alto a destra nell'interfaccia LAN, puoi aprire il pannello di controllo locale per monitorare il flusso dei dati.</li>
-                            <li><strong>Connessione Tablet:</strong> Prendi i tablet di Cassa e Cucina, apri il browser (Chrome/Safari) e digita nella barra degli indirizzi l'IP fornito dal server (es. <code>192.168.1.50:3000</code>). Anche qui, puoi usare la funzione "Aggiungi a schermata home" per creare l'icona veloce.</li>
+                            <li><strong>Avvio Server:</strong> Terminato il setup, avvia il Server Locale tramite l'icona creata. Si aprirà una finestra terminale che farà partire il cuore del sistema e mostrerà l'indirizzo IP centrale, ad esempio: <code>http://192.168.1.50:3000</code>.</li>
+                            <li><strong>Dashboard Server:</strong> Cliccando sull'icona a forma di codice QR in alto a destra nell'interfaccia LAN, puoi aprire il pannello di controllo locale per monitorare i dispositivi collegati e la rete.</li>
+                            <li><strong>Connessione Tablet:</strong> Prendi i tablet di Cassa e Cucina, apri il browser e digita l'IP fornito dal server (es. <code>192.168.1.50:3000</code>). Clicca "Aggiungi a schermata home" per trasformarlo in un'App fullscreen.</li>
                         </ol>
                     </div>
 
@@ -247,7 +248,14 @@
                     <div class="cap-badge">Capitolo 2</div>
                     <h2>Impostazioni Globali e Profili Extra</h2>
                     <p>L'Amministratore ha il controllo completo su tutti i reparti. Qualsiasi modifica applicata nel pannello impostazioni viene propagata istantaneamente a tutti i dispositivi connessi senza bisogno di ricaricare le pagine.</p>
-
+                    <h4>🚀 Centro di Controllo (Dashboard Real-Time)</h4>
+                    <p>La primissima schermata dell'Amministratore è un cruscotto operativo avanzato che monitora lo stato di salute dell'intero evento in tempo reale, senza dover leggere ogni singola comanda:</p>
+                    <ul>
+                        <li><strong>Stato Globale:</strong> Un semaforo generale ("Flusso Regolare", "Carico Elevato", "Sovraccarico Rilevato") che valuta lo stress complessivo in base alle comande in coda nei vari reparti.</li>
+                        <li><strong>Clienti Serviti & Ritmo:</strong> Un contatore dei clienti che hanno ricevuto l'intero ordine, affiancato dal <em>Ritmo di Servizio</em> (es. "1 cliente ogni 45s"). Questo indicatore calcola la differenza tra il primo ordine della giornata e l'ultima pietanza uscita, dividendo per il totale dei commensali serviti.</li>
+                        <li><strong>Colli di Bottiglia (Lumaca 🐌):</strong> Un algoritmo analizza i log di preparazione di tutti i piatti. Se un piatto viene cucinato più di 3 volte, il sistema ne calcola la media. Il prodotto con la media di evasione peggiore in ciascun reparto viene segnalato come "Collo di Bottiglia", permettendo all'Admin di intervenire (es. spostando personale alle friggitrici).</li>
+                        <li><strong>Telemetria Reparti:</strong> Per ogni profilo (Cucina, Bar, Snack, Extra) viene mostrata una card contenente il volume in coda, la comanda in attesa da più tempo (con avviso rosso se supera i 30 minuti), il tempo medio di evasione del reparto e il record assoluto di velocità.</li>
+                    </ul>
                     <h4>Personalizzazione e Modalità Manutenzione</h4>
                     <ul>
                         <li><span class="setting-name">Tema Sito</span>: Modifica l'interfaccia grafica scegliendo tra 9 temi preimpostati: <strong>Default, Scout, Autunno, Inverno, Primavera, Estate, Chiaro, Notte</strong> e <strong>Astronave</strong>. Ogni tema ricolora completamente pulsanti, sfondi e badge di tutte le schermate operative.</li>
