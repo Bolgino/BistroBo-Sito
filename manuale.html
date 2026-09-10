@@ -142,6 +142,7 @@
                     <a class="nav-link" href="#mansionario">Capitolo 10: Mansionario e Procedure</a>
                     <a class="nav-link" href="#gestione-scarti">Capitolo 11: Gestione Scarti</a>
                     <a class="nav-link" href="#profilo-xp">Capitolo 12: Profilo, XP e Badge</a>
+                    <a class="nav-link" href="#integrazione-cloud-lan">Capitolo 13: Integrazione Cloud/LAN</a>
 
                     <div class="nav-category">Riferimento Rapido</div>
                     <a class="nav-link" href="#appendice-impostazioni">Appendice: Tutte le Impostazioni</a>
@@ -165,7 +166,7 @@
                         <p>Ideale per locali o piccoli eventi con copertura Wi-Fi o 4G stabile.</p>
                         <ul>
                             <li><strong>Sincronizzazione Cloud:</strong> L'intero sistema comunica tramite i server remoti Firebase.</li>
-                            <li><strong>Scudo Anti-Crash & Polling:</strong> Il sistema include un rilevatore di connessione (Heartbeat). In caso di perdita della rete internet, l'interfaccia Cloud attiva un livello di sicurezza (Schermata di Connessione Persa) che paralizza le battiture a vuoto per prevenire asincronie nel database. Il sistema esegue un polling continuo in background e ricaricherà automaticamente la pagina ripristinando la sessione non appena il segnale 4G/Wi-Fi tornerà stabile.</li>
+                            <li><strong>Scudo Anti-Crash:</strong> Il sistema include un affidabile meccanismo di rilevamento della connessione. In caso di perdita della rete (micro-disconnessioni), l'interfaccia <em>non</em> si blocca: le modifiche vengono messe in coda e sparate al server non appena la connessione torna, evitando comande perse.</li>
                         </ul>
                     </div>
 
@@ -178,37 +179,6 @@
                         </ul>
                     </div>
                 </div>
-                <div id="installazione-pwa" class="mt-5">
-                    <div class="cap-badge">Setup Iniziale</div>
-                    <h2>Avvio Sistema e Installazione sui Dispositivi</h2>
-                    <p>Le procedure di avvio e configurazione dei tablet cambiano radicalmente in base alla versione di BistroBò che l'Amministratore decide di utilizzare per l'evento.</p>
-
-                    <div class="info-box box-cloud">
-                        <h5><i class="fa-solid fa-cloud me-2"></i> A) Versione Cloud: Installazione App (PWA)</h5>
-                        <p>La versione Cloud si comporta come una <strong>Progressive Web App (PWA)</strong>. Non serve scaricarla dagli store. Apri il link web pubblico dell'applicazione sul dispositivo che vuoi usare come postazione e segui questi passaggi:</p>
-                        <ul>
-                            <li><strong>Su iPad / iPhone (Safari):</strong> Tocca l'icona "Condividi" (il quadrato con la freccia verso l'alto) e seleziona <strong>"Aggiungi a schermata Home"</strong>.</li>
-                            <li><strong>Su Tablet Android (Chrome):</strong> Tocca i tre puntini in alto a destra e seleziona <strong>"Aggiungi a schermata Home"</strong> o <strong>"Installa app"</strong>.</li>
-                            <li><strong>Su PC / Mac (Chrome o Edge):</strong> Nella barra degli indirizzi, in alto a destra, clicca l'icona a forma di monitor con freccia e seleziona "Installa".</li>
-                        </ul>
-                        <p><strong>Importante:</strong> Una volta installata, apri BistroBò sempre dall'icona creata sulla schermata Home. In questo modo si aprirà a schermo intero (isolata dal browser), impedendo agli operatori di chiudere le schede per errore.</p>
-                    </div>
-
-                    <div class="info-box box-lan">
-                        <h5><i class="fa-solid fa-network-wired me-2"></i> B) Versione LAN: Installazione Guidata e Avvio</h5>
-                        <p>In un contesto locale ad alta densità (es. in una sagra isolata), l'infrastruttura è centralizzata su un PC Windows che funge da server locale:</p>
-                        <ol>
-                            <li><strong>Installazione Guidata (Wizard):</strong> Scarica il pacchetto server LAN di BistroBò sul PC Windows principale. L'eseguibile avvierà una comoda installazione guidata che configurerà automaticamente l'ambiente (Node.js, driver di stampa e permessi di rete) senza richiedere alcuna competenza tecnica.</li>
-                            <li><strong>Rete Locale:</strong> Collega il PC e tutti i tablet allo stesso router Wi-Fi dedicato (non è necessario che il router abbia accesso a internet).</li>
-                            <li><strong>Avvio Server:</strong> Terminato il setup, avvia il Server Locale tramite l'icona creata. Si aprirà una finestra terminale che farà partire il cuore del sistema e mostrerà l'indirizzo IP centrale, ad esempio: <code>http://192.168.1.50:3000</code>.</li>
-                            <li><strong>Dashboard Server:</strong> Cliccando sull'icona a forma di codice QR in alto a destra nell'interfaccia LAN, puoi aprire il pannello di controllo locale per monitorare i dispositivi collegati e la rete.</li>
-                            <li><strong>Connessione Tablet:</strong> Prendi i tablet di Cassa e Cucina, apri il browser e digita l'IP fornito dal server (es. <code>192.168.1.50:3000</code>). Clicca "Aggiungi a schermata home" per trasformarlo in un'App fullscreen.</li>
-                        </ol>
-                    </div>
-
-                    <h4>Gestione Errori e Link Scaduti (Pagina 404)</h4>
-                    <p>Il sistema è progettato per gestire in sicurezza i flussi anomali. Se un cliente scansiona un QR Code dei preordini alterato o tenta di accedere a una pagina rimossa, il sistema intercetta l'errore e lo reindirizza alla pagina di cortesia (<strong>Errore 404</strong>). Questa schermata lo avvisa che il link non è valido e offre un pulsante per tornare alla vetrina principale, impedendo blocchi o crash sul dispositivo del cliente.</p>
-                </div>
 
                 <hr style="border-color: #334155; margin: 50px 0;">
 
@@ -220,11 +190,9 @@
                     <h4>Registrazione e Flussi di Approvazione</h4>
                     <p>Nella versione Cloud, l'operatore si registra con Email e Password, ricevendo una mail con un link per la validazione. L'Amministratore può decidere due flussi operativi per i nuovi utenti:</p>
                     <ol>
-                        <li><strong>Approvazione Manuale (Flusso Standard):</strong> L'operatore si registra con Email e Password. Il sistema invia tramite EmailJS un link magico sicuro. Cliccando il link, si atterra sulla pagina <strong>Verifica Profilo</strong>, dove l'utente preme "Conferma Operazione" per validare il token. A questo punto l'account è verificato ma rimane "in panchina" finché l'Amministratore non lo approva e gli assegna un ruolo dalla dashboard.</li>
+                        <li><strong>Approvazione Manuale:</strong> L'account verificato rimane in attesa di autorizzazione finché l'admin non gli assegna un ruolo dalla dashboard.</li>
                         <li><strong>Approvazione Automatica:</strong> Attivabile dalle Impostazioni. Consente al nuovo iscritto di selezionare autonomamente il ruolo (es. Cassa o Cucina) e di operare istantaneamente, bypassando l'approvazione umana. Ideale nei minuti caotici prima dell'apertura per far registrare i volontari dell'ultimo minuto.</li>
                     </ol>
-                    <h4>Recupero Password</h4>
-                    <p>In caso di smarrimento delle credenziali, gli operatori possono utilizzare il link <strong>"Hai dimenticato la password?"</strong> presente nella schermata di Login. Inserendo la propria email, il sistema Firebase invierà in automatico un link sicuro per reimpostare la password in totale autonomia, senza richiedere l'intervento dell'Amministratore.</p>
                     <p>Nella versione LAN l'accesso è ancora più immediato: non esiste registrazione via email. Alla partenza dell'app compare direttamente una schermata "Postazione LAN" con un pulsante per ciascun ruolo disponibile (<strong>💰 Cassa, 🍳 Cucina, 🍺 Bere, 🍟 Snack</strong>, e un pulsante nascosto <strong>Schermo Cliente</strong> che appare solo se l'impostazione relativa è attiva). Toccando un pulsante, il tablet si auto-registra: genera (o recupera da <code>localStorage</code>) un numero identificativo univoco della postazione, comunica la propria presenza al Server Locale via WebSocket e inizia a operare istantaneamente con quel ruolo, senza password.</p>
 
                     <div class="info-box box-danger">
@@ -244,14 +212,7 @@
                     <div class="cap-badge">Capitolo 2</div>
                     <h2>Impostazioni Globali e Profili Extra</h2>
                     <p>L'Amministratore ha il controllo completo su tutti i reparti. Qualsiasi modifica applicata nel pannello impostazioni viene propagata istantaneamente a tutti i dispositivi connessi senza bisogno di ricaricare le pagine.</p>
-                    <h4>🚀 Centro di Controllo (Dashboard Real-Time)</h4>
-                    <p>La primissima schermata dell'Amministratore è un cruscotto operativo avanzato che monitora lo stato di salute dell'intero evento in tempo reale, senza dover leggere ogni singola comanda:</p>
-                    <ul>
-                        <li><strong>Stato Globale:</strong> Un semaforo generale ("Flusso Regolare", "Carico Elevato", "Sovraccarico Rilevato") che valuta lo stress complessivo in base alle comande in coda nei vari reparti.</li>
-                        <li><strong>Clienti Serviti & Ritmo:</strong> Un contatore dei clienti che hanno ricevuto l'intero ordine, affiancato dal <em>Ritmo di Servizio</em> (es. "1 cliente ogni 45s"). Questo indicatore calcola la differenza tra il primo ordine della giornata e l'ultima pietanza uscita, dividendo per il totale dei commensali serviti.</li>
-                        <li><strong>Colli di Bottiglia (Lumaca 🐌):</strong> Un algoritmo analizza i log di preparazione di tutti i piatti. Se un piatto viene cucinato più di 3 volte, il sistema ne calcola la media. Il prodotto con la media di evasione peggiore in ciascun reparto viene segnalato come "Collo di Bottiglia", permettendo all'Admin di intervenire (es. spostando personale alle friggitrici).</li>
-                        <li><strong>Telemetria Reparti:</strong> Per ogni profilo (Cucina, Bar, Snack, Extra) viene mostrata una card contenente il volume in coda, la comanda in attesa da più tempo (con avviso rosso se supera i 30 minuti), il tempo medio di evasione del reparto e il record assoluto di velocità.</li>
-                    </ul>
+
                     <h4>Personalizzazione e Modalità Manutenzione</h4>
                     <ul>
                         <li><span class="setting-name">Tema Sito</span>: Modifica l'interfaccia grafica scegliendo tra 9 temi preimpostati: <strong>Default, Scout, Autunno, Inverno, Primavera, Estate, Chiaro, Notte</strong> e <strong>Astronave</strong>. Ogni tema ricolora completamente pulsanti, sfondi e badge di tutte le schermate operative.</li>
@@ -291,9 +252,7 @@
                         <li>Gli Admin non vedono il popup su se stessi, per evitare di bloccarsi mentre lo pubblicano.</li>
                     </ol>
                     <p>Ideale per comunicare al volo cambi di prezzo, ingredienti terminati, o istruzioni operative urgenti durante il servizio, senza dover urlare da un capo all'altro della cucina.</p>
-                    <h4>Registro Attività di Sistema (Audit Log)</h4>
-                    <p>La tab <strong>📜 Log Sistema</strong> nel pannello Admin è uno schedario di sola lettura che traccia in automatico tutte le azioni sensibili compiute dagli operatori all'interno del gestionale (es. l'eliminazione di una comanda, la modifica di un ordine, il reset del magazzino o la chiusura dei reparti).</p>
-                    <p>Il sistema registra per ciascun evento il timestamp esatto, il nome dell'operatore, l'email e il ruolo, garantendo una tracciabilità totale e trasparente di ogni operazione critica eseguita durante il servizio.</p>
+
                     <h4>I Profili Extra (Fino a 3 Reparti Aggiuntivi) e il Reparto Snack</h4>
                     <p>Oltre a Cucina e Bar (sempre presenti), BistroBò offre due livelli di espansione dei reparti:</p>
                     <ul>
@@ -320,12 +279,6 @@
                         <li>Inserisci il <strong>Prezzo Extra</strong> (es. 0.50€) e la <strong>Qty scalata</strong> al magazzino ad ogni utilizzo.</li>
                         <li>Scegli in quali reparti (Cibi, Bevande, ecc.) mostrare questa opzione in Cassa.</li>
                     </ol>
-                    <h4>Diete e Allergeni (SG, SL, V, VG)</h4>
-                    <p>In fase di creazione o modifica di un piatto, è possibile assegnare dei tag specifici per le intolleranze o le scelte alimentari: <strong>Senza Glutine (SG), Senza Lattosio (SL), Vegetariano (V), Vegano (VG)</strong>.</p>
-                    <ul>
-                        <li><strong>In Cassa e Produzione:</strong> I tag appaiono come marcatori rossi ad alto contrasto accanto al nome del piatto, per allertare immediatamente il cassiere e i cuochi ed evitare contaminazioni incrociate durante la preparazione.</li>
-                        <li><strong>Nei Preordini Pubblici:</strong> I clienti visualizzeranno una comoda barra di filtri in cima al menu per isolare istantaneamente, ad esempio, solo i piatti senza glutine o vegani.</li>
-                    </ul>
 
                     <h4>Piatti Combo (Menù Fisso Integrato)</h4>
                     <p>Puoi offrire pacchetti come "Menu Sagra: Panino + Bibita + Patatine a 12€".</p>
@@ -394,13 +347,7 @@
                         <li>Scompone matematicamente il resto usando un algoritmo "a taglio minimo": parte dal taglio più grande disponibile e scende via via, fornendo la combinazione più semplice possibile di banconote e monete da restituire (es. <em>Resto 17,50€ = 1x 10€, 1x 5€, 1x 2€, 1x 0,50€</em>), evitando di dover consegnare tante monetine quando basterebbe un taglio più grande.</li>
                     </ol>
                     <p>Per la chiusura contabile, è possibile contrassegnare il "Metodo Pagamento" come <strong>POS</strong> per slegarlo dal conteggio dei contanti. Un ulteriore toggle permette di forzare la <strong>Stampa di Scontrini Separati</strong>, generando un ticket diverso per ogni reparto anziché una singola strisciata lunga.</p>
-                    <h4>Divisione del Conto e Pagamenti Misti</h4>
-                    <p>Tramite il pulsante <kbd>🧮 Dividi Conto</kbd> presente in Cassa, è possibile gestire le casistiche di pagamento complesse attraverso tre modalità avanzate:</p>
-                    <ul>
-                        <li><strong>Misto (Contanti + POS):</strong> Per lo stesso scontrino, permette di digitare la cifra esatta pagata in contanti; il sistema calcola automaticamente la rimanenza da battere sul POS, aggiornando le statistiche correttamente.</li>
-                        <li><strong>Alla Romana:</strong> Divide il totale in parti uguali specificando il numero di commensali (es. Diviso 4 = 12,50€ a testa). Permette poi di registrare quante quote sono saldate in contanti e quante col POS.</li>
-                        <li><strong>Per Articoli:</strong> Ideale per le comitive. Mostra l'elenco dei piatti ordinati e permette di "spuntare" solo le voci che il Cliente 1 vuole pagare in quel momento, calcolando il subtotale parziale e permettendo di saldarlo indipendentemente dal resto del tavolo.</li>
-                    </ul>
+
                     <h4>Coperto per Persona</h4>
                     <p>Se attivato dalle impostazioni, il "Coperto" aggiunge automaticamente in cassa una voce extra dal costo fisso configurabile, moltiplicata per il numero di persone al tavolo. Compare come riga separata e distinta dai piatti nello scontrino, per rendere trasparente al cliente il costo di servizio.</p>
 
@@ -409,14 +356,7 @@
 
                     <h4>Tempo di Attesa Proiettato</h4>
                     <p>In alto a destra, la cassa mostra il "tempo medio di attesa", calcolato dinamicamente sullo storico delle comande già chiuse. L'Admin può escludere determinati reparti (es. il Bar) da questo calcolo per non falsare le stime di attesa della cucina vera e propria con le preparazioni istantanee delle bevande.</p>
-                    <h4>Fondi e Filtri Avanzati nelle Liste Comande</h4>
-                    <p>Sia nella schermata di Cassa che nel pannello Admin, le liste delle comande inviate dispongono di una <strong>barra di filtri avanzati</strong> in tempo reale. Durante il servizio caotico, l'operatore può isolare rapidamente gli ordini digitando o selezionando parametri specifici:</p>
-                    <ul>
-                        <li><strong>Numero Comanda o Lettera:</strong> Per rintracciare subito un ordine specifico cercandone il progressivo.</li>
-                        <li><strong>Numero Tavolo:</strong> Per visualizzare al volo tutte le comande collegate a un determinato tavolo.</li>
-                        <li><strong>Contenuto Piatto:</strong> Un campo di ricerca testuale che filtra le comande in base ai prodotti contenuti (es. digitando "Patatine" compaiono solo gli ordini che le contengono).</li>
-                        <li><strong>Intervallo Orario (Da / A):</strong> Filtra le comande emesse in una specifica fascia temporale, utile per controlli amministrativi o verifiche su ritardi.</li>
-                    </ul>
+
                     <h4>Richiedi Numero Tavolo</h4>
                     <p>Quando l'impostazione <span class="setting-name">Richiedi Tavolo</span> è attiva, la cassa mostra un campo obbligatorio per il numero di tavolo. Il cassiere <strong>non può inviare la comanda</strong> finché questo campo non è compilato — il tasto "Invia" rimane disabilitato. Il numero di tavolo inserito viene salvato nella comanda e stampato sullo scontrino, ed è visibile anche sul monitor di produzione per consentire ai cuochi di chiamare il cliente corretto al momento del ritiro. Disattivandolo, il campo scompare e il flusso torna al normale invio senza numero tavolo.</p>
 
@@ -487,19 +427,16 @@
                         <h5>📱 Tracking Ordine in Tempo Reale: la Nuova Pagina <code>stato-ordine.html</code></h5>
                         <p>Quando l'impostazione <span class="setting-name">QR Code Stato Ordine</span> è attiva, la <strong>copia cliente</strong> dello scontrino include automaticamente un QR code stampato. Il cliente scansiona il QR e apre <code>stato-ordine.html?n=&lt;numero&gt;</code> — una pagina live, senza login, che aggiorna in tempo reale lo stato della sua comanda reparto per reparto:</p>
                         <ul>
-                            <li>Ogni reparto coinvolto (Cucina, Bar, Snack, Extra) appare con un badge dinamico: <strong>"In coda ⏳"</strong>, <strong>"In Preparazione 🍳"</strong> e infine <strong>"Pronto! ✅"</strong>.</li>
-                            <li>Quando <em>tutti</em> i reparti sono passati a "Pronto", la pagina mostra l'avviso <strong>"TUTTO PRONTO PER IL RITIRO! 🎉"</strong>.</li>
-                            <li><strong>Sblocco Audio:</strong> A causa delle rigide policy dei browser smartphone che bloccano la riproduzione audio automatica, la pagina include un pulsante <strong>"🔊 Attiva Suono Notifiche"</strong>. Se il cliente lo tocca preventivamente, la pagina riprodurrà un arpeggio sonoro non appena la comanda sarà completa, anche se il telefono è appoggiato sul tavolo.</li>
-                            <li>La pagina eredita il tema visivo dell'app (inclusa la Modalità Notte e i Temi Stagionali) per una coerenza visiva completa.</li>
+                            <li>Ogni reparto coinvolto (Cucina, Bar, Snack, Extra) appare con un badge dinamico: <strong>"In Preparazione"</strong> mentre lavora, <strong>"Pronto! ✅"</strong> quando ha segnato la voce come completata.</li>
+                            <li>Quando <em>tutti</em> i reparti sono passati a "Pronto", la pagina suona un <strong>arpeggio gioioso</strong> e mostra un messaggio di ritiro.</li>
+                            <li>La pagina eredita il tema visivo dell'app (inclusa la Modalità Notte e i Temi Stagionali) per una coerenza visiva completa anche lato cliente.</li>
                         </ul>
                         <p>In questo modo il cliente sa esattamente quando il suo cibo è pronto, senza dover fare la fila al bancone o chiedere allo staff — riducendo drasticamente le code e i richiami vocali in sala.</p>
                     </div>
 
                     <div class="info-box box-lan">
-                        <h5><i class="fa-solid fa-network-wired me-2"></i> Il Ponte (Bridge) Cloud-LAN per i Preordini</h5>
-                        <p>In contesti dove lo Staff opera interamente sulla rete Wi-Fi chiusa (LAN) per abbattere la latenza, sorge un problema: come fanno i clienti a inviare preordini con i loro smartphone in 4G se il gestionale è isolato da internet? BistroBò risolve questo ostacolo ingegneristico con un <strong>Ponte Bidirezionale</strong>.</p>
-                        <p>Un dispositivo "Master" (es. il PC in cassa centrale) viene connesso sia al Wi-Fi locale che a Internet. Questo nodo apre una speciale interfaccia invisibile che si aggancia al Cloud Firebase: scarica i preordini dei clienti in background non appena vengono inviati, e li "inietta" istantaneamente nel Server Locale via WebSocket (e viceversa, trasmette lo stato dell'ordine verso il Cloud).</p>
-                        <p>Il risultato? I clienti usano i propri Giga e il sito pubblico senza impallare il router della Sagra, mentre la Cassa interna riceve i preordini offline a latenza zero, in perfetta sincronia.</p>
+                        <h5><i class="fa-solid fa-network-wired me-2"></i> Preordini nella Versione LAN</h5>
+                        <p>Nella versione Cloud i preordini vivono in pagine web separate (<code>preordini.html</code>, <code>verifica.html</code>, <code>stato-ordine.html</code>). Nella <strong>versione LAN</strong> tutta la logica è integrata nell'unica app locale: la Cassa ha una tab preordini dedicata e l'Admin ha un pannello "📩 Gestione Preordini" con la stessa gestione di visibilità e modalità. Le quattro modalità funzionano anche offline sulla rete Wi-Fi locale, con i clienti che accedono alla pagina preordini tramite l'IP del server locale invece che da internet.</p>
                     </div>
                 </div>
 
@@ -519,15 +456,6 @@
 
                     <h4>Vista Sommario (Cruscotto Quantità)</h4>
                     <p>Sotto stress, guardare 40 comande singole è disorientante. Premendo il tasto <kbd>VISTA SOMMARIO</kbd>, si apre un modale che raggruppa dinamicamente e conta tutte le voci non ancora prodotte dell'intero reparto (es. <em>Da preparare in totale: 45 Hamburger, 22 Patatine</em>), consentendo all'addetto alla griglia o alla friggitrice di sapere esattamente quanta merce mettere in cottura in quel preciso momento. Il conteggio non si limita ai piatti principali: include anche i contorni e le varianti/aggiunte scelte dai clienti (es. quante porzioni extra di formaggio servono in totale), così chi cucina ha il quadro produttivo realmente completo, non solo la lista dei piatti "base".</p>
-                    <div class="info-box box-danger">
-                        <h5>🛑 Chiusura Fine Servizio (Blocco Reparto)</h5>
-                        <p>Quando la serata volge al termine o un reparto esaurisce la capacità produttiva, l'operatore autorizzato può cliccare il pulsante <strong>"🛑 CHIUDI REPARTO"</strong> dal proprio monitor di produzione.</p>
-                        <ul>
-                            <li><strong>Effetto immediato:</strong> Tutti i pulsanti dei piatti appartenenti a quel reparto, nella schermata di Cassa, diventano grigi, non cliccabili e marchiati con l'etichetta "🛑 Chiuso".</li>
-                            <li><strong>Preordini:</strong> I piatti del reparto chiuso diventano istantaneamente non ordinabili anche per i clienti dal proprio smartphone.</li>
-                            <li><strong>Sicurezza:</strong> L'operazione è reversibile solo dall'Amministratore, che può forzare la riapertura del reparto dalla scheda "Gestione Profili" del pannello Admin.</li>
-                        </ul>
-                    </div>
                 </div>
 
                 <div id="magazzino" class="mt-5">
@@ -554,10 +482,9 @@
                     <div class="cap-badge">Capitolo 8</div>
                     <h2>Chat Interna, Rete LAN e Stampanti IP</h2>
                     
-                    <h4>La Chat Interna e i Messaggi Privati</h4>
-                    <p>Pensata per consentire una comunicazione immediata tra reparti rumorosi, limitando gli spostamenti fisici (es. "Fusti birra finiti, mandatemi qualcuno al Bar"). Il Database trattiene in memoria visibile solo gli <strong>ultimi 50 messaggi</strong>, eliminando automaticamente i più vecchi per non appesantire i dispositivi. La ricezione attiva una notifica sonora.</p>
-                    <p><strong>Messaggi Privati:</strong> Tramite il menu a tendina a fianco della barra di digitazione, è possibile inviare un messaggio a "🌐 Tutti" (Broadcast) oppure selezionare un singolo reparto (es. <code>@Cassa</code>, <code>@Cucina</code>, <code>@Admin</code>). I messaggi privati appariranno <strong>evidenziati in giallo/arancione</strong> e saranno visibili solo al mittente e al destinatario designato, evitando di inondare gli schermi degli altri reparti con comunicazioni non pertinenti.</p>
-                    
+                    <h4>La Chat Interna</h4>
+                    <p>Pensata per consentire una comunicazione immediata tra reparti rumorosi, limitando gli spostamenti fisici (es. "Fusti birra finiti, mandatemi qualcuno al Bar"). Per evitare colli di bottiglia sui dispositivi, il Database esegue una routine di Garbage Collection, trattenendo in memoria visibile solo gli <strong>ultimi 10 messaggi</strong>. La ricezione attiva una notifica sonora. L'Admin dispone del tasto "Reset Chat" per pulire completamente la vista in caso di necessità.</p>
+
                     <h4>Gestione Rete LAN e Registro Postazioni</h4>
                     <p>Per la massima affidabilità in contesti complessi, il sistema LAN sfrutta il modulo <code>postazioni_lan</code> per orchestrare l'hardware. Ogni tablet loggato inietta un timestamp continuo (Heartbeat, ogni 15 secondi) nella propria voce del registro. Se il tablet viene chiuso o esce dalla pagina, si auto-marca "offline" all'istante tramite l'evento di chiusura del browser; se invece perde semplicemente il segnale Wi-Fi senza chiudere la pagina, il sistema riconosce comunque il proprio stato "online" e lo ripristina in automatico ("istinto di sopravvivenza") appena la connessione torna, evitando falsi allarmi di disconnessione per micro-interruzioni di rete.</p>
 
@@ -593,23 +520,13 @@
                     </div>
                     
                     <p>Nella pagina delle Statistiche, l'Admin potrà poi selezionare tramite menu a tendina se analizzare i grafici a torta e gli output Excel/PDF aggregando i dati di tutta l'intera Sagra, oppure se focalizzarsi analiticamente sul singolo turno archiviato in precedenza.</p>
-                    <h4>Gestione Spese e Utile Netto</h4>
-                    <p>Il sistema non si limita a contare i soldi in entrata. La scheda <strong>💸 Spese e Rimborsi</strong> nel pannello Admin funge da registro di "prima nota" per le uscite dell'evento (es. acquisto urgente di ghiaccio, bicchieri di plastica, ecc.).</p>
-                    <ul>
-                        <li><strong>Registrazione:</strong> Si inserisce la descrizione, l'importo e chi ha anticipato i soldi, con una spunta per segnalare se la spesa è "Da Rimborsare" a un volontario.</li>
-                        <li><strong>Calcolo Utile:</strong> Il sistema genera un cruscotto finanziario in tempo reale che confronta l'<strong>Incasso Lordo</strong> della Sagra con il <strong>Totale Spese</strong> inserito, calcolando e mostrando matematicamente l'<strong>Utile (Guadagno Netto)</strong> dell'evento.</li>
-                    </ul>
-                    <h4>Schermo Cliente Live (Tabellone Ordini)</h4>
-                    <p>Per la massima trasparenza, BistroBò integra una schermata indipendente (<span class="setting-name">Display Cliente</span>, attivabile dalle impostazioni) pensata per essere riprodotta su una Smart TV o tablet rivolto verso il pubblico. Mostra l'elenco delle voci, il Totale, il Pagato e il Resto in tempo reale man mano che il cassiere batte lo scontrino.</p>
-                    
-                    <div class="info-box box-cloud">
-                        <h5><i class="fa-solid fa-cloud me-2"></i> Schermo Cliente nella Versione Cloud</h5>
-                        <p>Una volta abilitato il toggle nelle Impostazioni Admin, comparirà un link diretto <strong>"📺 Apri Schermo Cliente"</strong> sotto all'impostazione. Cliccandolo, si aprirà la pagina dedicata (<code>cliente.html</code>). Per ragioni di sicurezza, il display Cloud è protetto: richiede il login con un account Staff o con le credenziali predefinite per il display (es. <code>cliente@bistrobo.it</code>). Una volta loggato, basta selezionare dal menu a tendina quale Cassa monitorare.</p>
-                    </div>
-                    
+
+                    <h4>Schermo Cliente Live</h4>
+                    <p>Per la massima trasparenza, BistroBò integra una schermata indipendente (<span class="setting-name">Display Cliente</span>, attivabile dalle impostazioni) pensata per essere riprodotta su una Smart TV rivolta verso il pubblico. Si accede alla pagina, ci si sintonizza sull'ID della Cassa operativa, e lo schermo aggiornerà l'elenco delle voci, il Totale e il Resto in tempo reale man mano che il cassiere tocca i pulsanti. La sincronizzazione funziona solo per i dispositivi che operano con ruolo Cassa o Admin.</p>
+
                     <div class="info-box box-lan">
                         <h5><i class="fa-solid fa-network-wired me-2"></i> Schermo Cliente nella Versione LAN</h5>
-                        <p>Nella versione LAN, il pulsante "Schermo Cliente" sulla schermata di login locale compare istantaneamente se l'impostazione Display Cliente è attiva sul server. Il tablet dedicato mostra un menu a tendina con l'elenco delle casse attive sulla rete locale: l'operatore seleziona a quale cassa "affiancarsi" e conferma. Da quel momento il tablet resta sintonizzato via Socket (<code>displayLive/&lt;id-cassa&gt;</code>) a latenza zero.</p>
+                        <p>Nella versione LAN, il pulsante "Schermo Cliente" sulla schermata di login compare solo se l'impostazione Display Cliente è attiva. Il tablet dedicato mostra un menu a tendina con l'elenco delle postazioni Cassa attive sulla rete locale: l'operatore seleziona a quale cassa "affiancarsi" e conferma. Da quel momento il tablet resta sintonizzato in tempo reale sui dati di quella specifica cassa (<code>displayLive/&lt;id-cassa&gt;</code>), mostrando l'elenco piatti, il totale, il pagato e il resto man mano che l'operatore batte lo scontrino; finché non arriva nessun articolo, lo schermo mostra semplicemente "IN ATTESA DI ARTICOLI...".</p>
                     </div>
 
                     <h4>Il Gioco Scontrino</h4>
@@ -636,25 +553,18 @@
                         <li><strong>🍕 Fame da Lupi:</strong> La singola comanda contenente la maggior quantità di pietanze al suo interno.</li>
                     </ul>
 
-                    <h4>Esportazione Dati e Backup di Sistema</h4>
-                    <p>BistroBò è dotato di due motori di salvataggio distinti che operano in modo diverso in base all'architettura che stai utilizzando.</p>
-
+                    <h4>Auto-Backup Cloud</h4>
+                    <p>Distinto dal backup manuale scaricabile come file JSON, il sistema di <strong>Auto-Backup Cloud</strong> lavora silenziosamente in background. Quando attivato, esegue snapshot automatici e periodici dell'intero database direttamente sul cloud Firebase, senza che nessuno debba ricordarsi di farlo.</p>
                     <ul>
-                        <li><strong>Backup Completo (Versione Cloud):</strong> Cliccando il pulsante "Scarica Backup" dal pannello Admin online, il sistema genererà un file JSON contenente l'intero ecosistema. Scaricherà comande, preordini, utenti, log, display, menù e impostazioni. È il salvataggio definitivo per la sicurezza dei dati.</li>
-                        <li><strong>Backup Strutturale (Versione LAN):</strong> Sulla rete locale, il pulsante di backup ha uno scopo diverso: funge da esportatore di <em>Template</em>. Scarica esclusivamente l'ossatura dell'evento (Menù, Ingredienti, Impostazioni, Sconti, Mansionari e Spese), escludendo deliberatamente gli operatori e lo storico delle comande. Questa genialità permette di estrarre la configurazione perfetta di una sagra appena conclusa per importarla istantaneamente l'anno successivo su un server vergine, senza portarsi dietro la "spazzatura" del database passato.</li>
+                        <li><span class="setting-name">autoBackupAbilitato</span>: accende il loop. Alla prima attivazione, esegue subito un backup, poi continua a intervalli regolari.</li>
+                        <li><span class="setting-name">autoBackupIntervallo</span>: frequenza in <strong>minuti</strong> tra un backup e il successivo (es. 30 = ogni mezz'ora). Il sistema esegue il backup solo se i dati sono effettivamente cambiati dall'ultimo snapshot (confronto di hash), evitando di scrivere dati identici.</li>
                     </ul>
-
-                    <h4>Auto-Backup Cloud (Silenzioso)</h4>
-                    <p>Oltre al backup manuale, la versione Cloud dispone di un <strong>Auto-Backup</strong> che lavora silenziosamente in background. Quando attivato tramite l'interruttore <span class="setting-name">autoBackupAbilitato</span>, esegue snapshot automatici e periodici (es. ogni 30 minuti) dell'intero database direttamente sul cloud Firebase.</p>
-                    <p><strong>Rotazione intelligente:</strong> Il sistema non scriverà nulla se rileva che non sono state fatte operazioni dall'ultimo salvataggio (confronto hash). Inoltre, manterrà sempre e solo le <strong>2 copie più recenti</strong>. Prima di salvare il nuovo snapshot, cancella quelli in eccesso, garantendo che lo spazio cloud non si saturi mai.</p>
+                    <p><strong>Cosa viene salvato:</strong> lo snapshot è completo — include <code>comande</code>, <code>menu</code>, <code>ingredienti</code>, <code>impostazioni</code>, <code>utenti</code>, <code>preordini</code>, <code>storico_giornate</code> e <code>scontiGlobali</code>. È più completo del backup manuale (che esclude preordini e storico giornate).</p>
+                    <p><strong>Rotazione automatica:</strong> il sistema mantiene sempre solo i <strong>2 backup più recenti</strong>. Prima di salvare il nuovo snapshot, ordina i backup esistenti per timestamp e cancella quelli in eccesso, così il nodo <code>cloud_backups</code> non cresce indefinitamente.</p>
 
                     <div class="info-box box-config">
-                        <h5>⚙️ Come Ripristinare da un Backup</h5>
-                        <p>Dall'apposita sezione nel pannello Admin, è possibile ricaricare i dati in due modi:</p>
-                        <ul>
-                            <li><strong>Da file locale (.json):</strong> Cliccando "Ripristina Backup", potrai caricare il file scaricato sul tuo PC. Il sistema applicherà i nodi contenuti nel file, sovrascrivendo l'assetto attuale. Ideale per caricare il "Template" della sagra in locale all'inizio dell'evento.</li>
-                            <li><strong>Da Cloud Rapido:</strong> Cliccando "Ripristina DB" sulla lista delle copie automatiche, il sistema sovrascriverà l'intero database corrente con i dati del backup orario scelto, riavviando l'app. Attenzione: l'operazione è irreversibile e va usata solo in caso di corruzione accidentale o sabotaggio dei dati in corso d'opera.</li>
-                        </ul>
+                        <h5>⚙️ Come Ripristinare da un Backup Cloud</h5>
+                        <p>Dall'apposita sezione nel pannello Admin (visibile solo quando autoBackupAbilitato è ON), compare la lista dei backup disponibili con data e ora. Cliccando "Ripristina DB" sul backup desiderato, il sistema chiede una conferma esplicita, poi <strong>sovrascrive l'intero database corrente</strong> con i dati del backup scelto e ricarica l'app. L'operazione è irreversibile: tutto ciò che è stato registrato <em>dopo</em> il backup verrà perso. Da usare solo in caso di corruzione accidentale dei dati o cancellazione involontaria.</p>
                     </div>
                 </div>
 
@@ -791,6 +701,191 @@
 
                 <hr style="border-color: #334155; margin: 60px 0;">
 
+                <div id="integrazione-cloud-lan" class="mt-5">
+                    <div class="cap-badge">Capitolo 13</div>
+                    <h2>Integrazione Cloud/LAN e Funzionalità Avanzate</h2>
+                    <p>Questo capitolo completa la guida descrivendo l'architettura risultante dal confronto tra la versione Cloud di BistroBò e la versione LAN con server locale. Le funzioni gestionali restano le stesse: menu, ingredienti, comande, reparti, preordini, statistiche, chat e impostazioni lavorano sugli stessi concetti. Cambia il percorso con cui i dati arrivano ai dispositivi.</p>
+
+                    <div class="info-box box-config">
+                        <h5>📌 Regola generale: stessa operatività, trasporto diverso</h5>
+                        <p>La versione Cloud comunica direttamente con Firebase tramite Internet. La versione LAN aggiunge un server locale e una connessione Socket.io: i tablet parlano prima con la rete locale e il server mantiene il ponte con Firebase. Per questo Cassa, Cucina, Bere, Snack, Extra, Admin e Schermo Cliente possono usare le stesse funzioni operative in entrambi gli ambienti, mentre la LAN aggiunge gestione delle postazioni fisiche e stampa locale.</p>
+                    </div>
+
+                    <h4>13.1 Matrice delle funzioni</h4>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-bordered align-middle" style="font-size:0.92rem;">
+                            <thead>
+                                <tr><th>Funzione</th><th>Cloud / Online</th><th>LAN</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="setting-name">Cassa e comande</td><td>Sincronizzazione tramite Firebase</td><td>Inserimento e aggiornamento tramite server locale, con sincronizzazione Cloud</td></tr>
+                                <tr><td class="setting-name">Monitor reparti</td><td>Ricezione in tempo reale dal database remoto</td><td>Ricezione sulla rete locale con propagazione verso Cloud</td></tr>
+                                <tr><td class="setting-name">Menu e ingredienti</td><td>Gestiti da Admin e condivisi online</td><td>Copia locale aggiornata dal ponte LAN</td></tr>
+                                <tr><td class="setting-name">Preordini</td><td>Pagine pubbliche e Firebase</td><td>Preordini trasferiti dal Cloud al server locale e disponibili a Cassa/Admin</td></tr>
+                                <tr><td class="setting-name">Chat</td><td>Messaggi sul nodo condiviso</td><td>Messaggi distribuiti rapidamente nella rete locale e poi sincronizzati</td></tr>
+                                <tr><td class="setting-name">Statistiche e storico</td><td>Calcolati sui dati Firebase</td><td>Calcolati sulla copia locale sincronizzata e riallineati al Cloud</td></tr>
+                                <tr><td class="setting-name">Schermo Cliente</td><td>Collegato alla cassa tramite database</td><td>Collegato a una cassa attiva della rete locale</td></tr>
+                                <tr><td class="setting-name">Stampa</td><td>Stampa browser o stampante configurata</td><td>Auto-scoperta delle stampanti del PC server e assegnazione per Cassa/Admin</td></tr>
+                                <tr><td class="setting-name">Utenti e postazioni</td><td>Account, approvazioni e ruoli</td><td>Postazioni fisiche identificate dal dispositivo; non richiedono il blocco utenti Cloud</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4>13.2 Come funziona il ponte LAN–Cloud</h4>
+                    <p>Quando il server LAN è attivo, la pagina operativa apre una connessione Socket.io. Il server locale riceve una copia dei dati necessari al servizio e la distribuisce ai terminali collegati. La sincronizzazione non sostituisce il database Cloud: crea un percorso locale più rapido e continua a usare Firebase come archivio e collegamento con le pagine pubbliche.</p>
+                    <ol>
+                        <li><strong>Connessione:</strong> il widget LAN indica lo stato del collegamento e segnala se il server è raggiungibile.</li>
+                        <li><strong>Preparazione:</strong> dopo l’accesso autorizzato, vengono sincronizzati menu, ingredienti, impostazioni, chat, display, preordini, comande, statistiche, storico, utenti, sconti, reparti, backup, mansionari e spese.</li>
+                        <li><strong>Operatività locale:</strong> le modifiche fatte da una postazione vengono applicate subito alla copia locale per ridurre la latenza tra Cassa e reparti.</li>
+                        <li><strong>Propagazione:</strong> le operazioni vengono inoltrate al Cloud e gli aggiornamenti provenienti dal sito pubblico vengono trasferiti nella rete LAN.</li>
+                        <li><strong>Protezione dai rimbalzi:</strong> il ponte distingue l’azione originata dalla LAN dall’eco della sincronizzazione, evitando cicli infiniti di aggiornamento.</li>
+                    </ol>
+                    <p>Tecnicamente il sito Cloud invia al server il dataset con l’evento <code>database-sincronizzato</code>. Il server distribuisce gli aggiornamenti ai terminali con <code>azione-distribuita</code>; una postazione LAN modifica la propria copia locale e invia al server <code>azione-da-tablet</code>, mentre il ponte Cloud applica al Firebase le operazioni <code>set</code>, <code>update</code>, <code>remove</code> o <code>push</code> tramite <code>esegui-azione-firebase</code>. Il codice locale aggiorna solo i listener interessati e contiene protezioni anti-duplicazione, anti-eco e anti-crash per le comande e i preordini.</p>
+                    <p>Se la connessione con il server locale non è disponibile, il widget lo segnala. Prima di iniziare un servizio è necessario controllare che il PC server sia acceso, che i tablet siano sulla stessa rete Wi-Fi e che lo stato LAN risulti sincronizzato.</p>
+
+                    <h4>13.3 Accesso Cloud e accesso LAN: non sono lo stesso flusso</h4>
+                    <div class="info-box box-cloud">
+                        <h5><i class="fa-solid fa-cloud me-2"></i> Account Cloud</h5>
+                        <p>Nel Cloud l’operatore utilizza un account con email e password. La registrazione può richiedere verifica e approvazione dell’Admin. Il ruolo dell’account determina le schermate che può usare.</p>
+                    </div>
+                    <div class="info-box box-lan">
+                        <h5><i class="fa-solid fa-network-wired me-2"></i> Terminale LAN</h5>
+                        <p>In LAN la postazione sceglie il ruolo operativo e riceve un identificativo persistente salvato localmente. Il sistema costruisce un’identità della forma <code>LAN_[ruolo]_[id-dispositivo]</code>, la registra e la presenta come terminale fisico. Questo evita di usare il blocco utenti Cloud per ogni tablet: l’Admin controlla la postazione, il suo ruolo e la stampante associata.</p>
+                    </div>
+                    <p>La postazione LAN mostra il proprio nome, ad esempio <strong>Postazione CASSA 123</strong>, comunica la presenza al server con l’evento di terminale pronto e aggiorna la propria voce nel registro locale. Il profilo operativo può includere avatar, stato ed esperienza, come gli altri operatori.</p>
+
+                    <h4>13.4 Registro delle postazioni LAN</h4>
+                    <p>Ogni terminale fisico viene rappresentato in <code>impostazioni/postazioni_lan/&lt;device-id&gt;</code>. Il registro permette all’Admin di sapere quali dispositivi sono presenti e a quale ruolo lavorano.</p>
+                    <ul>
+                        <li><strong>Identificativo:</strong> il tablet conserva il proprio ID in <code>localStorage</code>, così non cambia a ogni ricaricamento.</li>
+                        <li><strong>Ruolo:</strong> Cassa, Cucina, Bere, Snack, Extra o Schermo Cliente.</li>
+                        <li><strong>Nome:</strong> nome leggibile della postazione, utile per riconoscere i dispositivi durante il servizio.</li>
+                        <li><strong>Stato:</strong> online, offline o bloccato.</li>
+                        <li><strong>Presenza:</strong> il server riceve la comunicazione di presenza e il terminale aggiorna il proprio timestamp.</li>
+                        <li><strong>Kick:</strong> l’Admin può forzare l’uscita di un terminale; il tablet riceve il comando, torna alla schermata iniziale e registra lo stato offline.</li>
+                        <li><strong>Blocco:</strong> una postazione bloccata sostituisce la schermata operativa con un avviso e non può essere usata finché l’Admin non la sblocca.</li>
+                    </ul>
+
+                    <div class="info-box box-danger">
+                        <h5>🚨 Differenza fondamentale per la LAN</h5>
+                        <p>Il blocco di una postazione LAN non è la gestione degli utenti Cloud. Il primo agisce sul dispositivo fisico registrato nella rete; la seconda agisce sugli account con email e ruolo. In LAN l’Admin può controllare il terminale e assegnargli la stampante senza dover creare o approvare un account personale per ogni tablet.</p>
+                    </div>
+
+                    <h4>13.5 Ricerca e assegnazione delle stampanti</h4>
+                    <p>La tab <strong>🖨️ Assegnazione Stampanti di Cassa</strong> è disponibile all’Admin. Non si digitano manualmente gli indirizzi IP: il server LAN interroga il PC server e restituisce i nomi delle stampanti installate o collegate, comprese quelle USB e quelle di rete configurate in Windows.</p>
+                    <ol>
+                        <li>Aprire il pannello Admin e la tab <strong>Stampanti</strong>.</li>
+                        <li>Premere <strong>Trova Stampanti</strong>.</li>
+                        <li>Attendere la risposta del server locale con l’elenco delle stampanti disponibili.</li>
+                        <li>Individuare il profilo Cassa o Admin oppure la postazione LAN Cassa/Admin.</li>
+                        <li>Selezionare la stampante dal menu della riga corrispondente.</li>
+                        <li>Verificare la notifica di salvataggio e fare una stampa di prova prima dell’apertura.</li>
+                    </ol>
+                    <p>Il collegamento viene salvato in <code>impostazioni/stampantiCassa/&lt;uid-o-device-id&gt;</code>. L’icona 👤 identifica un account Cloud, mentre 📱 identifica un dispositivo LAN; per i dispositivi LAN viene mostrato anche un indicatore online/offline.</p>
+                    <div class="info-box box-config">
+                        <h5>⚙️ Se non viene trovata una stampante</h5>
+                        <ul>
+                            <li>Controllare che il server BistroBò sia avviato sul PC.</li>
+                            <li>Controllare i cavi USB o che la stampante di rete sia installata in Windows.</li>
+                            <li>Verificare che il tablet sia collegato alla stessa rete del server.</li>
+                            <li>Ripetere <strong>Trova Stampanti</strong>.</li>
+                            <li>Se nessuna stampante è assegnata o il server non è raggiungibile, utilizzare il flusso di stampa tradizionale disponibile nel browser.</li>
+                        </ul>
+                    </div>
+
+                    <h4>13.6 Preordini nella rete LAN</h4>
+                    <p>La versione LAN non crea un secondo sistema di preordini scollegato. Il server locale riceve il blocco <code>preordini</code> dal sito pubblico e lo distribuisce alle postazioni interne. Cassa e Admin vedono quindi gli stessi preordini, con le stesse modalità e informazioni previste dalla versione Cloud.</p>
+                    <ul>
+                        <li><strong>Fila:</strong> nome del cliente e ordine per il ritiro.</li>
+                        <li><strong>Tavolo:</strong> numero tavolo incorporato nel QR e nella comanda.</li>
+                        <li><strong>Delivery:</strong> dati del cliente, telefono, indirizzo e orario.</li>
+                        <li><strong>Evento/stand:</strong> nome, telefono, postazione e orario desiderato.</li>
+                    </ul>
+                    <p>La Cassa continua a essere il punto di approvazione: il preordine non entra direttamente nei monitor di produzione. L’operatore può controllarlo, dividerne il conto quando necessario, aggiungerlo alle comande e applicare asporto, sconti e destinazioni delle note secondo le impostazioni attive.</p>
+
+                    <h4>13.7 Cassa avanzata: conto, pagamenti e ricerca</h4>
+                    <p>Oltre all’inserimento dei piatti, la Cassa dispone di strumenti per gestire situazioni reali di servizio:</p>
+                    <ul>
+                        <li><strong>Dividi Conto:</strong> apre la selezione degli articoli da attribuire a ogni cliente o quota.</li>
+                        <li><strong>Divisione alla romana:</strong> distribuisce il totale tra più persone secondo il numero di quote indicato.</li>
+                        <li><strong>Pagamento misto:</strong> permette di registrare una parte in contanti e una parte con POS, mostrando quanto resta da saldare.</li>
+                        <li><strong>Contanti:</strong> il modulo dei tagli calcola il resto e suggerisce la combinazione di banconote e monete.</li>
+                        <li><strong>Filtri:</strong> la lista delle comande può essere filtrata per numero, tavolo, prodotto e intervallo orario, quindi riportata allo stato iniziale con Reset.</li>
+                        <li><strong>Modifica:</strong> quando consentito dallo stato della comanda, l’operatore può correggere le righe senza ricreare manualmente tutto l’ordine.</li>
+                    </ul>
+                    <p>Queste funzioni seguono lo stesso flusso dati in Cloud e LAN. In LAN la risposta dei dispositivi interni passa dal server locale; il salvataggio e la sincronizzazione mantengono comunque il riferimento condiviso dell’ordine.</p>
+
+                    <h4>13.8 Centro di Controllo, reparti e monitoraggio</h4>
+                    <p>Il pannello Admin include il <strong>Centro di Controllo</strong>, che consente di leggere il servizio senza aprire una per una tutte le schede:</p>
+                    <ul>
+                        <li>clienti serviti nella giornata;</li>
+                        <li>comande presenti e loro stato globale;</li>
+                        <li>tempo medio di attesa;</li>
+                        <li>colli di bottiglia, cioè i reparti o i prodotti con preparazione media più lenta;</li>
+                        <li>stato dei reparti e possibilità di chiudere o riaprire un servizio;</li>
+                        <li>accesso rapido a comande, preordini, menu, ingredienti, chat e statistiche.</li>
+                    </ul>
+                    <p>La chiusura di un reparto non cancella i dati: impedisce l’invio di nuove voci verso quel reparto e aggiorna la disponibilità del menu. La riapertura ripristina il flusso. Questo è diverso dall’archiviazione del turno, che è l’operazione contabile descritta nel Capitolo 9.</p>
+
+                    <h4>13.9 Spese, rimborsi e registro attività</h4>
+                    <p>Nel pannello Admin sono disponibili due strumenti distinti:</p>
+                    <ul>
+                        <li><strong>Spese e Rimborsi:</strong> registra uscite o rimborsi collegati al servizio e li include nel riepilogo economico.</li>
+                        <li><strong>Registro Attività di Sistema:</strong> mostra in sola lettura le azioni sensibili degli operatori, con autore e momento dell’operazione. Lo staff non può modificare il log dalla normale interfaccia.</li>
+                    </ul>
+                    <p>Le spese appartengono alla contabilità dell’evento; il log appartiene alla tracciabilità operativa. Non devono essere confusi: eliminare o archiviare un turno non equivale a cancellare la cronologia delle azioni. Solo l’Admin può usare <strong>Svuota Registro Attività</strong> nelle Impostazioni per eliminare il contenuto di <code>system_logs</code>; è un’operazione irreversibile e va usata solo dopo aver conservato gli elementi necessari.</p>
+
+                    <h4>13.9.1 Approvazione utenti, chiusura reparti e nomi Extra</h4>
+                    <ul>
+                        <li><strong>Approvazione automatica nuovi utenti:</strong> nel Cloud, se <code>approvazioneAutomatica</code> è disattivata, le nuove registrazioni restano in attesa dell’Admin; se è attiva, l’utente viene approvato automaticamente. Questa impostazione riguarda gli account Cloud e non i terminali LAN.</li>
+                        <li><strong>Chiusura Fine Servizio:</strong> l’Admin abilita il sistema e, da <strong>Gestisci</strong>, sceglie quali reparti possono chiudere autonomamente le ordinazioni. Il responsabile del reparto può premere <strong>Chiudi Servizio</strong> dal proprio monitor; la chiusura blocca le nuove voci destinate a quel reparto anche in Cassa e Preordini. L’Admin vede lo stato Aperto/Chiuso e può chiudere forzatamente o riaprire il reparto.</li>
+                        <li><strong>Nomi dei reparti Extra:</strong> gli Extra 1, 2 e 3 possono avere nomi personalizzati. Il nome configurato viene usato nelle schede, nei filtri, nelle comande e nella stampa, mentre gli identificativi interni restano <code>extra1</code>, <code>extra2</code> e <code>extra3</code>.</li>
+                        <li><strong>Modalità Manutenzione:</strong> blocca l’accesso al personale e la pagina pubblica ai clienti, lasciando l’accesso all’Admin per la configurazione e il ripristino.</li>
+                    </ul>
+
+                    <h4>13.10 Statistiche, esportazioni e gestione colli</h4>
+                    <p>La sezione statistiche permette di passare dal turno corrente ai turni archiviati e al totale globale dell’evento. I report comprendono vendite, incassi e andamento per fascia oraria. I dati possono essere esportati in <strong>Excel</strong> o <strong>PDF</strong> per la rendicontazione.</p>
+                    <p>La gestione dei colli e delle bottiglie supporta i prodotti venduti in confezioni o unità multiple. Prima del servizio è necessario controllare che quantità, unità di misura e decremento della ricetta siano coerenti: un prodotto venduto a collo deve scalare lo stock secondo il numero di pezzi effettivamente previsto dalla configurazione.</p>
+                    <p>I tempi di preparazione vengono raccolti nel nodo <code>statistiche_tempi_prodotti</code> e alimentano il calcolo delle medie e dei colli di bottiglia. Il Centro di Controllo richiede almeno alcuni completamenti per prodotto prima di mostrare una media utile, così da non evidenziare dati casuali.</p>
+
+                    <h4>13.10.1 Backup, ripristino e dati salvati</h4>
+                    <ul>
+                        <li><strong>Backup locale:</strong> <strong>Scarica Backup</strong> crea un file con comande, utenti, menu, ingredienti, impostazioni, mansionari, reparti, sconti globali, spese e statistiche dei tempi. <strong>Ripristina Backup</strong> ricarica un file scelto dall’Admin. Il backup manuale non include il registro tecnico <code>system_logs</code>, i preordini o lo storico giornate.</li>
+                        <li><strong>Auto-Backup Cloud:</strong> se attivato, salva automaticamente nel nodo <code>cloud_backups</code> secondo l’intervallo configurato e conserva le due copie più recenti, salvando solo quando rileva modifiche. Il salvataggio automatico include anche i log di sistema per consentire un recupero più completo.</li>
+                        <li><strong>Ripristino rapido:</strong> l’Admin può scegliere una delle copie Cloud disponibili e può eliminare tutte le copie Cloud con il comando dedicato. Prima di ripristinare o cancellare è necessario verificare data e contenuto della copia.</li>
+                    </ul>
+
+                    <h4>13.11 Checklist di avvio LAN</h4>
+                    <ol>
+                        <li>Avviare il PC Windows che ospita il server BistroBò.</li>
+                        <li>Collegare il PC e tutti i tablet alla stessa rete Wi-Fi o router.</li>
+                        <li>Avviare il pannello del server, raggiungibile dal QR del widget LAN oppure dalla pagina <code>server-dashboard.html</code>, e controllare che il widget passi allo stato sincronizzato.</li>
+                        <li>Verificare che menu, ingredienti e impostazioni siano sincronizzati.</li>
+                        <li>Fare accedere le postazioni scegliendo il ruolo corretto.</li>
+                        <li>Controllare nell’Admin l’elenco <code>postazioni_lan</code>.</li>
+                        <li>Aprire la tab Stampanti, premere Trova Stampanti e assegnare le stampanti a Cassa/Admin.</li>
+                        <li>Inviare una comanda di prova e verificare monitor, stampa, stato ordine e display cliente.</li>
+                        <li>Controllare che i preordini arrivino alla Cassa prima di aprire il servizio.</li>
+                    </ol>
+
+                    <h4>13.12 Checklist di chiusura LAN</h4>
+                    <ol>
+                        <li>Completare le comande ancora presenti nei monitor.</li>
+                        <li>Controllare ingredienti critici, scarti, spese e rimborsi.</li>
+                        <li>Esportare o archiviare il turno secondo la procedura contabile.</li>
+                        <li>Verificare che le ultime modifiche siano state sincronizzate con il Cloud.</li>
+                        <li>Disconnettere le postazioni e controllare che risultino offline.</li>
+                        <li>Arrestare il server LAN solo dopo la sincronizzazione finale.</li>
+                    </ol>
+
+                    <div class="info-box box-warning">
+                        <h5>⚠️ Configurazione da verificare prima del servizio</h5>
+                        <p>La sincronizzazione LAN rende veloce il servizio, ma non sostituisce le verifiche operative: un server spento, una rete Wi-Fi diversa, una stampante non installata o un assegnamento mancante possono impedire la stampa o la distribuzione delle comande. La prova completa di una comanda è sempre obbligatoria prima dell’apertura.</p>
+                    </div>
+                </div>
+
+                <hr style="border-color: #334155; margin: 60px 0;">
+
                 <div id="appendice-impostazioni" class="mt-5">
                     <div class="cap-badge">Appendice</div>
                     <h2>Tabella Riassuntiva di Tutte le Impostazioni</h2>
@@ -803,22 +898,24 @@
                             </thead>
                             <tbody>
                                 <tr><td class="setting-name">nomeStand</td><td>Nome del locale/stand, stampato in header e su scontrini/report</td><td>"BistroBò"</td></tr>
-                                <tr><td class="setting-name">temaSalvato</td><td>Tema grafico attivo scelto dall'Admin</td><td>default</td></tr>
+                                <tr><td class="setting-name">tema</td><td>Tema grafico attivo scelto dall'Admin</td><td>default</td></tr>
                                 <tr><td class="setting-name">modalitaNotte</td><td>Passa automaticamente al tema "Notte" dalle 21:00 alle 04:59</td><td>off</td></tr>
                                 <tr><td class="setting-name">manutenzione</td><td>Blocca il login a tutti tranne gli Admin</td><td>off</td></tr>
+                                <tr><td class="setting-name">approvazioneAutomatica</td><td>Approva automaticamente i nuovi account Cloud invece di lasciarli in attesa dell’Admin</td><td>off</td></tr>
                                 <tr><td class="setting-name">scorciatoieTastiera</td><td>Abilita Alt+tasto per cambiare tab (Cassa/Comande/Chat)</td><td>off</td></tr>
                                 <tr><td class="setting-name">sistemaExtraAbilitato</td><td>Interruttore generale dei popup di personalizzazione piatto (varianti/aggiunte)</td><td>on</td></tr>
                                 <tr><td class="setting-name">snackAbilitato</td><td>Attiva il reparto/monitor Snack (altrimenti confluisce in Cucina)</td><td>off</td></tr>
                                 <tr><td class="setting-name">extra1/2/3Abilitato</td><td>Attiva i 3 profili extra rinominabili (es. Pizzeria)</td><td>off</td></tr>
                                 <tr><td class="setting-name">fallbackExtra1/2/3</td><td>Reparto di destinazione (Cucina/Bar) quando il relativo Extra è spento</td><td>"cibo" (Cucina)</td></tr>
+                                <tr><td class="setting-name">nomiRepartiExtra</td><td>Nomi visibili e stampati per Extra 1, Extra 2 ed Extra 3; non cambia gli identificativi interni</td><td>Extra 1/2/3</td></tr>
                                 <tr><td class="setting-name">nuoveInAlto*</td><td>Per ciascun reparto, mostra le nuove comande in cima (true) o in coda (false) al monitor</td><td>varia</td></tr>
                                 <tr><td class="setting-name">piattiComboAbilitati</td><td>Abilita la gestione dei piatti Combo/Menu con popup di scelta contorni</td><td>off</td></tr>
                                 <tr><td class="setting-name">comandeProgressive</td><td>Numerazione automatica delle comande, con reset contatore manuale</td><td>off</td></tr>
-                                <tr><td class="setting-name">letteraComandaAbilitata</td><td>Aggiunge un campo lettera (A-Z) accanto al numero comanda</td><td>off</td></tr>
+                                <tr><td class="setting-name">letteraComandaAbilitata</td><td>Aggiunge un campo lettera (A-Z) accanto al numero comanda</td><td>on</td></tr>
                                 <tr><td class="setting-name">cassaOttimizzata</td><td>Layout cassa compresso a griglia di pulsanti, senza descrizioni</td><td>off</td></tr>
-                                <tr><td class="setting-name">selettoreQuantitaCassa</td><td>Permette di aggiungere più unità di un piatto in un solo tocco</td><td>off</td></tr>
+                                <tr><td class="setting-name">selettoreQuantitaCassa</td><td>Permette di aggiungere più unità di un piatto in un solo tocco</td><td>on</td></tr>
                                 <tr><td class="setting-name">noteDestinazioniAbilitate</td><td>Note in cassa indirizzabili a reparti specifici via checkbox</td><td>off</td></tr>
-                                <tr><td class="setting-name">gestioneSoldiCassa</td><td>Mostra la pulsantiera contanti e il calcolo automatico del resto</td><td>off</td></tr>
+                                <tr><td class="setting-name">gestioneSoldiCassa</td><td>Mostra la pulsantiera contanti e il calcolo automatico del resto</td><td>on</td></tr>
                                 <tr><td class="setting-name">copertoAbilitato / copertoValore</td><td>Aggiunge una riga "Coperto" a persona con costo fisso configurabile</td><td>off / 0</td></tr>
                                 <tr><td class="setting-name">asportoAbilitato</td><td>Mostra il checkbox "Asporto" in Cassa e nei preordini</td><td>off</td></tr>
                                 <tr><td class="setting-name">costoAsportoAbilitato / costoAsportoValore</td><td>Aggiunge automaticamente una riga "Costo Asporto" quando l'ordine è da asporto</td><td>off / 2.00€</td></tr>
@@ -830,7 +927,7 @@
                                 <tr><td class="setting-name">preordiniAbilitati</td><td>Abilita la pagina pubblica dei preordini e la relativa tab in cassa</td><td>off</td></tr>
                                 <tr><td class="setting-name">letteraPreordini</td><td>Prefisso lettera assegnato ai preordini (sempre maiuscolo)</td><td>"D"</td></tr>
                                 <tr><td class="setting-name">preordiniRichiediInfo</td><td>Rende obbligatori telefono, posizione e orario nel form pubblico</td><td>off</td></tr>
-                                <tr><td class="setting-name">ordinaPreordini</td><td>Ordina la lista preordini dal più recente al più vecchio</td><td>off</td></tr>
+                                <tr><td class="setting-name">ordinaPreordini</td><td>Ordina la lista preordini dal più recente al più vecchio</td><td>on</td></tr>
                                 <tr><td class="setting-name">preordiniAsportoAutomatico</td><td>Marca automaticamente ogni preordine come "Asporto"</td><td>off</td></tr>
                                 <tr><td class="setting-name">suono / suonoCassa / suonoChat / suonoPreordini</td><td>Toggle indipendenti per i feedback sonori generali, di cassa, chat e preordini</td><td>on</td></tr>
                                 <tr><td class="setting-name">chatAbilitata</td><td>Attiva la chat interna tra reparti</td><td>on</td></tr>
@@ -843,7 +940,10 @@
                                 <tr><td class="setting-name">avvisoGlobale (bacheca)</td><td>Testo dell'avviso pubblicato dall'Admin. Se presente, mostra un modal bloccante su tutti i dispositivi finché non viene confermato</td><td>""</td></tr>
                                 <tr><td colspan="3" style="background:#0f172a; color:#64748b; font-size:0.85rem; letter-spacing:1px; text-transform:uppercase; font-weight:700;">Cassa Avanzata</td></tr>
                                 <tr><td class="setting-name">richiediTavolo</td><td>Rende obbligatorio il campo "Numero Tavolo" in cassa prima dell'invio della comanda; il tasto Invia è disabilitato finché non è compilato</td><td>off</td></tr>
-                                <tr><td class="setting-name">scontiGlobaliAbilitati</td><td>Interruttore master del sistema coupon: se OFF nasconde la sezione Sconti in admin e la pulsantiera coupon in cassa</td><td>on</td></tr>
+                                <tr><td class="setting-name">scontiGlobaliAbilitati</td><td>Interruttore master del sistema coupon: se OFF nasconde la sezione Sconti in admin e la pulsantiera coupon in cassa</td><td>off</td></tr>
+                                <tr><td class="setting-name">chiusuraServizio/abilitato</td><td>Attiva la chiusura controllata dei reparti a fine servizio</td><td>off</td></tr>
+                                <tr><td class="setting-name">chiusuraServizio/permessi</td><td>Indica quali reparti possono chiudere autonomamente le ordinazioni dal proprio monitor</td><td>nessuno</td></tr>
+                                <tr><td class="setting-name">chiusuraServizio/chiusi</td><td>Stato aperto/chiuso corrente dei reparti; l’Admin può riaprire un reparto</td><td>aperti</td></tr>
                                 <tr><td colspan="3" style="background:#0f172a; color:#64748b; font-size:0.85rem; letter-spacing:1px; text-transform:uppercase; font-weight:700;">Preordini Multi-Modalità</td></tr>
                                 <tr><td class="setting-name">modPreordini/fila</td><td>Abilita la modalità coda generica (solo nome) nella pagina preordini pubblica</td><td>off</td></tr>
                                 <tr><td class="setting-name">modPreordini/tavolo</td><td>Abilita la modalità servizio al tavolo (numero tavolo via URL ?t=)</td><td>off</td></tr>
@@ -868,6 +968,23 @@
                         </table>
                     </div>
                     <p class="text-secondary" style="font-size:0.9rem;">Nota: alcune impostazioni elencate qui sono già spiegate nel dettaglio operativo nei capitoli precedenti; questa tabella serve come indice rapido di consultazione, non li sostituisce.</p>
+
+                    <h4><i class="fa-solid fa-database me-2"></i> Nodi dati operativi usati da Cloud e LAN</h4>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-bordered align-middle" style="font-size:0.92rem;">
+                            <thead>
+                                <tr><th>Nodo</th><th>Utilizzo</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="setting-name">reparti</td><td>Configurazione dei reparti attivi e dei relativi profili, usata per costruire menu, monitor e stampa.</td></tr>
+                                <tr><td class="setting-name">system_logs</td><td>Registro delle azioni amministrative e operative con autore, ruolo, descrizione e timestamp; può essere svuotato solo dall’Admin.</td></tr>
+                                <tr><td class="setting-name">spese/[id]</td><td>Spese dell’evento con descrizione, importo, pagatore, stato del rimborso e data; alimenta il riepilogo lordo, spese e utile netto.</td></tr>
+                                <tr><td class="setting-name">statistiche_tempi_prodotti/[id]</td><td>Tempi di lavorazione raccolti dai reparti, usati per medie, ritmo di servizio e colli di bottiglia.</td></tr>
+                                <tr><td class="setting-name">menu[reparto] / magazzino[reparto]</td><td>Visibilità e configurazione operativa dei menu e delle dispense per Cucina, Bere, Snack ed Extra, trasferite anche nella copia LAN.</td></tr>
+                                <tr><td class="setting-name">cloud_backups/[id]</td><td>Copie Cloud automatiche del dataset operativo; vengono mantenute le due copie più recenti.</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
 
                     <h4><i class="fa-solid fa-network-wired me-2"></i> Voci Esclusive della Versione LAN</h4>
                     <div class="table-responsive">
