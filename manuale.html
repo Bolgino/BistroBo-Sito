@@ -216,7 +216,7 @@
                     <h4>Personalizzazione e Modalità Manutenzione</h4>
                     <ul>
                         <li><span class="setting-name">Tema Sito</span>: Modifica l'interfaccia grafica scegliendo tra 9 temi preimpostati: <strong>Default, Scout, Autunno, Inverno, Primavera, Estate, Chiaro, Notte</strong> e <strong>Astronave</strong>. Ogni tema ricolora completamente pulsanti, sfondi e badge di tutte le schermate operative.</li>
-                        <li><span class="setting-name">Modalità Notte Automatica</span>: Il sistema tiene traccia del tema scelto manualmente dall'Admin (il "tema salvato"). Ogni giorno, allo scoccare delle <strong>21:00</strong>, tutti i dispositivi passano automaticamente al tema "Notte" (più scuro e riposante per gli occhi durante il servizio serale). Al mattino successivo il tema originale scelto dall'Admin viene ripristinato automaticamente, senza bisogno di intervento manuale.</li>
+                        <li><span class="setting-name">Modalità Notte Automatica</span>: Il sistema tiene traccia del tema scelto manualmente dall'Admin. Ogni giorno, allo scoccare delle <strong>21:00</strong>, tutti i dispositivi passano automaticamente al tema "Notte" (più scuro e riposante per gli occhi durante il servizio serale). Al mattino successivo il tema originale scelto dall'Admin viene ripristinato automaticamente, senza bisogno di intervento manuale.</li>
                         <li><span class="setting-name">Simulatore Ruoli</span>: L'Admin può passare in tempo reale alle interfacce di Cassa, Cucina o Bar con un clic per testare il flusso o fornire supporto, senza effettuare logout.</li>
                         <li><span class="setting-name">Modalità Manutenzione</span>: Lo "Spegnimento d'emergenza". Quando attivata, il sistema impedisce il login a qualsiasi ruolo diverso da Admin (mostrando un messaggio d'errore dedicato), sbatte fuori gli operatori già collegati e blocca la pagina dei preordini mostrando un avviso ai clienti.</li>
                     </ul>
@@ -559,12 +559,12 @@
                         <li><span class="setting-name">autoBackupAbilitato</span>: accende il loop. Alla prima attivazione, esegue subito un backup, poi continua a intervalli regolari.</li>
                         <li><span class="setting-name">autoBackupIntervallo</span>: frequenza in <strong>minuti</strong> tra un backup e il successivo (es. 30 = ogni mezz'ora). Il sistema esegue il backup solo se i dati sono effettivamente cambiati dall'ultimo snapshot (confronto di hash), evitando di scrivere dati identici.</li>
                     </ul>
-                    <p><strong>Cosa viene salvato:</strong> lo snapshot è completo — include <code>comande</code>, <code>menu</code>, <code>ingredienti</code>, <code>impostazioni</code>, <code>utenti</code>, <code>preordini</code>, <code>storico_giornate</code> e <code>scontiGlobali</code>. È più completo del backup manuale (che esclude preordini e storico giornate).</p>
+                    <p><strong>Cosa viene salvato:</strong> lo snapshot comprende <code>comande</code>, <code>menu</code>, <code>ingredienti</code>, <code>impostazioni</code>, <code>utenti</code>, <code>preordini</code>, <code>storico_giornate</code>, <code>scontiGlobali</code>, <code>mansionari</code>, <code>reparti</code>, <code>spese</code>, <code>statistiche_tempi_prodotti</code> e <code>system_logs</code>. Il backup completo manuale, invece, può essere scaricato dal nuovo modale scegliendo <strong>Scarica sul Dispositivo</strong> e contiene tutti i nodi presenti in quel momento.</p>
                     <p><strong>Rotazione automatica:</strong> il sistema mantiene sempre solo i <strong>2 backup più recenti</strong>. Prima di salvare il nuovo snapshot, ordina i backup esistenti per timestamp e cancella quelli in eccesso, così il nodo <code>cloud_backups</code> non cresce indefinitamente.</p>
 
                     <div class="info-box box-config">
                         <h5>⚙️ Come Ripristinare da un Backup Cloud</h5>
-                        <p>Dall'apposita sezione nel pannello Admin (visibile solo quando autoBackupAbilitato è ON), compare la lista dei backup disponibili con data e ora. Cliccando "Ripristina DB" sul backup desiderato, il sistema chiede una conferma esplicita, poi <strong>sovrascrive l'intero database corrente</strong> con i dati del backup scelto e ricarica l'app. L'operazione è irreversibile: tutto ciò che è stato registrato <em>dopo</em> il backup verrà perso. Da usare solo in caso di corruzione accidentale dei dati o cancellazione involontaria.</p>
+                        <p>Dall'apposita sezione nel pannello Admin (visibile quando <code>autoBackupAbilitato</code> è ON), compare la lista delle copie disponibili con data e ora, dalla più recente alla più vecchia. Da questa lista è possibile scegliere una copia per il ripristino oppure eliminare la singola copia; il comando separato consente di eliminare tutte le copie. Ogni operazione distruttiva richiede conferma. Il ripristino <strong>sovrascrive l'intero database corrente</strong>, preserva lo storico già presente di <code>cloud_backups</code>, tutela l’Admin autenticato e l’account Super Admin, quindi ricarica l'app. Tutto ciò che è stato registrato <em>dopo</em> il backup può essere perso: verificare sempre data e contenuto prima di confermare.</p>
                     </div>
                 </div>
 
@@ -831,7 +831,7 @@
                     <p>Nel pannello Admin sono disponibili due strumenti distinti:</p>
                     <ul>
                         <li><strong>Spese e Rimborsi:</strong> registra uscite o rimborsi collegati al servizio e li include nel riepilogo economico.</li>
-                        <li><strong>Registro Attività di Sistema:</strong> mostra in sola lettura le azioni sensibili degli operatori, con autore e momento dell’operazione. Lo staff non può modificare il log dalla normale interfaccia.</li>
+                        <li><strong>Registro Attività di Sistema:</strong> mostra in sola lettura le azioni sensibili degli operatori, con autore, email, ruolo, descrizione e momento dell’operazione. Lo staff non può modificare il log dalla normale interfaccia.</li>
                     </ul>
                     <p>Le spese appartengono alla contabilità dell’evento; il log appartiene alla tracciabilità operativa. Non devono essere confusi: eliminare o archiviare un turno non equivale a cancellare la cronologia delle azioni. Solo l’Admin può usare <strong>Svuota Registro Attività</strong> nelle Impostazioni per eliminare il contenuto di <code>system_logs</code>; è un’operazione irreversibile e va usata solo dopo aver conservato gli elementi necessari.</p>
 
@@ -848,12 +848,33 @@
                     <p>La gestione dei colli e delle bottiglie supporta i prodotti venduti in confezioni o unità multiple. Prima del servizio è necessario controllare che quantità, unità di misura e decremento della ricetta siano coerenti: un prodotto venduto a collo deve scalare lo stock secondo il numero di pezzi effettivamente previsto dalla configurazione.</p>
                     <p>I tempi di preparazione vengono raccolti nel nodo <code>statistiche_tempi_prodotti</code> e alimentano il calcolo delle medie e dei colli di bottiglia. Il Centro di Controllo richiede almeno alcuni completamenti per prodotto prima di mostrare una media utile, così da non evidenziare dati casuali.</p>
 
-                    <h4>13.10.1 Backup, ripristino e dati salvati</h4>
+                    <h4>13.10.1 Configurazione trasferibile</h4>
+                    <p>La sezione <strong>Configurazione e Backup</strong> distingue il trasferimento della struttura dal backup integrale. <strong>Scarica Config</strong> produce un file JSON con nome <code>Configurazione_&lt;nomeStand&gt;.json</code>. Il file contiene soltanto i nodi configurabili selezionati dall’applicazione:</p>
                     <ul>
-                        <li><strong>Backup locale:</strong> <strong>Scarica Backup</strong> crea un file con comande, utenti, menu, ingredienti, impostazioni, mansionari, reparti, sconti globali, spese e statistiche dei tempi. <strong>Ripristina Backup</strong> ricarica un file scelto dall’Admin. Il backup manuale non include il registro tecnico <code>system_logs</code>, i preordini o lo storico giornate.</li>
-                        <li><strong>Auto-Backup Cloud:</strong> se attivato, salva automaticamente nel nodo <code>cloud_backups</code> secondo l’intervallo configurato e conserva le due copie più recenti, salvando solo quando rileva modifiche. Il salvataggio automatico include anche i log di sistema per consentire un recupero più completo.</li>
-                        <li><strong>Ripristino rapido:</strong> l’Admin può scegliere una delle copie Cloud disponibili e può eliminare tutte le copie Cloud con il comando dedicato. Prima di ripristinare o cancellare è necessario verificare data e contenuto della copia.</li>
+                        <li><code>displayLive</code>;</li>
+                        <li><code>impostazioni</code>;</li>
+                        <li><code>ingredienti</code>;</li>
+                        <li><code>mansionari</code>;</li>
+                        <li><code>menu</code>;</li>
+                        <li><code>reparti</code>;</li>
+                        <li><code>scontiGlobali</code>;</li>
+                        <li><code>spese</code>.</li>
                     </ul>
+                    <p>La configurazione non contiene comande, preordini, storico giornate, log, backup Cloud o account utenti. <strong>Carica Config</strong> legge un file JSON, chiede una conferma esplicita e aggiorna soltanto i nodi presenti nel file; non modifica gli utenti esistenti. Dopo il caricamento la pagina viene ricaricata. Usare questa funzione per trasferire menu, impostazioni e procedure tra ambienti, non per conservare i dati operativi del servizio.</p>
+
+                    <h4>13.10.2 Backup completo, ripristino e dati salvati</h4>
+                    <ul>
+                        <li><strong>Crea Backup → Salva su Cloud:</strong> salva una copia integrale di tutti i nodi correnti dentro <code>cloud_backups</code>, con etichetta e data del salvataggio.</li>
+                        <li><strong>Crea Backup → Scarica sul Dispositivo:</strong> scarica un JSON integrale con tutti i nodi presenti nel database, quindi può contenere comande, utenti, preordini, storico giornate, log, configurazione, spese, statistiche e copie Cloud già presenti. Il nome contiene stand e data.</li>
+                        <li><strong>Auto-Backup Cloud:</strong> se attivato, salva automaticamente nel nodo <code>cloud_backups</code> secondo l’intervallo configurato e conserva solo le due copie più recenti, salvando soltanto quando rileva modifiche. Il dataset automatico comprende comande, menu, ingredienti, impostazioni, utenti, preordini, storico giornate, sconti globali, mansionari, reparti, spese, statistiche dei tempi e <code>system_logs</code>.</li>
+                        <li><strong>Ripristina DB → Scegli dal Cloud:</strong> mostra le copie in ordine dalla più recente alla più vecchia. Le copie manuali mostrano la propria etichetta; quelle senza etichetta vengono indicate come salvataggi automatici con data e ora.</li>
+                        <li><strong>Ripristina DB → Carica File dal Dispositivo:</strong> permette di scegliere un JSON prodotto dal backup completo locale.</li>
+                        <li><strong>Eliminazione:</strong> l’Admin può eliminare tutte le copie Cloud oppure una singola copia dalla lista, sempre dopo una conferma esplicita.</li>
+                    </ul>
+                    <div class="info-box box-warning">
+                        <h5>⚠️ Ripristino totale: operazione distruttiva</h5>
+                        <p>Il ripristino sostituisce l’intero database e poi ricarica la pagina. Prima dell’operazione l’app conserva lo storico già presente in <code>cloud_backups</code> e lo ripristina al termine; inoltre preserva l’account Admin attualmente autenticato e l’account Super Admin di sistema per evitare di perdere l’accesso. Un file errato o obsoleto può comunque sovrascrivere comande, utenti, preordini, storico e configurazioni: verificare sempre la copia prima di confermare.</p>
+                    </div>
 
                     <h4>13.11 Checklist di avvio LAN</h4>
                     <ol>
@@ -952,7 +973,7 @@
                                 <tr><td class="setting-name">qrCodeStatoOrdine</td><td>Stampa un QR code sulla copia cliente che punta a stato-ordine.html?n=&lt;numero&gt; per il tracking live reparto per reparto</td><td>off</td></tr>
                                 <tr><td colspan="3" style="background:#0f172a; color:#64748b; font-size:0.85rem; letter-spacing:1px; text-transform:uppercase; font-weight:700;">Backup Automatico</td></tr>
                                 <tr><td class="setting-name">autoBackupAbilitato</td><td>Attiva il loop di backup periodico automatico verso il nodo cloud_backups del database</td><td>off</td></tr>
-                                <tr><td class="setting-name">autoBackupIntervallo</td><td>Frequenza del backup automatico in minuti; esegue solo se i dati sono cambiati dall'ultimo snapshot</td><td>30</td></tr>
+                                <tr><td class="setting-name">autoBackupIntervallo</td><td>Frequenza del backup automatico in minuti; esegue solo se i dati sono cambiati dall'ultimo snapshot</td><td>15</td></tr>
                                 <tr><td colspan="3" style="background:#0f172a; color:#64748b; font-size:0.85rem; letter-spacing:1px; text-transform:uppercase; font-weight:700;">Mansionario (Procedure di Turno)</td></tr>
                                 <tr><td class="setting-name">mansionarioAbilitato</td><td>Interruttore master del mansionario: mostra/nasconde il pulsante 📋 in topbar e abilita l'editor admin</td><td>off</td></tr>
                                 <tr><td class="setting-name">mansionarioRichiediLogout</td><td>Mostra automaticamente il mansionario di chiusura quando l'operatore preme Logout</td><td>off</td></tr>
@@ -981,7 +1002,7 @@
                                 <tr><td class="setting-name">spese/[id]</td><td>Spese dell’evento con descrizione, importo, pagatore, stato del rimborso e data; alimenta il riepilogo lordo, spese e utile netto.</td></tr>
                                 <tr><td class="setting-name">statistiche_tempi_prodotti/[id]</td><td>Tempi di lavorazione raccolti dai reparti, usati per medie, ritmo di servizio e colli di bottiglia.</td></tr>
                                 <tr><td class="setting-name">menu[reparto] / magazzino[reparto]</td><td>Visibilità e configurazione operativa dei menu e delle dispense per Cucina, Bere, Snack ed Extra, trasferite anche nella copia LAN.</td></tr>
-                                <tr><td class="setting-name">cloud_backups/[id]</td><td>Copie Cloud automatiche del dataset operativo; vengono mantenute le due copie più recenti.</td></tr>
+                                <tr><td class="setting-name">cloud_backups/[id]</td><td>Copie Cloud manuali o automatiche del dataset operativo, con timestamp, etichetta e dati; la rotazione automatica mantiene le due copie più recenti.</td></tr>
                             </tbody>
                         </table>
                     </div>
